@@ -1,10 +1,112 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="w-full flex items-center justify-center">
-    <div class="mt-36">
-    </div>
-    <div class="flex justify-center">
-        Hello World
-    </div>
+<div class="mt-36 w-full">
 </div>
+<div class="w-full flex flex-col items-center justify-center ">
+
+    <div class="text-3xl mb-10">
+        Upcoming Quarter
+    </div>
+    <div class="flex justify-center mx-auto max-w-[70vw] s">
+        <table id="myTable" class="display">
+            <thead>
+                <tr class="bg-[#0D2C54] text-white text-xs">
+                    <th class="px-6 py-3 tracking-wider">Subject Code</th>
+                    <th class="px-6 py-3 tracking-wider">Course Number
+                    </th>
+                    <th class="px-6 py-3  tracking-wider">CRN</th>
+                    <th class="px-6 py-3 tracking-wider">Course Title</th>
+                    <th class="px-6 py-3 tracking-wider">Instructor</th>
+                    <th class="px-6 py-3 tracking-wider">Instruction Type
+                    </th>
+                    <th class="px-6 py-3 tracking-wider">Instruction
+                        Method</th>
+                    <th class="px-6 py-3 tracking-wider">Section</th>
+                    <th class="px-6 py-3 tracking-wider">Enroll</th>
+                    <th class="px-6 py-3 tracking-wider ">Max Enroll</th>
+                    <th class="px-6 py-3 tracking-wider">Credits</th>
+                    <th class="px-6 py-3 tracking-wider">Prerequisites
+                    </th>
+                    <th class="px-6 py-3 tracking-wider ">Start Time</th>
+                    <th class="px-6 py-3 tracking-wider ">End Time</th>
+                    <th class="px-6 py-3 tracking-wider ">Day</th>
+
+                </tr>
+            </thead>
+            <tbody class="odd:bg-white">
+                <tr>
+                    <td>CS</td>
+                    <td>171</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                </tr>
+                <tr>
+                    <td>Row 2 Data 1</td>
+                    <td>Row 2 Data 2</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                </tr>
+                <!-- {% for course in courses %}
+                        <tr>
+                            <td class="px-6 py-4 ">{{ course.crn }}</td>
+                            <td class="px-6 py-4 ">{{ course.subject_code }}</td>
+                            <td class="px-6 py-4 ">{{ course.course_number }}</td>
+                            <td class="px-6 py-4 ">{{ course.course_title }}</td>
+                            <td class="px-6 py-4 ">{{ course.instructor }}</td>
+                            <td class="px-6 py-4 ">{{ course.instruction_type }}</td>
+                            <td class="px-6 py-4 ">{{ course.instruction_method }}</td>
+                            <td class="px-6 py-4 ">{{ course.section }}</td>
+                            <td class="px-6 py-4 ">{{ course.enroll }}</td>
+                            <td class="px-6 py-4 ">{{ course.max_enroll }}</td>
+                            <td class="px-6 py-4 ">{{ course.credits }}</td>
+                            <td class="px-6 py-4 ">{{ course.prereqs }}</td>
+                            <td class="px-6 py-4 ">{{ course.start_time }}</td>
+                            <td class="px-6 py-4 ">{{ course.end_time }}</td>
+                            <td class="px-6 py-4 ">{{ course.days }}</td>
+                        </tr>
+                        {% endfor %} -->
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>
+<style>
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>
+
+
 {% endblock %}
