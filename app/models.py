@@ -7,7 +7,7 @@ class Instructors(app.db.Model):
     avg_difficulty = app.db.Column(app.db.Float)
     avg_rating = app.db.Column(app.db.Float)
     num_ratings = app.db.Column(app.db.Integer)
-    rpm_id = app.db.Column(app.db.Integer)
+    rmp_id = app.db.Column(app.db.Integer)
     
 class Courses(app.db.Model):
     crn = app.db.Column(app.db.Integer, primary_key=True)
@@ -21,8 +21,8 @@ class Courses(app.db.Model):
     course_title = app.db.Column(app.db.String)
     credits = app.db.Column(app.db.String)
     prereqs = app.db.Column(app.db.String)
-    start_time = app.db.Column(app.db.DateTime)
-    end_time = app.db.Column(app.db.DateTime)
+    start_time = app.db.Column(app.db.String)
+    end_time = app.db.Column(app.db.String)
     days = app.db.Column(app.db.String) # This was array in the original schema... so this is wrong
 
 class CourseInstructor(app.db.Model):
