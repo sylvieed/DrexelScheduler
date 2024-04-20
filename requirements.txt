@@ -1,0 +1,2 @@
+flask==3.0.3
+sql-alchemy==3.1.1
