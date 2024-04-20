@@ -1,8 +1,9 @@
 from flask import redirect, render_template, request, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from . import app
-from .models import User
-from app import bcrypt, db
+#from .models import User
+from .helpers import get_course
+#from app import bcrypt, db
 
 @app.route("/")
 def home():
@@ -12,6 +13,37 @@ def home():
 def scheduler():
     courses = Courses.query.all()
     return render_template('scheduler.html', courses=courses)
+
+@app.route("/setup")
+def setup():
+    return render_template('setup.html')
+
+@app.route("/setup", methods=['POST'])
+@login_required
+def setup_post():
+    print (request.form)
+    major = request.form.get('major')
+    year = request.form.get('year')
+    courses_csv = request.form.get('courses')
+    courses = courses_csv.split(',')
+    print (courses)
+
+    # Add the user's major and year to the database
+    current_user.major = major
+    current_user.year = year
+
+    # Add the user's courses to the database
+    for c in courses:
+        # Check if the course is in the database
+        course = get_course(c)
+        if course:
+            x = UserCourse(user_id=current_user.id, course_id=course.crn)
+            db.session.add(x)
+    
+    db.session.commit()
+
+    return redirect(url_for('home'))
+
 # For now this is just to test the login system
 @app.route("/profile")
 @login_required
@@ -63,7 +95,7 @@ def signup_post():
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect(url_for('login'))
+    return redirect(url_for('setup'))
 
 @app.route('/logout')
 @login_required
