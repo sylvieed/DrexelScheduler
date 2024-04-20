@@ -3,7 +3,7 @@ import json
 
 def setup_database():
     try:
-        conn = sqlite3.connect('mydatabase.db')
+        conn = sqlite3.connect('mydatabase.sqlite')
         cursor = conn.cursor()
 
 
@@ -27,7 +27,7 @@ def add_data(data_path):
             data = json.load(file)
 
 
-        conn = sqlite3.connect('mydatabase.db')
+        conn = sqlite3.connect('mydatabase.sqlite')
         cursor = conn.cursor()
         
         for crn, value in data.items():
@@ -54,10 +54,12 @@ def add_data(data_path):
             instructor = value['instructors'][0]
 
             instructor_name = instructor['name']
-            avg_difficulty = instructor.get('avg_difficulty')  # Could be None
-            avg_rating = instructor.get('avg_rating')  # Could be None
-            num_ratings = instructor.get('num_ratings')  # Could be None
-            rmp_id = instructor.get('rmp_id')  # Could be None
+
+            if instructor['rating']:
+                avg_difficulty = instructor['rating'].get('avgDifficulty')  # Could be None
+                avg_rating = instructor['rating'].get('avgRating')  # Could be None
+                num_ratings = instructor['rating'].get('numRatings')  # Could be None
+                rmp_id = instructor['rating'].get('legacyId')  # Could be None
 
             cursor.execute('''
                 INSERT OR IGNORE INTO instructors (name, avg_difficulty, avg_rating, num_ratings, rmp_id)
