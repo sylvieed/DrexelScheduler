@@ -1,4 +1,5 @@
 import app
+from sqlalchemy import ForeignKey
 
 class Instructors(app.db.Model):
     id = app.db.Column(app.db.Integer, primary_key=True)
@@ -25,5 +26,26 @@ class Courses(app.db.Model):
     days = app.db.Column(app.db.String) # This was array in the original schema... so this is wrong
 
 class CourseInstructor(app.db.Model):
+    id = app.db.Column(app.db.Integer, primary_key=True)
     course_id = app.db.Column(app.db.Integer, ForeignKey('courses.crn'))
     instructor_id = app.db.Column(app.db.Integer, ForeignKey('instructors.id'))
+
+class User(app.db.Model):
+    id = app.db.Column(app.db.Integer, primary_key=True)
+    email = app.db.Column(app.db.String)
+    password = app.db.Column(app.db.String)
+    name = app.db.Column(app.db.String)
+
+    def is_authenticated(self):
+        return True
+    def is_active(self):
+        return True
+    def is_anoymous(self):
+        return False
+    def get_id(self):
+        return self.id
+
+class UserClass(app.db.Model):
+    id = app.db.Column(app.db.Integer, primary_key=True)
+    user_id = app.db.Column(app.db.Integer, ForeignKey('user.id'))
+    course_id = app.db.Column(app.db.Integer, ForeignKey('courses.crn'))
