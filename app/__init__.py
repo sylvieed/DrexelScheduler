@@ -15,6 +15,7 @@ db.init_app(app)
 # (Uncomment this once to create the database file)
 # from app import models
 # with app.app_context():
+#     db.drop_all()
 #     db.create_all()
 
 # Set up the login manager from flask_login
