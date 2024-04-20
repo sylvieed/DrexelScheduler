@@ -1,0 +1,2600 @@
+{
+    "42210": {
+        "subject_code": "CS",
+        "course_number": "171",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "A",
+        "crn": 42210,
+        "enroll": "0",
+        "max_enroll": "30",
+        "course_title": "Computer Programming I",
+        "days": [
+            "Monday"
+        ],
+        "start_time": "12:00",
+        "end_time": "13:50",
+        "instructors": [
+            {
+                "name": "Tammy R Pirmann"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40529": {
+        "subject_code": "CS",
+        "course_number": "172",
+        "instruction_type": "Lab",
+        "instruction_method": "Face To Face",
+        "section": "060",
+        "crn": 40529,
+        "enroll": "0",
+        "max_enroll": "30",
+        "course_title": "Computer Programming II",
+        "days": [
+            "Wednesday"
+        ],
+        "start_time": "09:00",
+        "end_time": "10:50",
+        "instructors": [
+            {
+                "name": "Tammy R Pirmann"
+            }
+        ],
+        "credits": "0.00",
+        "prereqs": "CS 171  Minimum Grade: C or CS 175  Minimum Grade: C"
+    },
+    "40095": {
+        "subject_code": "CS",
+        "course_number": "172",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "A",
+        "crn": 40095,
+        "enroll": "0",
+        "max_enroll": "30",
+        "course_title": "Computer Programming II",
+        "days": [
+            "Monday"
+        ],
+        "start_time": "09:00",
+        "end_time": "10:50",
+        "instructors": [
+            {
+                "name": "Tammy R Pirmann"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 171  Minimum Grade: C or CS 175  Minimum Grade: C"
+    },
+    "40025": {
+        "subject_code": "CS",
+        "course_number": "260",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40025,
+        "enroll": "0",
+        "max_enroll": "60",
+        "course_title": "Data Structures",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "09:00",
+        "end_time": "10:20",
+        "instructors": [
+            {
+                "name": "Yusuf Osmanlioglu"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 265  Minimum Grade: C"
+    },
+    "40545": {
+        "subject_code": "CS",
+        "course_number": "260",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "002",
+        "crn": 40545,
+        "enroll": "0",
+        "max_enroll": "60",
+        "course_title": "Data Structures",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "10:30",
+        "end_time": "11:50",
+        "instructors": [
+            {
+                "name": "Galen Long"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 265  Minimum Grade: C"
+    },
+    "40710": {
+        "subject_code": "CS",
+        "course_number": "265",
+        "instruction_type": "Integrated Lecture & Lab",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40710,
+        "enroll": "0",
+        "max_enroll": "30",
+        "course_title": "Advanced Programming Tools and Techniques",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "16:30",
+        "end_time": "17:50",
+        "instructors": null,
+        "credits": "3.00",
+        "prereqs": "CS 172  Minimum Grade: C or CS 176  Minimum Grade: C or ECE 105  Minimum Grade: D or ECEC 201  Minimum Grade: D"
+    },
+    "40962": {
+        "subject_code": "CS",
+        "course_number": "270",
+        "instruction_type": "Integrated Lecture & Lab",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40962,
+        "enroll": "0",
+        "max_enroll": "30",
+        "course_title": "Mathematical Foundations of Computer Science",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "12:00",
+        "end_time": "13:20",
+        "instructors": [
+            {
+                "name": "Steve Earth"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 172  Minimum Grade: C or CS 176  Minimum Grade: C or CS 265  Minimum Grade: C or ECE 105  Minimum Grade: D or ECEC 201  Minimum Grade: D or ECEC 301  Minimum Grade: D"
+    },
+    "40543": {
+        "subject_code": "CS",
+        "course_number": "283",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40543,
+        "enroll": "0",
+        "max_enroll": "50",
+        "course_title": "Systems Programming",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "15:00",
+        "end_time": "16:20",
+        "instructors": [
+            {
+                "name": "Brian L Stuart"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 265  Minimum Grade: C"
+    },
+    "40425": {
+        "subject_code": "CS",
+        "course_number": "283",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "002",
+        "crn": 40425,
+        "enroll": "0",
+        "max_enroll": "50",
+        "course_title": "Systems Programming",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "16:30",
+        "end_time": "17:50",
+        "instructors": [
+            {
+                "name": "Brian L Stuart"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 265  Minimum Grade: C"
+    },
+    "40155": {
+        "subject_code": "CS",
+        "course_number": "360",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40155,
+        "enroll": "0",
+        "max_enroll": "30",
+        "course_title": "Programming Language Concepts",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "12:00",
+        "end_time": "13:20",
+        "instructors": [
+            {
+                "name": "Jeremy R Johnson"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 260  Minimum Grade: C and CS 265  Minimum Grade: C and CS 270  Minimum Grade: C"
+    },
+    "41022": {
+        "subject_code": "CS",
+        "course_number": "360",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "002",
+        "crn": 41022,
+        "enroll": "0",
+        "max_enroll": "30",
+        "course_title": "Programming Language Concepts",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "13:30",
+        "end_time": "14:50",
+        "instructors": [
+            {
+                "name": "Jeremy R Johnson"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 260  Minimum Grade: C and CS 265  Minimum Grade: C and CS 270  Minimum Grade: C"
+    },
+    "40041": {
+        "subject_code": "CS",
+        "course_number": "370",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40041,
+        "enroll": "0",
+        "max_enroll": "30",
+        "course_title": "Operating Systems",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "12:00",
+        "end_time": "13:20",
+        "instructors": [
+            {
+                "name": "Brian L Stuart"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 283  Minimum Grade: C or ECEC 353  Minimum Grade: D"
+    },
+    "40963": {
+        "subject_code": "CS",
+        "course_number": "375",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40963,
+        "enroll": "0",
+        "max_enroll": "30",
+        "course_title": "Web Development",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "13:30",
+        "end_time": "14:50",
+        "instructors": [
+            {
+                "name": "Galen Long"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 265  Minimum Grade: C"
+    },
+    "41368": {
+        "subject_code": "CS",
+        "course_number": "383",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41368,
+        "enroll": "0",
+        "max_enroll": "30",
+        "course_title": "Machine Learning",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "09:00",
+        "end_time": "10:20",
+        "instructors": [
+            {
+                "name": "Ehsan B Khosroshahi"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 260  Minimum Grade: C and (MATH 201  Minimum Grade: C or ENGR 231  Minimum Grade: D ) and (MATH 221  Minimum Grade: C or MATH 222  Minimum Grade: C ) and (MATH 311  Minimum Grade: C or MATH 410  Minimum Grade: C or ECE 361  Minimum Grade: D )"
+    },
+    "41898": {
+        "subject_code": "CS",
+        "course_number": "383",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "002",
+        "crn": 41898,
+        "enroll": "0",
+        "max_enroll": "30",
+        "course_title": "Machine Learning",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "12:00",
+        "end_time": "13:20",
+        "instructors": [
+            {
+                "name": "Ehsan B Khosroshahi"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 260  Minimum Grade: C and (MATH 201  Minimum Grade: C or ENGR 231  Minimum Grade: D ) and (MATH 221  Minimum Grade: C or MATH 222  Minimum Grade: C ) and (MATH 311  Minimum Grade: C or MATH 410  Minimum Grade: C or ECE 361  Minimum Grade: D )"
+    },
+    "41899": {
+        "subject_code": "CS",
+        "course_number": "387",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41899,
+        "enroll": "0",
+        "max_enroll": "30",
+        "course_title": "Game AI Development",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "15:00",
+        "end_time": "16:20",
+        "instructors": [
+            {
+                "name": "Ehsan B Khosroshahi"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 260  Minimum Grade: C and CS 380  Minimum Grade: C"
+    },
+    "41159": {
+        "subject_code": "CS",
+        "course_number": "432",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41159,
+        "enroll": "0",
+        "max_enroll": "30",
+        "course_title": "Interactive Computer Graphics",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "10:30",
+        "end_time": "11:50",
+        "instructors": [
+            {
+                "name": "Sean P Grimes"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 260  Minimum Grade: C and (MATH 201  Minimum Grade: C or MATH 261  Minimum Grade: C or ENGR 231  Minimum Grade: D )"
+    },
+    "41161": {
+        "subject_code": "CS",
+        "course_number": "502",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41161,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Data Structures and Algorithms",
+        "days": [
+            "Wednesday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Mark W Boady"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 501  Minimum Grade: C"
+    },
+    "41162": {
+        "subject_code": "CS",
+        "course_number": "502",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41162,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Data Structures and Algorithms",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Mark W Boady"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 501  Minimum Grade: C"
+    },
+    "41163": {
+        "subject_code": "CS",
+        "course_number": "504",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41163,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Introduction to Software Design",
+        "days": [
+            "Monday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Boris Valerstein"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 502  Minimum Grade: C  (CS 502  may be taken concurrently with CS 504) and CS 503  Minimum Grade: C"
+    },
+    "41164": {
+        "subject_code": "CS",
+        "course_number": "504",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41164,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Introduction to Software Design",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Boris Valerstein"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 502  Minimum Grade: C  (CS 502  may be taken concurrently with CS 504) and CS 503  Minimum Grade: C"
+    },
+    "41165": {
+        "subject_code": "CS",
+        "course_number": "521",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41165,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Data Structures and Algorithms I",
+        "days": [
+            "Tuesday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": null,
+        "credits": "3.00",
+        "prereqs": "CS 504  Minimum Grade: C"
+    },
+    "41166": {
+        "subject_code": "CS",
+        "course_number": "521",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41166,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Data Structures and Algorithms I",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": null,
+        "credits": "3.00",
+        "prereqs": "CS 504  Minimum Grade: C"
+    },
+    "41370": {
+        "subject_code": "CS",
+        "course_number": "523",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41370,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Cryptography",
+        "days": [
+            "Wednesday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Jeremy R Johnson"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 502  Minimum Grade: B"
+    },
+    "41371": {
+        "subject_code": "CS",
+        "course_number": "523",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41371,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Cryptography",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Jeremy R Johnson"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 502  Minimum Grade: B"
+    },
+    "41903": {
+        "subject_code": "CS",
+        "course_number": "592",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41903,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Artificial Intelligence and Machine Learning Capstone II",
+        "days": [
+            "Thursday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Trip E Denton"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 591  Minimum Grade: C"
+    },
+    "41904": {
+        "subject_code": "CS",
+        "course_number": "592",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41904,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Artificial Intelligence and Machine Learning Capstone II",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Trip E Denton"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 591  Minimum Grade: C"
+    },
+    "41905": {
+        "subject_code": "CS",
+        "course_number": "614",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41905,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Applications of Machine Learning",
+        "days": [
+            "Monday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Edward Kim"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 629  Minimum Grade: C  (INFO 629  may be taken concurrently with CS 614) or CS 613  Minimum Grade: C  (CS 613  may be taken concurrently with CS 614) or DSCI 631  Minimum Grade: C  (DSCI 631  may be taken concurrently with CS 614)"
+    },
+    "41906": {
+        "subject_code": "CS",
+        "course_number": "614",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41906,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Applications of Machine Learning",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Edward Kim"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 629  Minimum Grade: C  (INFO 629  may be taken concurrently with CS 614) or CS 613  Minimum Grade: C  (CS 613  may be taken concurrently with CS 614) or DSCI 631  Minimum Grade: C  (DSCI 631  may be taken concurrently with CS 614)"
+    },
+    "41167": {
+        "subject_code": "CS",
+        "course_number": "615",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41167,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Deep Learning",
+        "days": [
+            "Wednesday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Ehsan B Khosroshahi"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 613  Minimum Grade: C"
+    },
+    "41168": {
+        "subject_code": "CS",
+        "course_number": "615",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41168,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Deep Learning",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Ehsan B Khosroshahi"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 613  Minimum Grade: C"
+    },
+    "40964": {
+        "subject_code": "CS",
+        "course_number": "660",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40964,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Data Analysis at Scale",
+        "days": [
+            "Monday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": null,
+        "credits": "3.00",
+        "prereqs": "CS 504  Minimum Grade: C"
+    },
+    "40965": {
+        "subject_code": "CS",
+        "course_number": "660",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40965,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Data Analysis at Scale",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": null,
+        "credits": "3.00",
+        "prereqs": "CS 504  Minimum Grade: C"
+    },
+    "41373": {
+        "subject_code": "CT",
+        "course_number": "140",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41373,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Network Administration I",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "12:00",
+        "end_time": "13:20",
+        "instructors": [
+            {
+                "name": "Brian J Bijeau"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 101  Minimum Grade: D"
+    },
+    "40760": {
+        "subject_code": "CT",
+        "course_number": "250",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40760,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "IT Security Awareness",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "15:00",
+        "end_time": "16:20",
+        "instructors": [
+            {
+                "name": "Hengyi M Chu"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40761": {
+        "subject_code": "CT",
+        "course_number": "250",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40761,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "IT Security Awareness",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Christopher L Stevens"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "41915": {
+        "subject_code": "CT",
+        "course_number": "301",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41915,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Information Technology Security II",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "12:00",
+        "end_time": "13:20",
+        "instructors": [
+            {
+                "name": "Michelle A Tarbutton"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CT 140  Minimum Grade: D and CT 201  Minimum Grade: D"
+    },
+    "40763": {
+        "subject_code": "CT",
+        "course_number": "310",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40763,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Open Server II",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "09:00",
+        "end_time": "10:20",
+        "instructors": [
+            {
+                "name": "Chris J Carroll"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CT 210  Minimum Grade: D"
+    },
+    "40764": {
+        "subject_code": "CT",
+        "course_number": "310",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40764,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Open Server II",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Emanuel S Lazar"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CT 210  Minimum Grade: D"
+    },
+    "40707": {
+        "subject_code": "CT",
+        "course_number": "320",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40707,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Server II",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "15:00",
+        "end_time": "16:20",
+        "instructors": [
+            {
+                "name": "Hengyi M Chu"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CT 200  Minimum Grade: D"
+    },
+    "40708": {
+        "subject_code": "CT",
+        "course_number": "320",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40708,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Server II",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "David J Comroe"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CT 200  Minimum Grade: D"
+    },
+    "40765": {
+        "subject_code": "CT",
+        "course_number": "330",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40765,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Network Administration II",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "10:30",
+        "end_time": "11:50",
+        "instructors": [
+            {
+                "name": "Chris J Carroll"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CT 140  Minimum Grade: D"
+    },
+    "40766": {
+        "subject_code": "CT",
+        "course_number": "330",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40766,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Network Administration II",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Andrew W Calhoun"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CT 140  Minimum Grade: D"
+    },
+    "41916": {
+        "subject_code": "CT",
+        "course_number": "355",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41916,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Wireless Network Security Technology",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "13:30",
+        "end_time": "14:50",
+        "instructors": [
+            {
+                "name": "Michelle A Tarbutton"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CT 420  Minimum Grade: D or CT 301  Minimum Grade: D"
+    },
+    "41173": {
+        "subject_code": "CT",
+        "course_number": "400",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41173,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Network Security",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "16:30",
+        "end_time": "17:50",
+        "instructors": [
+            {
+                "name": "Hengyi M Chu"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CT 330  Minimum Grade: D"
+    },
+    "40298": {
+        "subject_code": "CT",
+        "course_number": "412",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40298,
+        "enroll": "0",
+        "max_enroll": "50",
+        "course_title": "Information Technology Security Policies",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Christopher L Stevens"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40767": {
+        "subject_code": "CT",
+        "course_number": "414",
+        "instruction_type": "Integrated Lecture & Lab",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40767,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Ethical Hacking and Penetration Testing",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "13:30",
+        "end_time": "14:50",
+        "instructors": [
+            {
+                "name": "Chris J Carroll"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40768": {
+        "subject_code": "CT",
+        "course_number": "414",
+        "instruction_type": "Integrated Lecture & Lab",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40768,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Ethical Hacking and Penetration Testing",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Andrew W Calhoun"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40546": {
+        "subject_code": "CT",
+        "course_number": "415",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40546,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Disaster Recovery and Continuity Planning",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Emanuel S Lazar"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40299": {
+        "subject_code": "CT",
+        "course_number": "432",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40299,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Information Technology Security Systems Audits",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Andrew W Calhoun"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CT 420  Minimum Grade: D or CT 301  Minimum Grade: D"
+    },
+    "41375": {
+        "subject_code": "CT",
+        "course_number": "605",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41375,
+        "enroll": "0",
+        "max_enroll": "12",
+        "course_title": "Cloud Security and Virtual Environments",
+        "days": [
+            "Tuesday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Chad E Peiper"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 517  Minimum Grade: C"
+    },
+    "41376": {
+        "subject_code": "CT",
+        "course_number": "605",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41376,
+        "enroll": "0",
+        "max_enroll": "13",
+        "course_title": "Cloud Security and Virtual Environments",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Chad E Peiper"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 517  Minimum Grade: C"
+    },
+    "41612": {
+        "subject_code": "DSCI",
+        "course_number": "351",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41612,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Recommender Systems",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "09:00",
+        "end_time": "10:20",
+        "instructors": [
+            {
+                "name": "Lei Wang"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 212  Minimum Grade: D"
+    },
+    "42116": {
+        "subject_code": "DSCI",
+        "course_number": "501",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 42116,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Quantitative Foundations of Data Science",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Bhupesh Y Shetty"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "42117": {
+        "subject_code": "DSCI",
+        "course_number": "521",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 42117,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Data Analysis and Interpretation",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Pragati Awasthi"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "DSCI 501  Minimum Grade: C  (DSCI 501  may be taken concurrently with DSCI 521)"
+    },
+    "42276": {
+        "subject_code": "DSCI",
+        "course_number": "591",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 42276,
+        "enroll": "0",
+        "max_enroll": "12",
+        "course_title": "Data Science Capstone I",
+        "days": [
+            "Tuesday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Melvin E Moore"
+            }
+        ],
+        "prereqs": "",
+        "credits": "3.00"
+    },
+    "42118": {
+        "subject_code": "DSCI",
+        "course_number": "591",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 42118,
+        "enroll": "0",
+        "max_enroll": "13",
+        "course_title": "Data Science Capstone I",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Melvin E Moore"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40966": {
+        "subject_code": "DSCI",
+        "course_number": "592",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40966,
+        "enroll": "0",
+        "max_enroll": "12",
+        "course_title": "Data Science Capstone II",
+        "days": [
+            "Thursday"
+        ],
+        "start_time": "12:00",
+        "end_time": "14:50",
+        "instructors": [
+            {
+                "name": "Milad Toutounchian"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "DSCI 591  Minimum Grade: C"
+    },
+    "40967": {
+        "subject_code": "DSCI",
+        "course_number": "592",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40967,
+        "enroll": "0",
+        "max_enroll": "13",
+        "course_title": "Data Science Capstone II",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Milad Toutounchian"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "DSCI 591  Minimum Grade: C"
+    },
+    "41372": {
+        "subject_code": "DSCI",
+        "course_number": "632",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41372,
+        "enroll": "0",
+        "max_enroll": "12",
+        "course_title": "Applied Cloud Computing",
+        "days": [
+            "Wednesday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Milad Toutounchian"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "DSCI 521  Minimum Grade: C  (DSCI 521  may be taken concurrently with DSCI 632)"
+    },
+    "41613": {
+        "subject_code": "DSCI",
+        "course_number": "632",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41613,
+        "enroll": "0",
+        "max_enroll": "13",
+        "course_title": "Applied Cloud Computing",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Milad Toutounchian"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "DSCI 521  Minimum Grade: C  (DSCI 521  may be taken concurrently with DSCI 632)"
+    },
+    "41913": {
+        "subject_code": "DSCI",
+        "course_number": "641",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41913,
+        "enroll": "0",
+        "max_enroll": "12",
+        "course_title": "Recommender Systems for Data Science",
+        "days": [
+            "Thursday"
+        ],
+        "start_time": "09:00",
+        "end_time": "11:50",
+        "instructors": [
+            {
+                "name": "Lei Wang"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "DSCI 521  Minimum Grade: C"
+    },
+    "41914": {
+        "subject_code": "DSCI",
+        "course_number": "641",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41914,
+        "enroll": "0",
+        "max_enroll": "13",
+        "course_title": "Recommender Systems for Data Science",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Lei Wang"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "DSCI 521  Minimum Grade: C"
+    },
+    "41917": {
+        "subject_code": "INFO",
+        "course_number": "101",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41917,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Introduction to Computing and Security Technology",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "09:00",
+        "end_time": "10:20",
+        "instructors": [
+            {
+                "name": "Polly A College"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40547": {
+        "subject_code": "INFO",
+        "course_number": "101",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40547,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Introduction to Computing and Security Technology",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Pragati Awasthi"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40973": {
+        "subject_code": "INFO",
+        "course_number": "102",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40973,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Introduction to Information Systems",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Pragati Awasthi"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "41918": {
+        "subject_code": "INFO",
+        "course_number": "103",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41918,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Introduction to Data Science",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "10:30",
+        "end_time": "11:50",
+        "instructors": [
+            {
+                "name": "Andrew J Kane"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40974": {
+        "subject_code": "INFO",
+        "course_number": "103",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40974,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Introduction to Data Science",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Andrew J Kane"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40975": {
+        "subject_code": "INFO",
+        "course_number": "152",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40975,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Web Systems and Services II",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "15:00",
+        "end_time": "16:20",
+        "instructors": [
+            {
+                "name": "Bo Song"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 151  Minimum Grade: D or CS 140  Minimum Grade: D"
+    },
+    "40833": {
+        "subject_code": "INFO",
+        "course_number": "152",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40833,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Web Systems and Services II",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Bo Song"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 151  Minimum Grade: D or CS 140  Minimum Grade: D"
+    },
+    "40497": {
+        "subject_code": "INFO",
+        "course_number": "200",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40497,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Systems Analysis I",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "13:30",
+        "end_time": "14:50",
+        "instructors": [
+            {
+                "name": "Hegler Correa Tissot"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 101  Minimum Grade: D"
+    },
+    "40107": {
+        "subject_code": "INFO",
+        "course_number": "210",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40107,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Database Management Systems",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "15:00",
+        "end_time": "16:20",
+        "instructors": [
+            {
+                "name": "Hegler Correa Tissot"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 101  Minimum Grade: D or SE 210  Minimum Grade: D"
+    },
+    "40769": {
+        "subject_code": "INFO",
+        "course_number": "213",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40769,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Data Science Programming II",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "15:00",
+        "end_time": "16:20",
+        "instructors": [
+            {
+                "name": "Bhupesh Y Shetty"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 212  Minimum Grade: D and (STAT 201  Minimum Grade: D or MATH 311  Minimum Grade: D )"
+    },
+    "41617": {
+        "subject_code": "INFO",
+        "course_number": "215",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41617,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Social Aspects of Information Systems",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "10:30",
+        "end_time": "11:50",
+        "instructors": [
+            {
+                "name": "Abass O Ahmed"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40717": {
+        "subject_code": "INFO",
+        "course_number": "250",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40717,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Information Visualization",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "13:30",
+        "end_time": "14:50",
+        "instructors": null,
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40216": {
+        "subject_code": "INFO",
+        "course_number": "310",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40216,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Human-Centered Design Process & Methods",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "09:00",
+        "end_time": "10:20",
+        "instructors": [
+            {
+                "name": "Tim J Gorichanaz"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 110  Minimum Grade: D or INFO 151  Minimum Grade: D or CS 171  Minimum Grade: D or ECE 105  Minimum Grade: D or ECE 203  Minimum Grade: D"
+    },
+    "41377": {
+        "subject_code": "INFO",
+        "course_number": "310",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "002",
+        "crn": 41377,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Human-Centered Design Process & Methods",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "10:30",
+        "end_time": "11:50",
+        "instructors": [
+            {
+                "name": "Tim J Gorichanaz"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 110  Minimum Grade: D or INFO 151  Minimum Grade: D or CS 171  Minimum Grade: D or ECE 105  Minimum Grade: D or ECE 203  Minimum Grade: D"
+    },
+    "40511": {
+        "subject_code": "INFO",
+        "course_number": "324",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40511,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Team Process and Product",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "09:00",
+        "end_time": "10:20",
+        "instructors": [
+            {
+                "name": "Thomas J Heverin"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "(INFO 153  Minimum Grade: D or CS 172  Minimum Grade: D ) and INFO 200  Minimum Grade: D"
+    },
+    "41378": {
+        "subject_code": "INFO",
+        "course_number": "324",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41378,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Team Process and Product",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Thomas J Heverin"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "(INFO 153  Minimum Grade: D or CS 172  Minimum Grade: D ) and INFO 200  Minimum Grade: D"
+    },
+    "41619": {
+        "subject_code": "INFO",
+        "course_number": "355",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41619,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Systems Analysis II",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "16:30",
+        "end_time": "17:50",
+        "instructors": [
+            {
+                "name": "Chad E Peiper"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 210  Minimum Grade: D and INFO 200  Minimum Grade: D"
+    },
+    "41174": {
+        "subject_code": "INFO",
+        "course_number": "355",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41174,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Systems Analysis II",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Chad E Peiper"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 210  Minimum Grade: D and INFO 200  Minimum Grade: D"
+    },
+    "42085": {
+        "subject_code": "INFO",
+        "course_number": "355",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "901",
+        "crn": 42085,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Systems Analysis II",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Philip H Kulp"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 210  Minimum Grade: D and INFO 200  Minimum Grade: D"
+    },
+    "40770": {
+        "subject_code": "INFO",
+        "course_number": "366",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40770,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Database Administration II",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Joseph D Adair"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 365  Minimum Grade: D"
+    },
+    "41919": {
+        "subject_code": "INFO",
+        "course_number": "420",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41919,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Software Project Management",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "12:00",
+        "end_time": "13:20",
+        "instructors": [
+            {
+                "name": "Ram Arthanari"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "(INFO 200  Minimum Grade: D or SE 210  Minimum Grade: D ) and (CS 172  Minimum Grade: D or CS 265  Minimum Grade: D or INFO 152  Minimum Grade: D or SE 103  Minimum Grade: D or CS 176  Minimum Grade: D )"
+    },
+    "41622": {
+        "subject_code": "INFO",
+        "course_number": "420",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41622,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Software Project Management",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Ram Arthanari"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "(INFO 200  Minimum Grade: D or SE 210  Minimum Grade: D ) and (CS 172  Minimum Grade: D or CS 265  Minimum Grade: D or INFO 152  Minimum Grade: D or SE 103  Minimum Grade: D or CS 176  Minimum Grade: D )"
+    },
+    "41623": {
+        "subject_code": "INFO",
+        "course_number": "432",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41623,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Advanced Data Analytics",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "16:30",
+        "end_time": "17:50",
+        "instructors": [
+            {
+                "name": "Alex J Kalinowski"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 332  Minimum Grade: D"
+    },
+    "41624": {
+        "subject_code": "INFO",
+        "course_number": "440",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41624,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Social Media Data Analysis",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "13:30",
+        "end_time": "14:50",
+        "instructors": [
+            {
+                "name": "Alex J Kalinowski"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 212  Minimum Grade: D or CS 172  Minimum Grade: D"
+    },
+    "41379": {
+        "subject_code": "INFO",
+        "course_number": "442",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41379,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Data Science Projects",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "10:30",
+        "end_time": "11:50",
+        "instructors": [
+            {
+                "name": "Lei Wang"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 213  Minimum Grade: D and INFO 332  Minimum Grade: D"
+    },
+    "40709": {
+        "subject_code": "INFO",
+        "course_number": "507",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40709,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Leading and Managing Information Organizations",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Ashley L Todd-Diaz"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40771": {
+        "subject_code": "INFO",
+        "course_number": "590",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40771,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Foundations of Data and Information",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Heather L Willever-Farr"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "41920": {
+        "subject_code": "INFO",
+        "course_number": "600",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41920,
+        "enroll": "0",
+        "max_enroll": "12",
+        "course_title": "Web Systems & Architecture",
+        "days": [
+            "Tuesday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Bo Song"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 540  Minimum Grade: C  (INFO 540  may be taken concurrently with INFO 600) or INFO 590  Minimum Grade: C or CS 502  Minimum Grade: C or INFO 532  Minimum Grade: C"
+    },
+    "41625": {
+        "subject_code": "INFO",
+        "course_number": "600",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41625,
+        "enroll": "0",
+        "max_enroll": "13",
+        "course_title": "Web Systems & Architecture",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Bo Song"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 540  Minimum Grade: C  (INFO 540  may be taken concurrently with INFO 600) or INFO 590  Minimum Grade: C or CS 502  Minimum Grade: C or INFO 532  Minimum Grade: C"
+    },
+    "40548": {
+        "subject_code": "INFO",
+        "course_number": "605",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40548,
+        "enroll": "0",
+        "max_enroll": "12",
+        "course_title": "Database Management Systems",
+        "days": [
+            "Wednesday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Hegler Correa Tissot"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40054": {
+        "subject_code": "INFO",
+        "course_number": "605",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40054,
+        "enroll": "0",
+        "max_enroll": "13",
+        "course_title": "Database Management Systems",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Hegler Correa Tissot"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40202": {
+        "subject_code": "INFO",
+        "course_number": "608",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40202,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Human-Computer Interaction",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Deborah A Garwood"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "42277": {
+        "subject_code": "INFO",
+        "course_number": "609",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 42277,
+        "enroll": "0",
+        "max_enroll": "12",
+        "course_title": "Accessible and Inclusive Design",
+        "days": [
+            "Monday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": null,
+        "prereqs": "INFO 508  Minimum Grade: C  (INFO 508  may be taken concurrently with INFO 609) or DSRE 620  Minimum Grade: C  (DSRE 620  may be taken concurrently with INFO 609) or INFO 608  Minimum Grade: C  (INFO 608  may be taken concurrently with INFO 609)",
+        "credits": "3.00"
+    },
+    "42119": {
+        "subject_code": "INFO",
+        "course_number": "609",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 42119,
+        "enroll": "0",
+        "max_enroll": "13",
+        "course_title": "Accessible and Inclusive Design",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": null,
+        "credits": "3.00",
+        "prereqs": "INFO 508  Minimum Grade: C  (INFO 508  may be taken concurrently with INFO 609) or DSRE 620  Minimum Grade: C  (DSRE 620  may be taken concurrently with INFO 609) or INFO 608  Minimum Grade: C  (INFO 608  may be taken concurrently with INFO 609)"
+    },
+    "41381": {
+        "subject_code": "INFO",
+        "course_number": "616",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41381,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Social and Collaborative Computing",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Erica J Racine"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 608  Minimum Grade: C  (INFO 608  may be taken concurrently with INFO 616) or INFO 508  Minimum Grade: C  (INFO 508  may be taken concurrently with INFO 616) or DSRE 620  Minimum Grade: C  (DSRE 620  may be taken concurrently with INFO 616)"
+    },
+    "41994": {
+        "subject_code": "INFO",
+        "course_number": "629",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41994,
+        "enroll": "0",
+        "max_enroll": "12",
+        "course_title": "Applied Artificial Intelligence",
+        "days": [
+            "Wednesday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Alex J Kalinowski"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 620  Minimum Grade: C or CS 501  Minimum Grade: C or CS 570  Minimum Grade: C"
+    },
+    "41995": {
+        "subject_code": "INFO",
+        "course_number": "629",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41995,
+        "enroll": "0",
+        "max_enroll": "13",
+        "course_title": "Applied Artificial Intelligence",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Alex J Kalinowski"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 620  Minimum Grade: C or CS 501  Minimum Grade: C or CS 570  Minimum Grade: C"
+    },
+    "40238": {
+        "subject_code": "INFO",
+        "course_number": "651",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40238,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Academic Library Service",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Robert A Sieczkiewicz"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40976": {
+        "subject_code": "INFO",
+        "course_number": "657",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40976,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Digital Library Technologies",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Monique G Breaux"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 552  Minimum Grade: C or INFO 540  Minimum Grade: C or INFO 590  Minimum Grade: C"
+    },
+    "41382": {
+        "subject_code": "INFO",
+        "course_number": "690",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41382,
+        "enroll": "0",
+        "max_enroll": "12",
+        "course_title": "Understanding Users: User Experience Research Methods",
+        "days": [
+            "Thursday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Polly A College"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 508  Minimum Grade: C  (INFO 508  may be taken concurrently with INFO 690) or INFO 608  Minimum Grade: C  (INFO 608  may be taken concurrently with INFO 690) or DSRE 620  Minimum Grade: C  (DSRE 620  may be taken concurrently with INFO 690)"
+    },
+    "41383": {
+        "subject_code": "INFO",
+        "course_number": "690",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41383,
+        "enroll": "0",
+        "max_enroll": "13",
+        "course_title": "Understanding Users: User Experience Research Methods",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Polly A College"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 508  Minimum Grade: C  (INFO 508  may be taken concurrently with INFO 690) or INFO 608  Minimum Grade: C  (INFO 608  may be taken concurrently with INFO 690) or DSRE 620  Minimum Grade: C  (DSRE 620  may be taken concurrently with INFO 690)"
+    },
+    "41627": {
+        "subject_code": "INFO",
+        "course_number": "710",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41627,
+        "enroll": "0",
+        "max_enroll": "12",
+        "course_title": "Information Forensics",
+        "days": [
+            "Monday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Michelle A Tarbutton"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 540  Minimum Grade: C or INFO 590  Minimum Grade: C or CS 502  Minimum Grade: C or INFO 517  Minimum Grade: C"
+    },
+    "40834": {
+        "subject_code": "INFO",
+        "course_number": "710",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40834,
+        "enroll": "0",
+        "max_enroll": "13",
+        "course_title": "Information Forensics",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Michelle A Tarbutton"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 540  Minimum Grade: C or INFO 590  Minimum Grade: C or CS 502  Minimum Grade: C or INFO 517  Minimum Grade: C"
+    },
+    "40371": {
+        "subject_code": "INFO",
+        "course_number": "712",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40371,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Information Assurance",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Chad E Peiper"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "INFO 540  Minimum Grade: C or INFO 590  Minimum Grade: C or CS 502  Minimum Grade: C or DSCI 511  Minimum Grade: C  (DSCI 511  may be taken concurrently with INFO 712) or DSCI 521  Minimum Grade: C  (DSCI 521  may be taken concurrently with INFO 712) or INFO 517  Minimum Grade: C"
+    },
+    "42120": {
+        "subject_code": "INFO",
+        "course_number": "725",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 42120,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Information Policy and Ethics",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Joanna R Weidler-Lewis"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "41921": {
+        "subject_code": "INFO",
+        "course_number": "755",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41921,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Electronic Records Management",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Heather L Willever-Farr"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "41922": {
+        "subject_code": "INFO",
+        "course_number": "T780",
+        "instruction_type": "Special Topics",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41922,
+        "enroll": "0",
+        "max_enroll": "12",
+        "course_title": "HCI/UX Capstone I",
+        "days": [
+            "Wednesday"
+        ],
+        "start_time": "14:00",
+        "end_time": "16:50",
+        "instructors": [
+            {
+                "name": "Tim J Gorichanaz"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "41923": {
+        "subject_code": "INFO",
+        "course_number": "T780",
+        "instruction_type": "Special Topics",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41923,
+        "enroll": "0",
+        "max_enroll": "13",
+        "course_title": "HCI/UX Capstone I",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Tim J Gorichanaz"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40772": {
+        "subject_code": "INFO",
+        "course_number": "890",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40772,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Capstone Project",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Heather L Willever-Farr"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "41907": {
+        "subject_code": "SE",
+        "course_number": "181",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41907,
+        "enroll": "0",
+        "max_enroll": "30",
+        "course_title": "Introduction to Software Engineering and Development",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "15:00",
+        "end_time": "16:20",
+        "instructors": [
+            {
+                "name": "Sean P Grimes"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 172  Minimum Grade: C or CS 176  Minimum Grade: C"
+    },
+    "41169": {
+        "subject_code": "SE",
+        "course_number": "572",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41169,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Web Services and Mobile Architectures",
+        "days": [
+            "Thursday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Boris Valerstein"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 504  Minimum Grade: C"
+    },
+    "41170": {
+        "subject_code": "SE",
+        "course_number": "572",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41170,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Web Services and Mobile Architectures",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Boris Valerstein"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "CS 504  Minimum Grade: C"
+    },
+    "41911": {
+        "subject_code": "SE",
+        "course_number": "691",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41911,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Software Studio",
+        "days": [
+            "Thursday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Trip E Denton"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "SE 570  Minimum Grade: C"
+    },
+    "41912": {
+        "subject_code": "SE",
+        "course_number": "691",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 41912,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Software Studio",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Trip E Denton"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": "SE 570  Minimum Grade: C"
+    }
+}
