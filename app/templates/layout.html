@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <title>Drexel Scheduler</title>
+    </head>
+    <body>
+        <!-- navbar-->
+
+        <div id="content">{% block content %}{% endblock %}</div>
+    </body>
+</html>
