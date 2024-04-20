@@ -815,6 +815,10 @@ video {
   flex-shrink: 0;
 }
 
+.shrink {
+  flex-shrink: 1;
+}
+
 .origin-top-right {
   transform-origin: top right;
 }
