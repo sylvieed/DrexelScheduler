@@ -1,9 +1,9 @@
 from flask import redirect, render_template, request, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from . import app
-#from .models import User
-from .helpers import get_course
-#from app import bcrypt, db
+from .models import User
+# from .helpers import get_course
+from app import bcrypt, db
 
 @app.route("/")
 def home():
@@ -102,8 +102,3 @@ def signup_post():
 def logout():
     logout_user()
     return redirect(url_for('home'))
-
-@app.route('/scheduler')
-def scheduler():
-    courses = Courses.query.all()
-    return render_template('scheduler.html', courses=courses)
