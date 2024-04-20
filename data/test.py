@@ -1,5 +1,5 @@
-import database  
+import database
 
 if __name__ == '__main__':
     database.setup_database()
-    database.add_data("data.json")
+    database.add_data("data/data.json")
