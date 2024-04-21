@@ -170,20 +170,17 @@ if __name__ == "__main__":
                         "dialect": "SQLite",
                         "agent_scratchpad": []}))
 
-    def ai_response(query):
+def ai_response(query):
+    agent = create_sql_agent(
+        llm=llm,
+        db=db,
+        prompt=full_prompt,
+        verbose=False,
+        agent_type="openai-tools",
+    )
 
-        agent = create_sql_agent(
-            llm=llm,
-            db=db,
-            prompt=full_prompt,
-            verbose=False,
-            agent_type="openai-tools",
-        )
-
-        response = agent.invoke({"input": query,
-                                    "top_k": 100,
-                                    "dialect": "SQLite",
-                                    "agent_scratchpad": []})
-        return response
-
-    
+    response = agent.invoke({"input": query,
+                                "top_k": 100,
+                                "dialect": "SQLite",
+                                "agent_scratchpad": []})
+    return response

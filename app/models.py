@@ -25,6 +25,7 @@ class Courses(app.db.Model):
     end_time = app.db.Column(app.db.String)
     days = app.db.Column(app.db.String) # Comma separated list of days
     quarter = app.db.Column(app.db.String)
+    description = app.db.Column(app.db.String)
 
 class CourseInstructor(app.db.Model):
     id = app.db.Column(app.db.Integer, primary_key=True)
