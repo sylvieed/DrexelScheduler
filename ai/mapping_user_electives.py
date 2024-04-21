@@ -4,7 +4,7 @@ from openai import OpenAI
 client = OpenAI()
 
 # Load the JSON data from a file
-with open('/Users/ilsa/vscode/test/elective_courses.json', 'r') as file:
+with open('ai/elective_courses.json', 'r') as file:
     courses = json.load(file)
 
 # Function to create a brief description for each course
@@ -15,25 +15,31 @@ def create_course_summary(course_data):
     else:
         instructor_names = "No instructors listed"
     return (f"Course {course_data['subject_code']} {course_data['course_number']} titled '{course_data['course_title']}'"
-            f" covers {course_data['description']} Scheduled on {days} from {course_data['start_time']} to {course_data['end_time']}"
+            f" covers {course_data['course_description']} Scheduled on {days} from {course_data['start_time']} to {course_data['end_time']}"
             f" instructed by {instructor_names}.")
 
 #create summary in one sentence & join into one string
 course_descriptions = '; '.join(create_course_summary(course) for course in courses.values())
 
-#(per response) -> connect frontend input
-user_preference = "I am interested in courses about computer security, available online and only have 3 credits"
+def strip_response(response):
+    start_index = response.find('content="') + len('content="')
+    end_index = response.find('", ')
+    print(start_index, end_index)
+    return response[start_index:end_index] if start_index != -1 and end_index != -1 else None
 
-#create prompt for AI to answer
-prompt = (f"Given the preferences: {user_preference}, which of these courses is the best match? {course_descriptions}")
+def ai_electives(query):
+    #create prompt for AI to answer
+    prompt = (f"Given the preferences: {query}, which of these courses is the best match? {course_descriptions}")
 
-#GPT 3.5-Turbo does the mapping/answering
-response = client.chat.completions.create(
-    model="gpt-3.5-turbo",
-    messages=[
-        {"role": "user", "content": user_preference},
-        {"role": "system", "content": course_descriptions}
-    ]
-)
+    #GPT 3.5-Turbo does the mapping/answering
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "user", "content": query},
+            {"role": "system", "content": course_descriptions}
+        ]
+    )
 
-print(response)
+    print(str(response))
+
+    return strip_response(str(response))

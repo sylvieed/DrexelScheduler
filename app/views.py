@@ -4,6 +4,7 @@ from . import app
 from .models import User, Courses, UserCourse
 from app import bcrypt, db
 from ai.schedule_assistant import ai_response
+from ai.mapping_user_electives import ai_electives
 
 @app.route("/")
 def home():
@@ -34,11 +35,10 @@ def electives():
 @app.route("/electives", methods=['POST'])
 def electives_ajax():
     query = request.get_json()['input']
-    # print("Electives - Sending query to AI: ", query)
-    # response = ai_electives(query)['output']
-    # print("Electives - AI response: ", response)
-    response = query
-    return jsonify({'response': response})
+    print("Electives - Sending query to AI: ", query)
+    response = ai_electives(query)
+    print("Electives - AI response: ", response)
+    return jsonify({'response': response})qq
 
 @app.route("/prerequisites")
 def prerequisites():
