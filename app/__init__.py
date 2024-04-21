@@ -12,7 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 db.init_app(app)
 
 # This will create the database file using SQLAlchemy
-# (Uncomment this once to create the database file)
+#(Uncomment this once to create the database file)
 # from app import models
 # with app.app_context():
 #     db.drop_all()

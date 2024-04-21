@@ -1,13 +1,19 @@
 from flask import redirect, render_template, request, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from . import app
-from .models import User
+from .models import User, Courses
 # from .helpers import get_course
 from app import bcrypt, db
 
 @app.route("/")
 def home():
-    return render_template('index.html')
+    courses = db.session.query(Courses).all()
+    courseSubjectCodes = []
+    for course in courses:
+        if course.subject_code not in courseSubjectCodes:
+            courseSubjectCodes.append(course.subject_code)
+
+    return render_template('index.html', courses=courses, courseSubjectCodes=courseSubjectCodes)
 
 @app.route('/scheduler')
 def scheduler():

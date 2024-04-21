@@ -8,7 +8,7 @@
     <div class="text-3xl mb-10 font-extrabold text-[#0D2C54]">
         Upcoming Quarter
     </div>
-    <div class=" grid grid-cols-3  gap-4 justify-center max-w-[90vw]">
+    <div class=" grid grid-cols-5 gap-4 justify-center max-w-[90vw]">
         <div class="side-panel p-4 bg-gray-200 shadow-lg mr-4 col-span-1 row-span-1 shrink">
             <h2 class="text-lg font-semibold my-2">Select Columns</h2>
             <div class="my-2">
@@ -65,7 +65,7 @@
                     <span>Credits</span>
                 </label>
                 <label class="flex items-center space-x-2">
-                    <input type="checkbox" class="column-toggle" data-column="12" checked>
+                    <input type="checkbox" class="column-toggle" data-column="12">
                     <span>Prerequisites</span>
                 </label>
                 <label class="flex items-center space-x-2">
@@ -87,7 +87,7 @@
 
 
         </div>
-        <div class="col-span-2 w-full row-span-3">
+        <div class="col-span-4 w-full row-span-3">
             <table id="myTable" class="display ">
                 <thead>
                     <tr class="bg-[#0D2C54] text-white text-xs">
@@ -114,62 +114,47 @@
 
                     </tr>
                 </thead>
+                <tfoot>
+                    <tr>
+                        <th>Subject Code</th>
+                        <th>Course Number</th>
+                        <th>CRN</th>
+                        <th>Course Title</th>
+                        <th>Instructor</th>
+                        <th>Rating</th>
+                        <th>Instruction Type</th>
+                        <th>Instruction Method</th>
+                        <th>Section</th>
+                        <th>Enroll</th>
+                        <th>Max Enroll</th>
+                        <th>Credits</th>
+                        <th>Prerequisites</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Day</th>
+                    </tr>
+                </tfoot>
                 <tbody class="odd:bg-white">
+                    {% for course in courses %}
                     <tr>
-                        <td>CS</td>
-                        <td>171</td>
-                        <td class="">test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td class="">test</td>
-                        <td class="">test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td class="">test</td>
-                        <td class="" test</td>
-                        <td class="">test</td>
+                        <td class="px-6 py-4 ">{{ course.subject_code }}</td>
+                        <td class="px-6 py-4 ">{{ course.course_number }}</td>
+                        <td class="px-6 py-4 ">{{ course.crn }}</td>
+                        <td class="px-6 py-4 ">{{ course.course_title }}</td>
+                        <td class="px-6 py-4 ">{{ course.instructor }}</td>
+                        <td class="px-6 py-4 ">{{ course.rating }}</td>
+                        <td class="px-6 py-4 ">{{ course.instruction_type }}</td>
+                        <td class="px-6 py-4 ">{{ course.instruction_method }}</td>
+                        <td class="px-6 py-4 ">{{ course.section }}</td>
+                        <td class="px-6 py-4 ">{{ course.enroll }}</td>
+                        <td class="px-6 py-4 ">{{ course.max_enroll }}</td>
+                        <td class="px-6 py-4 ">{{ course.credits }}</td>
+                        <td class="px-6 py-4 ">{{ course.prereqs }}</td>
+                        <td class="px-6 py-4 ">{{ course.start_time }}</td>
+                        <td class="px-6 py-4 ">{{ course.end_time }}</td>
+                        <td class="px-6 py-4 ">{{ course.days }}</td>
                     </tr>
-                    <tr>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                        <td class="">test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td class="">test</td>
-                        <td class="">test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td class="">test</td>
-                        <td class="">test</td>
-                        <td class="">test</td>
-                    </tr>
-                    <!-- {% for course in courses %}
-                                                        <tr>
-                                                            <td class="px-6 py-4 ">{{ course.crn }}</td>
-                                                            <td class="px-6 py-4 ">{{ course.subject_code }}</td>
-                                                            <td class="px-6 py-4 ">{{ course.course_number }}</td>
-                                                            <td class="px-6 py-4 ">{{ course.course_title }}</td>
-                                                            <td class="px-6 py-4 ">{{ course.instructor }}</td>
-                                                            <td class="px-6 py-4 ">{{ course.instruction_type }}</td>
-                                                            <td class="px-6 py-4 ">{{ course.instruction_method }}</td>
-                                                            <td class="px-6 py-4 ">{{ course.section }}</td>
-                                                            <td class="px-6 py-4 ">{{ course.enroll }}</td>
-                                                            <td class="px-6 py-4 ">{{ course.max_enroll }}</td>
-                                                            <td class="px-6 py-4 ">{{ course.credits }}</td>
-                                                            <td class="px-6 py-4 ">{{ course.prereqs }}</td>
-                                                            <td class="px-6 py-4 ">{{ course.start_time }}</td>
-                                                            <td class="px-6 py-4 ">{{ course.end_time }}</td>
-                                                            <td class="px-6 py-4 ">{{ course.days }}</td>
-                                                        </tr>
-                                                        {% endfor %} -->
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -197,30 +182,7 @@
                 </div>
             </div>
         </div>
-        <div class="side-panel p-4 bg-gray-200 shadow-lg mr-4 col-span-1 row-span-1">
-            <h2 class="text-lg font-semibold my-2">Course Navigation</h2>
-            <div class="my-2">
-                <button id="toggleColumnPanelBtn" onclick="togglePanel()"
-                    class="text-xs bg-white px-3 py-2">Show/Hide</button>
-            </div>
-            <div id="CoursePanel" class="space-y-2  overflow-y-scroll">
-                <label class="flex items-center space-x-2">
-                    <input type="checkbox" class="column-toggle" data-column="0">
-                    <span>CI</span>
-                </label>
-                <label class="flex items-center space-x-2">
-                    <input type="checkbox" class="column-toggle" data-column="1">
-                    <span>CS</span>
-                </label>
-            </div>
-
-
-
-
-        </div>
-
     </div>
-
 </div>
 <style>
     td,
@@ -236,12 +198,41 @@
         table-layout: fixed;
         /* Fixed table layout */
     }
+
+    tfoot {
+        display: table-header-group;
+    }
+
+    tfoot tr th input {
+        width: 90%;
+    }
 </style>
 
 
 <script>
     $(document).ready(function () {
-        var table = $('#myTable').DataTable();
+        var table = $('#myTable').DataTable({
+            columnDefs: [{ searchable: false, targets: [2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] }],
+            initComplete: function () {
+                this.api()
+                    .columns()
+                    .every(function () {
+                        let column = this;
+                        let title = column.footer().textContent;
+        
+                        // Create input element
+                        let input = document.createElement('input');
+                        column.footer().replaceChildren(input);
+        
+                        // Event listener for user input
+                        input.addEventListener('keyup', () => {
+                            if (column.search() !== this.value) {
+                                column.search(input.value).draw();
+                            }
+                        });
+                    });
+            }
+        });
 
         $('.column-toggle').each(function () {
             var column = table.column($(this).attr('data-column'));
@@ -259,6 +250,10 @@
     }
     function toggleTimePanel() {
         const columnPanel = document.getElementById('TimePanel');
+        columnPanel.classList.toggle('hidden');
+    }
+    function toggleCoursePanel() {
+        const columnPanel = document.getElementById('CoursePanel');
         columnPanel.classList.toggle('hidden');
     }
     function applyTimeFilter() {
