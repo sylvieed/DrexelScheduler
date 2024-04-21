@@ -35,16 +35,8 @@ examples = [
     "query": "SELECT avg_rating FROM instructors WHERE name = 'John Doe'"
     },
     {
-    "input": "Which instructors have an average rating above 4.0?",
-    "query": "SELECT name FROM instructors WHERE avg_rating > 4.0"
-    },
-    {
     "input": "How many courses are electives?",
     "query": "SELECT COUNT(*) FROM courses WHERE prereqs IS NULL"
-    },
-    {
-    "input": "What is the most common start time for courses?",
-    "query": "SELECT start_time, COUNT(*) AS frequency FROM courses GROUP BY start_time ORDER BY frequency DESC LIMIT 1"
     },
     {
     "input": "How many courses does each instructor teach?",
@@ -55,8 +47,32 @@ examples = [
     "query": "SELECT c.course_title, i.name FROM courses c JOIN course_instructor ci ON c.crn = ci.course_id JOIN instructors i ON ci.instructor_id = i.id ORDER BY c.course_title"
     },
     {
-    "input": "Who is the instructor with the highest average rating for each subject code?",
-    "query": "SELECT c.subject_code, i.name, MAX(i.avg_rating) AS highest_rating FROM courses c JOIN course_instructor ci ON c.crn = ci.course_id JOIN instructors i ON ci.instructor_id = i.id GROUP BY c.subject_code"
+    "input": "List all courses that mention 'data analysis' in their description.",
+    "query": "SELECT course_title, description FROM courses WHERE description LIKE '%data analysis%'"
+    },
+    {
+    "input": "Can you provide the descriptions for courses that cover both 'machine learning' and 'artificial intelligence'?",
+    "query": "SELECT course_title, description FROM courses WHERE description LIKE '%machine learning%' AND description LIKE '%artificial intelligence%'"
+    },
+    {
+    "input": "I don't want to wake up early. Recommend some finance courses.",
+    "query": "SELECT course_title, start_time, description FROM courses WHERE subject_code = 'FIN' AND start_time >= '10:00'"
+    },
+    {
+    "input": "Give me some high rated architecture professors and the courses they teach.",
+    "query": "SELECT i.name AS Professor_Name, i.avg_rating AS Rating, c.course_title AS Course FROM instructors i JOIN course_instructor ci ON i.id = ci.instructor_id JOIN courses c ON ci.course_id = c.crn WHERE i.avg_rating >= 4 AND c.subject_code = 'ARCH'"
+    },
+    {
+    "input": "Give me electives that have less than 15 students enrolled.",
+    "query": "SELECT course_title, enroll FROM courses WHERE max_enroll <= 15 AND (prereqs IS NULL OR prereqs = '')"
+    },
+    {
+    "input": "Find elective courses that are highly rated and have minimal prerequisites.",
+    "query": "SELECT c.course_title, i.avg_rating FROM courses c JOIN course_instructor ci ON c.crn = ci.course_id JOIN instructors i ON ci.instructor_id = i.id WHERE i.avg_rating >= 4 AND (c.prereqs IS NULL OR c.prereqs = '')"
+    },
+    {
+    "input": "Find math courses available on Tuesday and Thursday between 2 PM and 5 PM.",
+    "query": "SELECT course_title, start_time, end_time, days FROM courses WHERE subject_code = 'MATH' AND days LIKE '%Tu%' AND days LIKE '%Th%' AND TIME(start_time) >= TIME('14:00') AND TIME(end_time) <= TIME('17:00')"
     },
 
 ]
@@ -133,7 +149,7 @@ if __name__ == "__main__":
     agent_type="openai-tools",
     )
 
-    print(agent.invoke({"input": "How many students are there?",
+    print(agent.invoke({"input": "Give me some math electives to take after 12pm",
                         "top_k": 5,
                         "dialect": "SQLite",
                         "agent_scratchpad": []}))
