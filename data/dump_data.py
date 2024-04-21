@@ -6,4 +6,4 @@ if __name__ == '__main__':
     database.add_data("fall.json")
     # print("Adding winter data")
     # database.add_data("winter.json")
-    print("completed adding data")
+    # print("completed adding data")
