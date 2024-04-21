@@ -6,6 +6,9 @@ from app import bcrypt, db
 from ai.schedule_assistant import ai_response
 from ai.mapping_user_electives import ai_electives
 
+import json
+import re
+
 @app.route("/")
 def home():
     courses = db.session.query(Courses).all()
@@ -140,22 +143,41 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
-@app.route("/tree")
+@app.route('/data')
+def data():
+    with open('data/data.json', 'r', encoding='utf-8') as f:
+        _data = f.read()
+    return _data
+
+def get_course_tree():
+    course_tree = {}
+    course_data = json.loads(data())
+        
+    for crn, value in course_data.items():
+        course_name = value["subject_code"] + "-" + value["course_number"]
+        prereq_strings = re.split(r"AND\s|OR\s", value["prereqs"], flags=re.IGNORECASE)
+
+        prereqs = [
+            str.join("-", prereq_str.split(" ")[:2]) for prereq_str in prereq_strings
+        ]
+
+        if (len(prereqs) > 1):
+            print(prereq_strings)
+            print("Value: ")
+            print(value)
+            print("Prereqs: ")
+            print(prereqs)
+
+        if (course_name not in course_tree):
+            course_tree[course_name] = {
+                "course_name": course_name,
+                "prereqs": prereqs
+            }
+
+    return course_tree
+
+@app.route('/tree')
 def tree():
-    return render_template('tree.html')
-
-
-  
-# Helper functions
-def save_user_course(course_string, user):
-    vals = course_string.strip().split(' ')
-    print(vals)
-    if len(vals) < 3:
-        return None
-    subject_code, course_number, grade = vals[0], vals[1], vals[2]
-    subject_code = subject_code.upper()
-    course = db.session.query(Courses).filter_by(subject_code=subject_code, course_number=course_number).first()
-    crn = course.crn if course else None
-
-    user_course = UserCourse(user_id=user.id, course_id=crn, subject_code=subject_code, course_number=course_number, grade=grade)
-    db.session.add(user_course)
+    # course = request.args.get('course')
+    course_tree = get_course_tree()
+    return render_template('tree.html', course_tree=course_tree, seed_course="CS-370")
