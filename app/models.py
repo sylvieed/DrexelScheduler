@@ -27,6 +27,24 @@ class Courses(app.db.Model):
     quarter = app.db.Column(app.db.String)
     description = app.db.Column(app.db.String)
 
+    def instructor(self):
+        ins = CourseInstructor.query.filter_by(course_id=self.crn).first()
+        if ins:
+            return Instructors.query.filter_by(id=ins.instructor_id).first()
+        return None
+    
+    def avg_rating(self):
+        instructor = self.instructor()
+        if instructor:
+            return instructor.avg_rating
+        return None
+
+    def avg_difficulty(self):
+        instructor = self.instructor()
+        if instructor:
+            return instructor.avg_difficulty
+        return None
+
 class CourseInstructor(app.db.Model):
     id = app.db.Column(app.db.Integer, primary_key=True)
     course_id = app.db.Column(app.db.Integer, ForeignKey('courses.crn'))
