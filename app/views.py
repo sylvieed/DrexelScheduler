@@ -22,14 +22,23 @@ def assistant():
 @app.route("/assistant", methods=['POST'])
 def assistant_ajax():
     query = request.get_json()['input']
-    print("Sending query to AI: ", query)
+    print("Assistant - Sending query to AI: ", query)
     response = ai_response(query)['output']
-    print("AI response: ", response)
+    print("Assistant - AI response: ", response)
     return jsonify({'response': response})
 
 @app.route("/electives")
 def electives():
     return render_template('electives.html')
+
+@app.route("/electives", methods=['POST'])
+def electives_ajax():
+    query = request.get_json()['input']
+    # print("Electives - Sending query to AI: ", query)
+    # response = ai_electives(query)['output']
+    # print("Electives - AI response: ", response)
+    response = query
+    return jsonify({'response': response})
 
 @app.route("/prerequisites")
 def prerequisites():

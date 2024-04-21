@@ -149,9 +149,9 @@
                         <td class="px-6 py-4 ">{{ course.course_number }}</td>
                         <td class="px-6 py-4 ">{{ course.crn }}</td>
                         <td class="px-6 py-4 ">{{ course.course_title }}</td>
-                        <td class="px-6 py-4 ">{{ course.instructor }}</td>
-                        <td class="px-6 py-4 ">{{ course.AVGrating }}</td>
-                        <td class="px-6 py-4 ">{{ course.difficulty }}</td>
+                        <td class="px-6 py-4 ">{{ course.instructor().name }}</td>
+                        <td class="px-6 py-4 ">{{ course.avg_rating() }}</td>
+                        <td class="px-6 py-4 ">{{ course.avg_difficulty() }}</td>
                         <td class="px-6 py-4 ">{{ course.instruction_type }}</td>
                         <td class="px-6 py-4 ">{{ course.instruction_method }}</td>
                         <td class="px-6 py-4 ">{{ course.section }}</td>
