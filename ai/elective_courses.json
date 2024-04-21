@@ -1,0 +1,380 @@
+{
+    "42210": {
+        "subject_code": "CS",
+        "course_number": "171",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "A",
+        "crn": 42210,
+        "enroll": "0",
+        "max_enroll": "30",
+        "course_title": "Computer Programming I",
+        "course_description": "Introduces fundamental concepts of computing including memory, instructions, function calls, and activation records. Covers fundamentals of structured computer programming in the language of instruction: variables, input and output, expressions, assignment statements, conditionals and branching, subprograms, parameter passing, repetition, arrays, top-down design, testing, and debugging.",
+        "days": [
+            "Monday"
+        ],
+        "start_time": "12:00",
+        "end_time": "13:50",
+        "instructors": [
+            {
+                "name": "Tammy R Pirmann"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40760": {
+        "subject_code": "CT",
+        "course_number": "250",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40760,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "IT Security Awareness",
+        "course_description": "This course explores the challenges IT security teams face when trying to mitigate threats targeting the human element within their organizations. IT Security Awareness introduces students to techniques and concepts that threaten security of organizations by targeting their human assets.",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "15:00",
+        "end_time": "16:20",
+        "instructors": [
+            {
+                "name": "Hengyi M Chu"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40761": {
+        "subject_code": "CT",
+        "course_number": "250",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40761,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "IT Security Awareness",
+        "course_description": "This course explores the challenges IT security teams face when trying to mitigate threats targeting the human element within their organizations. IT Security Awareness introduces students to techniques and concepts that threaten security of organizations by targeting their human assets.",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Christopher L Stevens"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40298": {
+        "subject_code": "CT",
+        "course_number": "412",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40298,
+        "enroll": "0",
+        "max_enroll": "50",
+        "course_title": "Information Technology Security Policies",
+        "course_description": "This course presents the theory and legal issues necessary for students to acquire fundamental knowledge of Computer Policies for information Security. Topics covered include: E-mail, Employee Privacy, Labor Organization Activities (Fair Use), Avoiding Discrimination and Harassment, Copyright, Defamation, Spamming, Trade Secrets & Confidential Information, Attorney-Client communication via E-mail, Computer Security, Preventing Waste of a Computer Resources, Essentials for Good Policy, and Ensuring Compliance.",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Christopher L Stevens"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40767": {
+        "subject_code": "CT",
+        "course_number": "414",
+        "instruction_type": "Integrated Lecture & Lab",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 40767,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Ethical Hacking and Penetration Testing",
+        "course_description": "This course provides students with the opportunity to learn hands-on techniques to protect and secure their information-critical infrastructure against cyber-attacks, viruses, worms, and other system cyber vulnerability weaknesses that pose significant threat to organizational systems.",
+        "days": [
+            "Tuesday",
+            "Thursday"
+        ],
+        "start_time": "13:30",
+        "end_time": "14:50",
+        "instructors": [
+            {
+                "name": "Chris J Carroll"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "11050": {
+        "subject_code": "CULA",
+        "course_number": "115",
+        "instruction_type": "Lecture & Lab",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 11050,
+        "enroll": "FULL",
+        "max_enroll": "FULL",
+        "course_title": "Culinary Fundamentals",
+        "days": [
+            "Monday"
+        ],
+        "start_time": "16:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Rich V Pepino",
+                "rating": {
+                    "avgDifficulty": 3,
+                    "avgRating": 5,
+                    "legacyId": 2729684,
+                    "numRatings": 2
+                }
+            }
+        ],
+        "prereqs": "",
+        "credits": "3.00",
+        "course_description": "Introduces culinary principles and procedures used in commercial food preparation and practical application of classical culinary techniques. "
+    },
+    "11051": {
+        "subject_code": "CULA",
+        "course_number": "115",
+        "instruction_type": "Lecture & Lab",
+        "instruction_method": "Face To Face",
+        "section": "002",
+        "crn": 11051,
+        "enroll": "16",
+        "max_enroll": "18",
+        "course_title": "Culinary Fundamentals",
+        "days": [
+            "Friday"
+        ],
+        "start_time": "10:00",
+        "end_time": "14:50",
+        "instructors": [
+            {
+                "name": "Charles B Ziccardi",
+                "rating": {
+                    "avgDifficulty": 2.6,
+                    "avgRating": 3.6,
+                    "legacyId": 594879,
+                    "numRatings": 12
+                }
+            }
+        ],
+        "prereqs": "",
+        "credits": "3.00",
+        "course_description": "Introduces culinary principles and procedures used in commercial food preparation and practical application of classical culinary techniques. "
+    },
+    "40546": {
+        "subject_code": "CT",
+        "course_number": "415",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40546,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Disaster Recovery and Continuity Planning",
+        "course_description": "Disaster Recovery & Continuity Planning specific to Emergency Recovery Procedures. Techniques for development of disaster recovery plans, procedures and testing methods. Strategies used by businesses to assure that sensitive data will not be lost in the event of a disaster. Techniques used to manage potential risk within multiple environments.",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Emanuel S Lazar"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    
+    "41917": {
+        "subject_code": "INFO",
+        "course_number": "101",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41917,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Introduction to Computing and Security Technology",
+        "course_description": "Explores the infrastructure that makes current information and communication technology possible. Introduces foundational concepts of servers, networks, databases, and the Web. Addresses security and usability considerations that cut across all computing technology. Approaches computing technology from the perspective of system administrators who plan, manage, operate, and monitor large scale computing infrastructure. Covers emerging technologies including pervasive computing, continuous integration, virtualization, and the Internet of things. Explores professional opportunities in this high demand area.",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "09:00",
+        "end_time": "10:20",
+        "instructors": [
+            {
+                "name": "Polly A College"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "11075": {
+        "subject_code": "HRM",
+        "course_number": "435",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 11075,
+        "enroll": "FULL",
+        "max_enroll": "FULL",
+        "course_title": "Wine Regions of the World",
+        "days": [
+            "Tuesday"
+        ],
+        "start_time": "18:00",
+        "end_time": "20:50",
+        "instructors": [
+            {
+                "name": "Serena R Zelezny",
+                "rating": {
+                    "avgDifficulty": 3,
+                    "avgRating": 5,
+                    "legacyId": 2745175,
+                    "numRatings": 2
+                }
+            }
+        ],
+        "prereqs": "",
+        "credits": "3.00",
+        "course_description": "Provides a detailed study of the classification, production, identification, and service of alcoholic beverages, with a major emphasis on wines. Uses a systematic approach to tasting and evaluation. "
+    },
+    "11429": {
+        "subject_code": "HRM",
+        "course_number": "437",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 11429,
+        "enroll": "22",
+        "max_enroll": "24",
+        "course_title": "Fundamentals of Beer",
+        "days": [
+            "Wednesday"
+        ],
+        "start_time": "14:00",
+        "end_time": "16:50",
+        "instructors": [
+            {
+                "name": "Paul G O'Neill",
+                "rating": {
+                    "avgDifficulty": 2.1,
+                    "avgRating": 5,
+                    "legacyId": 2567803,
+                    "numRatings": 6
+                }
+            }
+        ],
+        "prereqs": "",
+        "credits": "3.00",
+        "course_description": "This course is focused on the world\u00bfs most important beverage from a historical, financial, and cultural perspective. Students will get a hands-on approach to beer tasting and the production of beer. "
+    },
+    "40547": {
+        "subject_code": "INFO",
+        "course_number": "101",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40547,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Introduction to Computing and Security Technology",
+        "course_description": "Explores the infrastructure that makes current information and communication technology possible. Introduces foundational concepts of servers, networks, databases, and the Web. Addresses security and usability considerations that cut across all computing technology. Approaches computing technology from the perspective of system administrators who plan, manage, operate, and monitor large scale computing infrastructure. Covers emerging technologies including pervasive computing, continuous integration, virtualization, and the Internet of things. Explores professional opportunities in this high demand area.",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Pragati Awasthi"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "40973": {
+        "subject_code": "INFO",
+        "course_number": "102",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 40973,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Introduction to Information Systems",
+        "course_description": "Introduces students to major types of information systems and their development and their use in organizations. Emphasizes ways in which information systems can be used to help individuals and organizations meet their goals. Assumes basic knowledge of computing concepts.",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Pragati Awasthi"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    },
+    "11963": {
+        "subject_code": "IPS",
+        "course_number": "507",
+        "instruction_type": "Lecture",
+        "instruction_method": "Online-Asynchronous",
+        "section": "900",
+        "crn": 11963,
+        "enroll": "FULL",
+        "max_enroll": "FULL",
+        "course_title": "Mindfulness Meditation",
+        "days": null,
+        "start_time": null,
+        "end_time": null,
+        "instructors": [
+            {
+                "name": "Mary Beth Kealy",
+                "rating": null
+            }
+        ],
+        "prereqs": "",
+        "credits": "3.00",
+        "course_description": "Mindfulness Meditation is a powerful technique that helps to promote health and well-being of the mind, body and spirit. Mindfulness practices reduce the negative effects of stress and improve focus and awareness in order to help one live a more meaningful life. This course explores the neuroscience and physiology of Mindfulness Meditation. Through weekly experientials students cultivate a personal practice for effective stress management, resilience and reflections rooted in Mindfulness Based Stress Reduction techniques. "
+    },
+    "41617": {
+        "subject_code": "INFO",
+        "course_number": "215",
+        "instruction_type": "Lecture",
+        "instruction_method": "Face To Face",
+        "section": "001",
+        "crn": 41617,
+        "enroll": "0",
+        "max_enroll": "25",
+        "course_title": "Social Aspects of Information Systems",
+        "course_description": "Introduces social issues involved in information systems design and use, e.g., personal computing, telecommuting, computers in education, the privacy and security of stored and transmitted information, and information ownership. Explores the interaction of high technology, employment, and class structure.",
+        "days": [
+            "Monday",
+            "Wednesday"
+        ],
+        "start_time": "10:30",
+        "end_time": "11:50",
+        "instructors": [
+            {
+                "name": "Abass O Ahmed"
+            }
+        ],
+        "credits": "3.00",
+        "prereqs": ""
+    }
+}

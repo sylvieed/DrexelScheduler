@@ -33,6 +33,7 @@ CREATE TABLE courses (
     prereqs            TEXT,
     start_time         TEXT, 
     end_time           TEXT, 
+    description        TEXT,
     days               TEXT  
 );
 
@@ -63,5 +64,6 @@ SELECT
     c.prereqs,
     c.start_time,
     c.end_time,
+    c.description,
     c.days
 FROM courses c

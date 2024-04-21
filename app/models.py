@@ -23,7 +23,27 @@ class Courses(app.db.Model):
     prereqs = app.db.Column(app.db.String)
     start_time = app.db.Column(app.db.String)
     end_time = app.db.Column(app.db.String)
-    days = app.db.Column(app.db.String) # This was array in the original schema... so this is wrong
+    days = app.db.Column(app.db.String) # Comma separated list of days
+    quarter = app.db.Column(app.db.String)
+    description = app.db.Column(app.db.String)
+
+    def instructor(self):
+        ins = CourseInstructor.query.filter_by(course_id=self.crn).first()
+        if ins:
+            return Instructors.query.filter_by(id=ins.instructor_id).first()
+        return None
+    
+    def avg_rating(self):
+        instructor = self.instructor()
+        if instructor:
+            return instructor.avg_rating
+        return None
+
+    def avg_difficulty(self):
+        instructor = self.instructor()
+        if instructor:
+            return instructor.avg_difficulty
+        return None
 
 class CourseInstructor(app.db.Model):
     id = app.db.Column(app.db.Integer, primary_key=True)
@@ -50,4 +70,7 @@ class User(app.db.Model):
 class UserCourse(app.db.Model):
     id = app.db.Column(app.db.Integer, primary_key=True)
     user_id = app.db.Column(app.db.Integer, ForeignKey('user.id'))
-    course_id = app.db.Column(app.db.Integer, ForeignKey('courses.crn'))
+    grade = app.db.Column(app.db.String)
+    course_id = app.db.Column(app.db.Integer, ForeignKey('courses.crn'), nullable=True)
+    subject_code = app.db.Column(app.db.String)
+    course_number = app.db.Column(app.db.String)
