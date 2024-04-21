@@ -145,7 +145,7 @@ def logout():
 
 @app.route('/data')
 def data():
-    with open('data/data.json', 'r', encoding='utf-8') as f:
+    with open('data/dump_data.json', 'r', encoding='utf-8') as f:
         _data = f.read()
     return _data
 
