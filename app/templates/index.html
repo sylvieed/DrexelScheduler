@@ -39,50 +39,54 @@
                 </label>
                 <label class="flex items-center space-x-2">
                     <input type="checkbox" class="column-toggle" data-column="5">
-                    <span>Rating</span>
+                    <span>AVG RMP Rating</span>
                 </label>
                 <label class="flex items-center space-x-2">
-                    <input type="checkbox" class="column-toggle" data-column="6" checked>
-                    <span>Instruction Type</span>
+                    <input type="checkbox" class="column-toggle" data-column="6">
+                    <span>RMP Difficulty Rating</span>
                 </label>
                 <label class="flex items-center space-x-2">
                     <input type="checkbox" class="column-toggle" data-column="7" checked>
-                    <span>Instruction Method</span>
+                    <span>Instruction Type</span>
                 </label>
                 <label class="flex items-center space-x-2">
                     <input type="checkbox" class="column-toggle" data-column="8" checked>
+                    <span>Instruction Method</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" class="column-toggle" data-column="9" checked>
                     <span>Section</span>
                 </label>
                 <label class="flex items-center space-x-2">
-                    <input type="checkbox" class="column-toggle" data-column="9">
+                    <input type="checkbox" class="column-toggle" data-column="10">
                     <span>Enroll</span>
                 </label>
                 <label class="flex items-center space-x-2">
-                    <input type="checkbox" class="column-toggle" data-column="10">
+                    <input type="checkbox" class="column-toggle" data-column="11">
                     <span>Max Enroll</span>
                 </label>
                 <label class="flex items-center space-x-2">
-                    <input type="checkbox" class="column-toggle" data-column="11" checked>
+                    <input type="checkbox" class="column-toggle" data-column="12" checked>
                     <span>Credits</span>
                 </label>
                 <label class="flex items-center space-x-2">
-                    <input type="checkbox" class="column-toggle" data-column="12" checked>
+                    <input type="checkbox" class="column-toggle" data-column="13" checked>
                     <span>Prerequisites</span>
                 </label>
                 <label class="flex items-center space-x-2">
-                    <input type="checkbox" class="column-toggle" data-column="13">
+                    <input type="checkbox" class="column-toggle" data-column="14">
                     <span>Start Time</span>
                 </label>
                 <label class="flex items-center space-x-2">
-                    <input type="checkbox" class="column-toggle" data-column="14">
+                    <input type="checkbox" class="column-toggle" data-column="15">
                     <span>End Time</span>
                 </label>
                 <label class="flex items-center space-x-2">
-                    <input type="checkbox" class="column-toggle" data-column="15">
+                    <input type="checkbox" class="column-toggle" data-column="16">
                     <span>Day</span>
                 </label>
                 <label class="flex items-center space-x-2">
-                    <input type="checkbox" class="column-toggle" data-column="16">
+                    <input type="checkbox" class="column-toggle" data-column="17">
                     <span>Quarter</span>
                 </label>
 
@@ -101,7 +105,8 @@
                         <th class="px-6 py-3 tracking-wider">CRN</th>
                         <th class="px-6 py-3 tracking-wider">Course Title</th>
                         <th class="px-6 py-3 tracking-wider">Instructor</th>
-                        <th class="px-6 py-3 tracking-wider">Rating</th>
+                        <th class="px-6 py-3 tracking-wider">AVG RMP Rating</th>
+                        <th class="px-6 py-3 tracking-wider">RMP Difficulty Rating</th>
                         <th class="px-6 py-3 tracking-wider">Instruction Type</th>
                         <th class="px-6 py-3 tracking-wider">Instruction Method</th>
                         <th class="px-6 py-3 tracking-wider">Section</th>
@@ -122,7 +127,8 @@
                         <th>CRN</th>
                         <th>Course Title</th>
                         <th>Instructor</th>
-                        <th>Rating</th>
+                        <th>AVG RMP Rating</th>
+                        <th>RMP Difficulty Rating</th>
                         <th>Instruction Type</th>
                         <th>Instruction Method</th>
                         <th>Section</th>
@@ -144,7 +150,8 @@
                         <td class="px-6 py-4 ">{{ course.crn }}</td>
                         <td class="px-6 py-4 ">{{ course.course_title }}</td>
                         <td class="px-6 py-4 ">{{ course.instructor }}</td>
-                        <td class="px-6 py-4 ">{{ course.rating }}</td>
+                        <td class="px-6 py-4 ">{{ course.AVGrating }}</td>
+                        <td class="px-6 py-4 ">{{ course.difficulty }}</td>
                         <td class="px-6 py-4 ">{{ course.instruction_type }}</td>
                         <td class="px-6 py-4 ">{{ course.instruction_method }}</td>
                         <td class="px-6 py-4 ">{{ course.section }}</td>
