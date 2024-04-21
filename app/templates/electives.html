@@ -2,4 +2,123 @@
 
 {% block content %}
 
+
+<h1 class="text-2xl font-extrabold items-start mt-5 mx-4">Elective Assistant</h1>
+
+<div class="prompt">Please write a sentence describing what you are looking for in an elective containing:
+    <ul class="list-disc">
+        <li>What time of the day you want the course to be</li>
+        <li>What days of the week you want the course to be</li>
+        <li>What topic are you interested in/looking for</li>
+        <li>How many credits do you have available</li>
+        <li>You want it to be Face-To-Face or Online-Asynchronous or Remote Synchronous</li>
+    </ul>
+</div>
+
+<div class="input-container bg-[#0D2C54]">
+    <input type="text" id="user-input" placeholder="">
+    <button id="submit" class="text-white font-extrabold" onclick="sendMessage()">Send</button>
+</div>
+
+<div class="bot-response"></div>
+
+<style>
+    .prompt {
+        margin-left: 30px;
+        margin-top: 20px;
+    }
+
+    .prompt li {
+        margin-left: 20px;
+            
+    }
+
+    .input-container {
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: initial;
+    }
+
+    #user-input {
+        flex-grow: 1;
+        margin-right: 10px;
+    }
+
+    #user-input {
+        padding: 10px;
+        margin: 10px;
+        border-radius: 10px;
+        border: none;
+        font-size: 16px;
+        background-color: lightgray;
+
+    }
+    *:focus {
+        outline: none;
+    }
+
+    #submit {
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: none;
+        background-color: #0D2C54;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .bot-response {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px;   
+        display: none;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $('#user-input').keydown(function (event) {
+            if (event.keyCode === 13) { // Enter key
+                sendMessage();
+            }
+        });
+
+        $('#send-button').click(function () {
+            sendMessage();
+        });
+    });
+    function sendMessage() {
+        var userInput = $("#user-input").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/electives",
+            contentType: "application/json",
+            data: JSON.stringify({ input: userInput }),
+            success: function (response) {
+                var botResponse = response.response;
+
+                var botDiv = $(".bot-response");
+
+                botDiv.empty();
+                botDiv.append(botResponse);
+
+                var ai_icon = document.createElement("img");
+                ai_icon.src = "/static/img/ai-blue.svg";
+                ai_icon.style = "display:inline; width:20px; position:absolute; right:40px;";
+                botDiv.append(ai_icon);
+
+                botDiv.show();
+            },
+            error: function (xhr, status, error) {
+                console.error("Error:", error);
+            }
+        });
+    }
+</script>
+
 {% endblock %}
