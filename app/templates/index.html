@@ -10,10 +10,12 @@
     </div>
     <div class=" grid grid-cols-5 gap-4 justify-center max-w-[90vw]">
         <div class="side-panel p-4 bg-gray-200 shadow-lg mr-4 col-span-1 row-span-1 shrink">
-            <h2 class="text-lg font-semibold my-2">Select Columns</h2>
-            <div class="my-2">
-                <button id="toggleColumnPanelBtn" onclick="togglePanel()"
-                    class="text-xs bg-white px-3 py-2">Show/Hide</button>
+            <div>
+            <span class="text-lg font-semibold my-2">Select Columns</span>
+            <span id="toggleColumnPanelBtn" onclick="togglePanel()"
+                class="text-lg">
+                <span class="material-symbols-outlined" style="vertical-align: middle;">expand_more</span>
+            </span>
             </div>
             <div id="Panel" class="space-y-2  overflow-y-scroll">
                 <label class="flex items-center space-x-2">
@@ -204,7 +206,8 @@
     }
 
     tfoot tr th input {
-        width: 90%;
+        width: 98%;
+        margin-left: 1%;
     }
 
     #dt-search-0 {
@@ -217,7 +220,8 @@
 
     input {
         border-width: 1px;
-        border-color: black;
+        border-color: #aaa;
+        border-radius: 3px;
         background: url("https://icon-library.com/images/svg-search-icon/svg-search-icon-15.jpg") no-repeat left;
         background-size: 20px;
         font-weight: 100;
@@ -226,6 +230,22 @@
     input:focus {
         background: none;
         background-color: white;
+    }
+
+    input[type="time"] {
+        background: none;
+    }
+
+    #toggleColumnPanelBtn {
+        cursor: pointer;
+    }
+
+    .dt-search label {
+        display: none;
+    }
+
+    .dt-search input {
+        width: 50%;
     }
 </style>
 
