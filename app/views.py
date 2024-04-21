@@ -15,10 +15,17 @@ def home():
 
     return render_template('index.html', courses=courses, courseSubjectCodes=courseSubjectCodes)
 
-@app.route('/scheduler')
-def scheduler():
-    courses = Courses.query.all()
-    return render_template('scheduler.html', courses=courses)
+@app.route("/assistant")
+def assistant():
+    return render_template('assistant.html')
+
+@app.route("/electives")
+def electives():
+    return render_template('electives.html')
+
+@app.route("/prerequisites")
+def prerequisites():
+    return render_template('prerequisites.html')
 
 @app.route("/setup")
 def setup():
