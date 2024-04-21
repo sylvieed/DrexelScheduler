@@ -39,7 +39,7 @@
             <img class="h-8 w-auto" src="{{ url_for('static', filename='img/logo.png') }}" alt=" Your Company">
           </div>
           <div class="flex items-center space-x-4"">
-            <a href="/" class=" text-white hover:bg-gray-700 rounded-md px-3 py-2 text-xl font-bold"
+            <a href="/" class=" text-white hover:bg-[#133766] rounded-md px-3 py-2 text-xl font-bold"
             aria-current="page">
             Drexel Scheduler</a>
           </div>
@@ -47,11 +47,17 @@
             <div class="flex items-center">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
               <a href="/electives"
-                class="text-white  hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Electives</a>
+                class="text-white  hover:bg-[#133766] hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+                <img class="ai-icon" src="{{ url_for('static', filename='img/ai.svg') }}" 
+                    style="display:inline; width:20px; position:absolute;">
+                <span style="margin-left:25px;">Elective Assistant</span></a>
               <a href="/assistant"
-                class="text-white  hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Schedule Assistant</a>
+                class="text-white  hover:bg-[#133766] hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+                <img class="ai-icon" src="{{ url_for('static', filename='img/ai.svg') }}"
+                     style="display:inline; width:20px; position:absolute;">
+                <span style="margin-left:25px;">Schedule Assistant</span></a>
               <a href="/prerequisites"
-                class="text-white  hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Prerequisites Visualizer</a>
+                class="text-white  hover:bg-[#133766] hover:text-white rounded-md px-3 py-2 text-sm font-medium">Prerequisites Visualizer</a>
             </div>
           </div>
         </div>
