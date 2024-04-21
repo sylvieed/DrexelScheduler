@@ -20,7 +20,7 @@ def setup_database():
         conn.close()
 
 
-def add_data(data_path, quarter="spring"):
+def add_data(data_path):
     try:
         # Load data from JSON file
         with open(data_path, 'r') as file:
@@ -42,10 +42,10 @@ def add_data(data_path, quarter="spring"):
             cursor.execute('''
                 INSERT OR IGNORE INTO courses (crn, subject_code, course_number, instruction_type, instruction_method, 
                     section, enroll, max_enroll, course_title, credits, prereqs, start_time, end_time, description, days, quarter) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ''', (crn, value['subject_code'], value['course_number'], value['instruction_type'], value['instruction_method'], 
                 value['section'], value['enroll'], value['max_enroll'], value['course_title'], value['credits'], value['prereqs'], 
-                value['start_time'], value['end_time'], value['description'], days_str, quarter))
+                value['start_time'], value['end_time'], value['description'], days_str))
             
             if not value['instructors']:  # If instructors is empty
                     continue

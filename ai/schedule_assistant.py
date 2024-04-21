@@ -157,18 +157,18 @@ if __name__ == "__main__":
     )
 
     # user_input = str(input("Enter the question: "))
-    agent = create_sql_agent(
-    llm=llm,
-    db=db,
-    prompt=full_prompt,
-    verbose=False,
-    agent_type="openai-tools",
-    )
+    # agent = create_sql_agent(
+    # llm=llm,
+    # db=db,
+    # prompt=full_prompt,
+    # verbose=False,
+    # agent_type="openai-tools",
+    # )
 
-    print(agent.invoke({"input": "Who teaches course CS 265",
-                        "top_k": 5,
-                        "dialect": "SQLite",
-                        "agent_scratchpad": []}))
+    # print(agent.invoke({"input": "Who teaches course CS 265",
+    #                     "top_k": 5,
+    #                     "dialect": "SQLite",
+    #                     "agent_scratchpad": []}))
 
 def ai_response(query):
     agent = create_sql_agent(
