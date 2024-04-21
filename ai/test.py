@@ -58,7 +58,7 @@ examples = [
     "input": "Who is the instructor with the highest average rating for each subject code?",
     "query": "SELECT c.subject_code, i.name, MAX(i.avg_rating) AS highest_rating FROM courses c JOIN course_instructor ci ON c.crn = ci.course_id JOIN instructors i ON ci.instructor_id = i.id GROUP BY c.subject_code"
     },
-    
+
 ]
 
 example_selector = SemanticSimilarityExampleSelector.from_examples(
@@ -133,7 +133,7 @@ if __name__ == "__main__":
     agent_type="openai-tools",
     )
 
-    print(agent.invoke({"input": "Who teaches course CS 265",
+    print(agent.invoke({"input": "How many students are there?",
                         "top_k": 5,
                         "dialect": "SQLite",
                         "agent_scratchpad": []}))
