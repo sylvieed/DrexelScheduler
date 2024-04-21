@@ -114,6 +114,26 @@
 
                     </tr>
                 </thead>
+                <tfoot>
+                    <tr>
+                        <th>Subject Code</th>
+                        <th>Course Number</th>
+                        <th>CRN</th>
+                        <th>Course Title</th>
+                        <th>Instructor</th>
+                        <th>Rating</th>
+                        <th>Instruction Type</th>
+                        <th>Instruction Method</th>
+                        <th>Section</th>
+                        <th>Enroll</th>
+                        <th>Max Enroll</th>
+                        <th>Credits</th>
+                        <th>Prerequisites</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Day</th>
+                    </tr>
+                </tfoot>
                 <tbody class="odd:bg-white">
                     {% for course in courses %}
                     <tr>
@@ -162,28 +182,7 @@
                 </div>
             </div>
         </div>
-        <div class="side-panel p-4 bg-gray-200 shadow-lg mr-4 col-span-1 row-span-1">
-            <h2 class="text-lg font-semibold my-2">Course Navigation</h2>
-            <div class="my-2">
-                <button id="toggleColumnPanelBtn" onclick="togglePanel()"
-                    class="text-xs bg-white px-3 py-2">Show/Hide</button>
-            </div>
-            <div id="CoursePanel" class="space-y-2  overflow-y-scroll">
-                {% for course in courseSubjectCode %}
-                <label class="flex items-center space-x-2">
-                    <input type="checkbox" class="column-toggle" data-column="{{ course.subject_code }}">
-                    <span>{{ course.subject_code }}</span>
-                </label>
-                {% endfor %}
-            </div>
-
-
-
-
-        </div>
-
     </div>
-
 </div>
 <style>
     td,
@@ -199,12 +198,41 @@
         table-layout: fixed;
         /* Fixed table layout */
     }
+
+    tfoot {
+        display: table-header-group;
+    }
+
+    tfoot tr th input {
+        width: 90%;
+    }
 </style>
 
 
 <script>
     $(document).ready(function () {
-        var table = $('#myTable').DataTable();
+        var table = $('#myTable').DataTable({
+            columnDefs: [{ searchable: false, targets: [2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] }],
+            initComplete: function () {
+                this.api()
+                    .columns()
+                    .every(function () {
+                        let column = this;
+                        let title = column.footer().textContent;
+        
+                        // Create input element
+                        let input = document.createElement('input');
+                        column.footer().replaceChildren(input);
+        
+                        // Event listener for user input
+                        input.addEventListener('keyup', () => {
+                            if (column.search() !== this.value) {
+                                column.search(input.value).draw();
+                            }
+                        });
+                    });
+            }
+        });
 
         $('.column-toggle').each(function () {
             var column = table.column($(this).attr('data-column'));

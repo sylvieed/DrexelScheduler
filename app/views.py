@@ -8,7 +8,12 @@ from app import bcrypt, db
 @app.route("/")
 def home():
     courses = db.session.query(Courses).all()
-    return render_template('index.html', courses=courses)
+    courseSubjectCodes = []
+    for course in courses:
+        if course.subject_code not in courseSubjectCodes:
+            courseSubjectCodes.append(course.subject_code)
+
+    return render_template('index.html', courses=courses, courseSubjectCodes=courseSubjectCodes)
 
 @app.route('/scheduler')
 def scheduler():
