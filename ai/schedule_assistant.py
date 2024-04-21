@@ -58,6 +58,14 @@ examples = [
     "input": "Who is the instructor with the highest average rating for each subject code?",
     "query": "SELECT c.subject_code, i.name, MAX(i.avg_rating) AS highest_rating FROM courses c JOIN course_instructor ci ON c.crn = ci.course_id JOIN instructors i ON ci.instructor_id = i.id GROUP BY c.subject_code"
     },
+    {
+    "input": "What quarter is CS 265 offered?",
+    "query": "SELECT quarter FROM courses WHERE subject_code = 'CS' AND course_number = '265'"
+    },
+    {
+    "input": "List the morning CS courses",
+    "query": "SELECT course_title FROM courses WHERE subject_code = 'CS' AND start_time < '12:00:00'"
+    }
     
 ]
 

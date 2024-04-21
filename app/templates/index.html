@@ -82,6 +82,10 @@
                     <input type="checkbox" class="column-toggle" data-column="15">
                     <span>Day</span>
                 </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" class="column-toggle" data-column="16">
+                    <span>Quarter</span>
+                </label>
 
             </div>
 
@@ -94,26 +98,22 @@
                 <thead>
                     <tr class="bg-[#0D2C54] text-white text-xs">
                         <th class="px-6 py-3 tracking-wider">Subject Code</th>
-                        <th class="px-6 py-3 tracking-wider">Course Number
-                        </th>
-                        <th class="px-6 py-3  tracking-wider ">CRN</th>
+                        <th class="px-6 py-3 tracking-wider">Course Number</th>
+                        <th class="px-6 py-3 tracking-wider">CRN</th>
                         <th class="px-6 py-3 tracking-wider">Course Title</th>
                         <th class="px-6 py-3 tracking-wider">Instructor</th>
                         <th class="px-6 py-3 tracking-wider">Rating</th>
-                        <th class="px-6 py-3 tracking-wider">Instruction Type
-                        </th>
-                        <th class="px-6 py-3 tracking-wider">Instruction
-                            Method</th>
+                        <th class="px-6 py-3 tracking-wider">Instruction Type</th>
+                        <th class="px-6 py-3 tracking-wider">Instruction Method</th>
                         <th class="px-6 py-3 tracking-wider">Section</th>
-                        <th class="px-6 py-3 tracking-wider ">Enroll</th>
-                        <th class="px-6 py-3 tracking-wider ">Max Enroll</th>
+                        <th class="px-6 py-3 tracking-wider">Enroll</th>
+                        <th class="px-6 py-3 tracking-wider">Max Enroll</th>
                         <th class="px-6 py-3 tracking-wider">Credits</th>
-                        <th class="px-6 py-3 tracking-wider">Prerequisites
-                        </th>
-                        <th class="px-6 py-3 tracking-wider ">Start Time</th>
-                        <th class="px-6 py-3 tracking-wider ">End Time</th>
-                        <th class="px-6 py-3 tracking-wider ">Day</th>
-
+                        <th class="px-6 py-3 tracking-wider">Prerequisites</th>
+                        <th class="px-6 py-3 tracking-wider">Start Time</th>
+                        <th class="px-6 py-3 tracking-wider">End Time</th>
+                        <th class="px-6 py-3 tracking-wider">Day</th>
+                        <th class="px-6 py-3 tracking-wider">Quarter</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -134,6 +134,7 @@
                         <th>Start Time</th>
                         <th>End Time</th>
                         <th>Day</th>
+                        <th>Quarter</th>
                     </tr>
                 </tfoot>
                 <tbody class="odd:bg-white">
@@ -162,6 +163,7 @@
                         <td class="px-6 py-4 ">{{ course.start_time }}</td>
                         <td class="px-6 py-4 ">{{ course.end_time }}</td>
                         <td class="px-6 py-4 ">{{ course.days }}</td>
+                        <td class="px-6 py-4 ">{{ course.quarter }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
