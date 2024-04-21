@@ -1,0 +1,43 @@
+{
+    "name": "Parent",
+    "children": [{
+        "name": "Child",
+        "children": [{
+                "name": "Grandchild 1"
+            },
+            {
+                "name": "Grandchild 2"
+            },
+            {
+                "name": "Child",
+                "children": [{
+                        "name": "Grandchild 1"
+                    },
+                    {
+                        "name": "Grandchild 2"
+                    },
+                    {
+                        "name": "Child",
+                        "children": [{
+                                "name": "Grandchild 1"
+                            },
+                            {
+                                "name": "Grandchild 2"
+                            },
+                            {
+                                "name": "Child",
+                                "children": [{
+                                        "name": "Grandchild 1"
+                                    },
+                                    {
+                                        "name": "Grandchild 2"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }]
+}

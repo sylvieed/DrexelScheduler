@@ -140,8 +140,12 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
+@app.route("/tree")
+def tree():
+    return render_template('tree.html')
 
 
+  
 # Helper functions
 def save_user_course(course_string, user):
     vals = course_string.strip().split(' ')
