@@ -2,4 +2,90 @@
 
 {% block content %}
 
+<h1 class="text-2xl font-extrabold items-start mt-5 mx-4">Schedule Assistant</h1>
+
+<body class="flex flex-col mt-3">
+    <div class="mx-4 flex-grow border mt-2">
+        <div id="chat-container" class="flex-grow"></div>
+    </div>
+
+    <div class="input-container bg-[#0D2C54]">
+        <input type="text" id="user-input" placeholder=" Enter your question | Ex: How many professors are there">
+        <button class="text-white font-extrabold" onclick="sendMessage()">Send</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .flex-grow {
+            flex-grow: 1;
+        }
+
+        .input-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #user-input {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .message-bot {
+            text-align: right;
+            background-color: #f4f4f4;
+        }
+    </style>
+</body>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#user-input').keydown(function (event) {
+            if (event.keyCode === 13) { // Enter key
+                sendMessage();
+            }
+        });
+
+        $('#send-button').click(function () {
+            sendMessage();
+        });
+    });
+    function sendMessage() {
+        var userInput = $("#user-input").val();
+        $("#chat-container").append("<p><strong>You:</strong> " + userInput + "</p>");
+
+        $.ajax({
+            type: "POST",
+            url: "/chat",
+            contentType: "application/json",
+            data: JSON.stringify({ input: userInput }), s
+            success: function (response) {
+                var botResponse = response.response;
+                $("#chat-container").append("<p class='message-bot'><strong>Assistant:</strong> " + botResponse + "</p>");
+            },
+            error: function (xhr, status, error) {
+                console.error("Error:", error);
+            }
+        });
+
+        $("#user-input").val(""); // Clear input field after sending message
+    }
+</script>
+
 {% endblock %}
