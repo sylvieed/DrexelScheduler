@@ -5,17 +5,14 @@
 <h1 class="text-2xl font-extrabold items-start mt-5 mx-4">Schedule Assistant</h1>
 
 <body class="flex flex-col mt-3">
-    <div class="mx-4 flex-grow border mt-2">
+    <div class="mx-4 flex-grow mt-2">
         <div id="chat-container" class="flex-grow"></div>
     </div>
 
     <div class="input-container bg-[#0D2C54]">
         <input type="text" id="user-input" placeholder=" Enter your question | Ex: How many professors are there">
-        <button class="text-white font-extrabold" onclick="sendMessage()">Send</button>
+        <button id="submit" class="text-white font-extrabold" onclick="sendMessage()">Send</button>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
 
     <style>
         body,
@@ -38,6 +35,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            background-color: initial;
         }
 
         #user-input {
@@ -45,9 +43,38 @@
             margin-right: 10px;
         }
 
+        .message-user {
+            padding: 20px;
+            /* margin: 10px; */
+        }
+
         .message-bot {
-            text-align: right;
-            background-color: #f4f4f4;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        #user-input {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+            background-color: lightgray;
+
+        }
+        *:focus {
+            outline: none;
+        }
+
+        #submit {
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            background-color: #0D2C54;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </body>
@@ -68,16 +95,30 @@
     });
     function sendMessage() {
         var userInput = $("#user-input").val();
-        $("#chat-container").append("<p><strong>You:</strong> " + userInput + "</p>");
+
+        var inputDiv = document.createElement("div");
+        inputDiv.innerHTML = userInput
+        inputDiv.className = "message-user";
+        $("#chat-container").append(inputDiv);
 
         $.ajax({
             type: "POST",
-            url: "/chat",
+            url: "/assistant",
             contentType: "application/json",
-            data: JSON.stringify({ input: userInput }), s
+            data: JSON.stringify({ input: userInput }),
             success: function (response) {
                 var botResponse = response.response;
-                $("#chat-container").append("<p class='message-bot'><strong>Assistant:</strong> " + botResponse + "</p>");
+
+                var responseDiv = document.createElement("div");
+                responseDiv.innerHTML = botResponse;
+                responseDiv.className = "message-bot";
+
+                var ai_icon = document.createElement("img");
+                ai_icon.src = "/static/img/ai-blue.svg";
+                ai_icon.style = "display:inline; width:20px; position:absolute; right:40px;";
+                responseDiv.appendChild(ai_icon);
+
+                $("#chat-container").append(responseDiv);
             },
             error: function (xhr, status, error) {
                 console.error("Error:", error);

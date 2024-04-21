@@ -1,8 +1,7 @@
-from flask import redirect, render_template, request, url_for, flash
+from flask import redirect, render_template, request, url_for, flash, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from . import app
 from .models import User, Courses, UserCourse
-# from .helpers import get_course
 from app import bcrypt, db
 
 @app.route("/")
@@ -18,6 +17,13 @@ def home():
 @app.route("/assistant")
 def assistant():
     return render_template('assistant.html')
+
+@app.route("/assistant", methods=['POST'])
+def assistant_ajax():
+    query = request.get_json()['input']
+    # response = ai_response(query)
+    response = query # testing
+    return jsonify({'response': response})
 
 @app.route("/electives")
 def electives():
