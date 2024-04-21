@@ -115,7 +115,7 @@
                     </tr>
                 </thead>
                 <tfoot>
-                    <tr>
+                    <tr class="bg-white">
                         <th>Subject Code</th>
                         <th>Course Number</th>
                         <th>CRN</th>
@@ -206,6 +206,27 @@
     tfoot tr th input {
         width: 90%;
     }
+
+    #dt-search-0 {
+        background-color: white;
+    }
+
+    #dt-length-0 {
+        background-color: white;
+    }
+
+    input {
+        border-width: 1px;
+        border-color: black;
+        background: url("https://icon-library.com/images/svg-search-icon/svg-search-icon-15.jpg") no-repeat left;
+        background-size: 20px;
+        font-weight: 100;
+    }
+
+    input:focus {
+        background: none;
+        background-color: white;
+    }
 </style>
 
 
@@ -221,11 +242,11 @@
                     .every(function () {
                         let column = this;
                         let title = column.footer().textContent;
-        
+
                         // Create input element
                         let input = document.createElement('input');
                         column.footer().replaceChildren(input);
-        
+
                         // Event listener for user input
                         input.addEventListener('keyup', () => {
                             if (column.search() !== this.value) {
