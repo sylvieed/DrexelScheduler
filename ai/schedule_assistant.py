@@ -20,8 +20,8 @@ from langchain_openai import OpenAIEmbeddings
 
 load_dotenv()
 
-db = SQLDatabase.from_uri("sqlite:///instance/db.sqlite")
-llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
+db = SQLDatabase.from_uri("sqlite:///mydatabase.sqlite")
+llm = ChatOpenAI(model="gpt-3.5-turbo-1106", temperature=0)
 
 examples = [
     {"input": "How many professors are there?", 
@@ -31,20 +31,12 @@ examples = [
     "query": "SELECT COUNT(*) FROM courses WHERE enroll = '0'"
     },
     {
-    "input": "What is the average rating for instructor John Doe?",
-    "query": "SELECT avg_rating FROM instructors WHERE name = 'John Doe'"
-    },
-    {
-    "input": "Which instructors have an average rating above 4.0?",
-    "query": "SELECT name FROM instructors WHERE avg_rating > 4.0"
+    "input": "What is the rating for professor John Doe?",
+    "query": "SELECT avg_rating FROM instructors WHERE name LIKE '%John Doe%'"
     },
     {
     "input": "How many courses are electives?",
     "query": "SELECT COUNT(*) FROM courses WHERE prereqs IS NULL"
-    },
-    {
-    "input": "What is the most common start time for courses?",
-    "query": "SELECT start_time, COUNT(*) AS frequency FROM courses GROUP BY start_time ORDER BY frequency DESC LIMIT 1"
     },
     {
     "input": "How many courses does each instructor teach?",
@@ -55,18 +47,46 @@ examples = [
     "query": "SELECT c.course_title, i.name FROM courses c JOIN course_instructor ci ON c.crn = ci.course_id JOIN instructors i ON ci.instructor_id = i.id ORDER BY c.course_title"
     },
     {
-    "input": "Who is the instructor with the highest average rating for each subject code?",
-    "query": "SELECT c.subject_code, i.name, MAX(i.avg_rating) AS highest_rating FROM courses c JOIN course_instructor ci ON c.crn = ci.course_id JOIN instructors i ON ci.instructor_id = i.id GROUP BY c.subject_code"
+    "input": "List all courses that are related to data analysis at night",
+    "query": "SELECT course_title, description FROM courses WHERE description LIKE '%data analysis%'"
     },
     {
-    "input": "What quarter is CS 265 offered?",
-    "query": "SELECT quarter FROM courses WHERE subject_code = 'CS' AND course_number = '265'"
+    "input": "Can you tell me some courses that are about machine learning and artificial intelligence?",
+    "query": "SELECT crn, subject_code, course_number, course_title, description FROM courses WHERE description LIKE '%machine learning%' AND description LIKE '%artificial intelligence%'"
     },
     {
-    "input": "List the morning CS courses",
-    "query": "SELECT course_title FROM courses WHERE subject_code = 'CS' AND start_time < '12:00:00'"
+    "input": "I don't want to wake up early. Recommend some finance courses",
+    "query": "SELECT crn, subject_code, course_number, course_title, start_time, description FROM courses WHERE subject_code = 'FIN' AND start_time >= '10:00'"
+    },
+    {
+    "input": "Give me some high rated architecture professors and the courses they teach",
+    "query": "SELECT i.name AS Professor_Name, i.avg_rating AS Rating, c.course_title AS Course FROM instructors i JOIN course_instructor ci ON i.id = ci.instructor_id JOIN courses c ON ci.course_id = c.crn WHERE i.avg_rating >= 4 AND c.subject_code = 'ARCH'"
+    },
+    {
+    "input": "Give me electives that have less than 15 students in it",
+    "query": "SELECT crn, subject_code, course_number, course_title, max_enroll FROM courses WHERE max_enroll <= 15 AND (prereqs IS NULL OR prereqs = '')"
+    },
+    {
+    "input": "Find elective courses that have high ratings",
+    "query": "SELECT c.crn, c.subject_code, c.course_number, c.course_title, i.avg_rating FROM courses c JOIN course_instructor ci ON c.crn = ci.course_id JOIN instructors i ON ci.instructor_id = i.id WHERE i.avg_rating >= 4 AND (c.prereqs IS NULL OR c.prereqs = '')"
+    },
+    {
+    "input": "Find math courses available on Tuesday and Thursday between 2pm and 5pm",
+    "query": "SELECT crn, subject_code, course_number, course_title, start_time, end_time, days FROM courses WHERE subject_code = 'MATH' AND days LIKE '%Tu%' AND days LIKE '%Th%' AND TIME(start_time) >= TIME('14:00') AND TIME(end_time) <= TIME('17:00')"
+    },
+    {
+    "input": "Find me an online elective that is on Friday",
+    "query": "SELECT crn, subject_code, course_number, course_title, days FROM courses WHERE instruction_method = 'Online-Asynchronous' AND days LIKE '%Friday%' AND (prereqs IS NULL OR prereqs = '')"
+    },
+    {
+    "input": "give me electives that are related to cooking that have high ratings",
+    "query": "SELECT c.crn, c.subject_code, c.course_number,c.course_title, i.avg_rating, FROM courses c JOIN course_instructor ci ON c.crn = ci.course_id JOIN instructors i ON ci.instructor_id = i.id WHERE c.description LIKE '%cooking%' AND (c.prereqs IS NULL OR c.prereqs = '') AND i.avg_rating >= 4"
+    },
+    {
+    "input": "What class does Professor Mark teach?",
+    "query": "SELECT c.crn, c.subject_code, c.course_title, i.name FROM courses c JOIN course_instructor ci ON c.crn = ci.course_id JOIN instructors i ON ci.instructor_id = i.id WHERE i.name LIKE '%Mark%'"
     }
-    
+
 ]
 
 example_selector = SemanticSimilarityExampleSelector.from_examples(
@@ -88,7 +108,11 @@ You MUST double check your query before executing it. If you get an error while 
 
 DO NOT make any DML statements (INSERT, UPDATE, DELETE, DROP etc.) to the database.
 
-If the question does not seem related to the database, just return "I don't know" as the answer."""
+If the question does not seem related to the database, just return "I don't know" as the answer.
+
+While listing courses, ALWAYS include the course title, course number, and subject code in the format (subject_codecourse_number).
+
+Here are some examples of user inputs and their corresponding SQL queries:"""
 
 few_shot_prompt = FewShotPromptTemplate(
     example_selector=example_selector,
@@ -146,16 +170,20 @@ if __name__ == "__main__":
                         "dialect": "SQLite",
                         "agent_scratchpad": []}))
 
-def ai_response(query):
-    agent = create_sql_agent(
-        llm=llm,
-        db=db,
-        prompt=full_prompt,
-        verbose=False,
-        agent_type="openai-tools",
-    )
-    response = agent.invoke({"input": query,
-                                "top_k": 100,
-                                "dialect": "SQLite",
-                                "agent_scratchpad": []})
-    return response
+    def ai_response(query):
+
+        agent = create_sql_agent(
+            llm=llm,
+            db=db,
+            prompt=full_prompt,
+            verbose=False,
+            agent_type="openai-tools",
+        )
+
+        response = agent.invoke({"input": query,
+                                    "top_k": 100,
+                                    "dialect": "SQLite",
+                                    "agent_scratchpad": []})
+        return response
+
+    
