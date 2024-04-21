@@ -27,7 +27,7 @@ def add_data(data_path):
             data = json.load(file)
 
 
-        conn = sqlite3.connect('mydatabase.sqlite')
+        conn = sqlite3.connect('../instance/db.sqlite')
         cursor = conn.cursor()
         
         for crn, value in data.items():
