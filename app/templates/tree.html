@@ -5,36 +5,38 @@
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
 <style>
-  #tree_display, #link_layer, #node_layer {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-  }
+    #tree_display,
+    #link_layer,
+    #node_layer {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
 
-  .link {
-    fill: none;
-    stroke: #555;
-    stroke-opacity: 0.4;
-    stroke-width: 1.5;
-  }
+    .link {
+        fill: none;
+        stroke: #555;
+        stroke-opacity: 0.4;
+        stroke-width: 1.5;
+    }
 
-  node {
-    width: 125px;
-    height: 75px;
-    background-color: greenyellow;
-    border: 1px dashed lime;
-    border-radius: 8px;
-    padding: 8px;
-    margin: 8px;
-    display: inline-block;
-    position: absolute;
-  }
+    node {
+        width: 125px;
+        height: 75px;
+        background-color: greenyellow;
+        border: 1px dashed lime;
+        border-radius: 8px;
+        padding: 8px;
+        margin: 8px;
+        display: inline-block;
+        position: absolute;
+    }
 
-  node .hidden_node {
-    width: 0;
-    height: 0;
-    opacity: 0;
-  }
+    node .hidden_node {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
 </style>
 
 {% endblock %}
@@ -45,183 +47,178 @@
 <div id="tree_display"></div>
 
 <script>
-var id = 0;
+    var id = 0;
 
-var tree_graph = (data, elmnt) => {
-  var width = elmnt.width();
-  var height = elmnt.height();
+    var tree_graph = (data, elmnt) => {
+        var width = elmnt.width();
+        var height = elmnt.height();
 
-  var center_x = width / 2;
-  var center_y = height / 2;
+        var center_x = width / 2;
+        var center_y = height / 2;
 
-  const node_height = 500;
-  const node_width = 500;
+        const node_height = 500;
+        const node_width = 500;
 
-  const root = d3.hierarchy(data);
+        const root = d3.hierarchy(data);
 
-  const tree = d3.tree().nodeSize([node_width, node_height]);
-  const diagonal = d3.linkVertical().x(d => d.x).y(d => d.y);
+        const tree = d3.tree().nodeSize([node_width, node_height]);
+        const diagonal = d3.linkVertical().x(d => d.x).y(d => d.y);
 
-  // Create the svg element to store all the link elements
-  const svg = d3.create("svg")
-    .attr("id", "link_layer")
-    .attr("width", width)
-    .attr("height", height)
-    .attr("viewBox", [-center_x, -center_y, width, height]);
+        // Create the svg element to store all the link elements
+        const svg = d3.create("svg")
+            .attr("id", "link_layer")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("viewBox", [-center_x, -center_y, width, height]);
 
-  // Create the g element to store all the link elements
-  const gLink = svg.append("g")
-    // .attr("class", "link");
-    .attr("fill", "none")
-    .attr("stroke", "#555")
-    .attr("stroke-opacity", 0.4)
-    .attr("stroke-width", 1.5);
+        // Create the g element to store all the link elements
+        const gLink = svg.append("g")
+            // .attr("class", "link");
+            .attr("fill", "none")
+            .attr("stroke", "#555")
+            .attr("stroke-opacity", 0.4)
+            .attr("stroke-width", 1.5);
 
-  // Create the div element to store all the node elements
-  const node_layer = d3.create("div")
-    .attr("id", "node_layer");
+        // Create the div element to store all the node elements
+        const node_layer = d3.create("div")
+            .attr("id", "node_layer");
 
-  function update(event, source) {
-    const duration = 250;
-    const nodes = root.descendants().reverse();
-    const links = root.links();
+        function update(event, source) {
+            const duration = 250;
+            const nodes = root.descendants().reverse();
+            const links = root.links();
 
-    const last_child = nodes[0];
+            const last_child = nodes[0];
 
-    console.log(event);
-    console.log(source);
-    console.log(last_child)
+            console.log(event);
+            console.log(source);
+            console.log(last_child)
 
-    // console.log(nodes);
-    // console.log(links);
+            // console.log(nodes);
+            // console.log(links);
 
-    tree(root);
+            tree(root);
 
-    let left = root;
-    let right = root;
-    root.eachBefore(node => {
-      if (node.x < left.x) left = node;
-      if (node.x > right.x) right = node;
-    });
+            let left = root;
+            let right = root;
+            root.eachBefore(node => {
+                if (node.x < left.x) left = node;
+                if (node.x > right.x) right = node;
+            });
 
-    var delta_x = -center_x + source.x;
-    var delta_y = -center_y + source.y;
+            var delta_x = -center_x + source.x;
+            var delta_y = -center_y + source.y;
 
-    console.log(delta_x, delta_y);
-    console.log(source.x0, source.y0);
+            console.log(delta_x, delta_y);
+            console.log(source.x0, source.y0);
 
-    // Move the links to the new position through interpolation
-    const transition_svg = svg.transition()
-      .duration(duration)
-      .attr("viewBox", [delta_x, delta_y, width, height])
-      .tween("resize", window.ResizeObserver ? null : () => () => svg.dispatch("toggle"));
-    
-    const transition_node_layer = node_layer.transition()
-      .duration(duration);
-      // .attr("viewBox", [delta_x, delta_y, width, height]);
+            // Move the links to the new position through interpolation
+            const transition_svg = svg.transition()
+                .duration(duration)
+                .attr("viewBox", [delta_x, delta_y, width, height])
+                .tween("resize", window.ResizeObserver ? null : () => () => svg.dispatch("toggle"));
 
-    // Update the nodes
-    const node = node_layer.selectAll("node")
-      .data(nodes, d => d.id);
+            const transition_node_layer = node_layer.transition()
+                .duration(duration);
+            // .attr("viewBox", [delta_x, delta_y, width, height]);
 
-    // Enter any new nodes at the parent's previous position
-    const nodeEnter = node.enter().append("node")
-      .attr("node_id", d => d.id)
-      .attr("style", d => `
+            // Update the nodes
+            const node = node_layer.selectAll("node")
+                .data(nodes, d => d.id);
+
+            // Enter any new nodes at the parent's previous position
+            const nodeEnter = node.enter().append("node")
+                .attr("node_id", d => d.id)
+                .attr("style", d => `
         transform: translate(${source.x0 - delta_x}px, ${source.y0 - delta_y}px);
         opacity: 0;
       `)
-      // .attr("class", "hidden_node")
-      .text(d => d.data.name)
-      .on("click", (event, d) => {
-        d.children = d.children ? null : d._children;
-        update(event, d);
-      });
+                // .attr("class", "hidden_node")
+                .text(d => d.data.name)
+                .on("click", (event, d) => {
+                    d.children = d.children ? null : d._children;
+                    update(event, d);
+                });
 
-    const nodeUpdate = node.merge(nodeEnter).transition(transition_node_layer)
-      .attr("style", d => `
+            const nodeUpdate = node.merge(nodeEnter).transition(transition_node_layer)
+                .attr("style", d => `
         transform: translate(${d.x - delta_x}px,${d.y - delta_y}px);
         opacity: 1;
       `)
-      .attr("class", "")
-      .attr("x", d => d.x)
-      .attr("y", d => d.y);
+                .attr("class", "")
+                .attr("x", d => d.x)
+                .attr("y", d => d.y);
 
-    // Transition exiting nodes to the parent's new position.
-    const nodeExit = node.exit().transition(transition_node_layer).remove()
-        .attr("style", d => `
+            // Transition exiting nodes to the parent's new position.
+            const nodeExit = node.exit().transition(transition_node_layer).remove()
+                .attr("style", d => `
           transform: translate(${source.x - delta_x}px,${source.y - delta_y}px);
           opacity: 0;
         `);
 
-    // Update the links…
-    const link = gLink.selectAll("path")
-      .data(links, d => d.target.id);
+            // Update the links…
+            const link = gLink.selectAll("path")
+                .data(links, d => d.target.id);
 
-    // Enter any new links at the parent's previous position.
-    const linkEnter = link.enter().append("path")
-      .attr("d", d => {
-        const o = {x: source.x0, y: source.y0};
-        return diagonal({source: o, target: o});
-      });
+            // Enter any new links at the parent's previous position.
+            const linkEnter = link.enter().append("path")
+                .attr("d", d => {
+                    const o = {
+                        x: source.x0,
+                        y: source.y0
+                    };
+                    return diagonal({
+                        source: o,
+                        target: o
+                    });
+                });
 
-    // Transition links to their new position.
-    link.merge(linkEnter).transition(transition_svg)
-      .attr("d", diagonal);
+            // Transition links to their new position.
+            link.merge(linkEnter).transition(transition_svg)
+                .attr("d", diagonal);
 
-    // Transition exiting nodes to the parent's new position.
-    link.exit().transition(transition_svg).remove()
-      .attr("d", d => {
-        const o = {x: source.x, y: source.y};
-        return diagonal({source: o, target: o});
-      });
+            // Transition exiting nodes to the parent's new position.
+            link.exit().transition(transition_svg).remove()
+                .attr("d", d => {
+                    const o = {
+                        x: source.x,
+                        y: source.y
+                    };
+                    return diagonal({
+                        source: o,
+                        target: o
+                    });
+                });
 
-    root.eachBefore(d => {
-      d.x0 = d.x;
-      d.y0 = d.y;
+            root.eachBefore(d => {
+                d.x0 = d.x;
+                d.y0 = d.y;
+            });
+        }
+
+        root.x0 = width / 2;
+        root.y0 = 0;
+        root.descendants().forEach((d, i) => {
+            d.id = i;
+            d._children = d.children;
+            if (d.depth && d.data.name.length !== 7) d.children = null;
+        });
+
+        update(null, root);
+
+        elmnt.append(svg.node());
+        elmnt.append(node_layer.node());
+    };
+
+    $(document).ready(function () {
+        var data;
+
+        $.getJSON("test_data.json", function (response) {
+            data = response;
+        });
+
+        tree_graph(data, $("#tree_display"));
     });
-  }
-
-  root.x0 = width / 2;
-  root.y0 = 0;
-  root.descendants().forEach((d, i) => {
-    d.id = i;
-    d._children = d.children;
-    if (d.depth && d.data.name.length !== 7) d.children = null;
-  });
-
-  update(null, root);
-
-  elmnt.append(svg.node());
-  elmnt.append(node_layer.node());
-};
-
-$( document ).ready(function() {
-  const data = {
-    name: "Parent",
-    children: [
-      {name: "Child", children: [
-        {name: "Grandchild 1"},
-        {name: "Grandchild 2"},
-        {name: "Child", children: [
-          {name: "Grandchild 1"},
-          {name: "Grandchild 2"},
-          {name: "Child", children: [
-            {name: "Grandchild 1"},
-            {name: "Grandchild 2"},
-            {name: "Child", children: [
-              {name: "Grandchild 1"},
-              {name: "Grandchild 2"}
-            ]}
-          ]},
-        ]}
-      ]},
-    ]
-  };
-
-  tree_graph(data, $("#tree_display"));
-});
-
 </script>
 
 {% endblock %}
