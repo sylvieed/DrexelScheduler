@@ -212,7 +212,9 @@
 <script>
     $(document).ready(function () {
         var table = $('#myTable').DataTable({
-            columnDefs: [{ searchable: false, targets: [2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] }],
+            // Only some columns should be searchable from the main search bar
+            columnDefs: [{ searchable: false, targets: [2, 5, 8, 9, 10, 11, 12, 13, 14, 15] }],
+            // Add search bars for each column
             initComplete: function () {
                 this.api()
                     .columns()
