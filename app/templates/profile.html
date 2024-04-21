@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="flex flex-col align items-start mt-5 mx-5 text-2xl">
+    Welcome, {{ user.name }}!
+</div>
+<div>
+    Major: {{ user.major }}
+</div>
+<div>
+    Year: {{ user.year }}
+</div>
+<div>
+    Courses Taken:
+    {% for course in courses %}
+    <div>
+        {{ course.subject_code }} {{ course.course_number }}
+    </div>
+    {% endfor %}
+</div>
+<a href="/setup">
+    Set up your profile
+</a>
+{% endblock %}

@@ -54,7 +54,6 @@ coverage.xml
 local_settings.py
 
 # Flask stuff:
-instance/
 .webassets-cache
 
 # Scrapy stuff:
@@ -87,3 +86,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# npm
+node_modules/
