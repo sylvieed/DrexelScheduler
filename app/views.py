@@ -3,6 +3,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from . import app
 from .models import User, Courses, UserCourse
 from app import bcrypt, db
+from ai.schedule_assistant import ai_response
 
 @app.route("/")
 def home():
@@ -21,8 +22,9 @@ def assistant():
 @app.route("/assistant", methods=['POST'])
 def assistant_ajax():
     query = request.get_json()['input']
-    # response = ai_response(query)
-    response = query # testing
+    print("Sending query to AI: ", query)
+    response = ai_response(query)['output']
+    print("AI response: ", response)
     return jsonify({'response': response})
 
 @app.route("/electives")
