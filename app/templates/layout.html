@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" />
   <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='js/accessible-autocomplete.min.js') }}"></script>
+
+  {% block head %}
+  {% endblock %}
   <title>Drexel Scheduler</title>
 </head>
 
@@ -54,6 +57,12 @@
               <a href="#"
                 class="text-white  hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Calendar</a>
             </div>
+          </div>
+
+          <div class="flex items-center space-x-4"">
+            <a href="/tree" class="text-white hover:bg-gray-700 rounded-md px-3 py-2 text-sm font-medium"
+            aria-current="page">
+            Tree</a>
           </div>
         </div>
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">

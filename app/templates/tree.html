@@ -21,15 +21,25 @@
     }
 
     node {
-        width: 125px;
-        height: 75px;
-        background-color: greenyellow;
-        border: 1px dashed lime;
+        --width: 125px;
+        --height: 75px;
+        width: var(--width);
+        height: var(--height);
+        top: calc(var(--height) / -2);
+        left: calc(var(--width) / -2);
+        background: #fff8f0;
+        box-shadow:  20px 20px 60px #d9d3cc,
+                    -20px -20px 60px #ffffff;
         border-radius: 8px;
         padding: 8px;
         margin: 8px;
         display: inline-block;
         position: absolute;
+        transition: top 0.25s;
+    }
+
+    node:hover {
+        top: calc(var(--height) / -2 - 8px);
     }
 
     node .hidden_node {
@@ -56,8 +66,8 @@
         var center_x = width / 2;
         var center_y = height / 2;
 
-        const node_height = 500;
-        const node_width = 500;
+        const node_height = 200;
+        const node_width = 200;
 
         const root = d3.hierarchy(data);
 
@@ -90,13 +100,6 @@
 
             const last_child = nodes[0];
 
-            console.log(event);
-            console.log(source);
-            console.log(last_child)
-
-            // console.log(nodes);
-            // console.log(links);
-
             tree(root);
 
             let left = root;
@@ -108,9 +111,6 @@
 
             var delta_x = -center_x + source.x;
             var delta_y = -center_y + source.y;
-
-            console.log(delta_x, delta_y);
-            console.log(source.x0, source.y0);
 
             // Move the links to the new position through interpolation
             const transition_svg = svg.transition()
@@ -129,6 +129,7 @@
             // Enter any new nodes at the parent's previous position
             const nodeEnter = node.enter().append("node")
                 .attr("node_id", d => d.id)
+                // [TODO]: I hardcored the width and height of the node here
                 .attr("style", d => `
         transform: translate(${source.x0 - delta_x}px, ${source.y0 - delta_y}px);
         opacity: 0;
@@ -211,12 +212,35 @@
     };
 
     $(document).ready(function () {
-        var data;
+        var course_tree = "{{ course_tree }}";
+        course_tree = course_tree.replace(/&#(\d+);/g, function (m, n) { return String.fromCharCode(n) == "\'" ? "\"" : String.fromCharCode(n)});
+        course_tree = JSON.parse(course_tree);
 
-        $.getJSON("test_data.json", function (response) {
-            data = response;
-        });
+        // console.log(course_tree);
 
+        var seed_course = "{{ seed_course }}";
+        
+        var data = {};
+
+        function add_course(cc) {
+            let c = {
+                "name": cc,
+            };
+            
+            if (cc in course_tree && course_tree[cc]["prereqs"].length > 0 && course_tree[cc]["prereqs"][0] != "") {
+                c["children"] = [];
+                for (var i = 0; i < course_tree[cc]["prereqs"].length; i++) {
+                    c["children"].push(add_course(course_tree[cc]["prereqs"][i]));
+                }
+            }
+
+            return c; 
+        }
+
+        data = add_course(seed_course);
+
+        // console.log(data);
+        
         tree_graph(data, $("#tree_display"));
     });
 </script>
