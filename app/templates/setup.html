@@ -1,20 +1,32 @@
 {% extends "layout.html" %}
 {% block content %}
+<div class="mt-5 flex flex-col items-center">
+    <form action="/setup" method="post">
+        <div class="flex flex-col ">
+            <div class="justify-center items-center">
+                <div>
+                    <label for="major">Your major</label>
+                    <input type="text" id="major" name="major">
+                </div>
+                <div>
+                    <label for="year">Your year (1-5)</label>
+                    <input type="text" id="year" name="year">
+                </div>
+                <div>
+                    <label for="courses">Enter the courses you have taken at Drexel, comma separated</label>
+                    <input type="text" id="courses" name="courses">
+                </div>
+                <button type="submit" class="bg-gray-100 hover:bg-gray-300">Submit</button>
+            </div>
+        </div>
 
-<form action="/setup" method="post">
-    <div>
-        <label for="major">Your major</label>
-        <input type="text" id="major" name="major">
-    </div>
-    <div>
-        <label for="year">Your year (1-5)</label>
-        <input type="text" id="year" name="year">
-    </div>
-    <div>
-        <label for="courses">Enter the courses you have taken at Drexel, comma separated</label>
-        <input type="text" id="courses" name="courses">
-    </div>
-    <button type="submit">Submit</button>
-</form>
+    </form>
+</div>
+
+<style>
+    input {
+        border-width: 1px;
+    }
+</style>
 
 {% endblock %}
