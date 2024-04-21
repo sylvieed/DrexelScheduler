@@ -23,7 +23,8 @@ class Courses(app.db.Model):
     prereqs = app.db.Column(app.db.String)
     start_time = app.db.Column(app.db.String)
     end_time = app.db.Column(app.db.String)
-    days = app.db.Column(app.db.String) # This was array in the original schema... so this is wrong
+    days = app.db.Column(app.db.String) # Comma separated list of days
+    quarter = app.db.Column(app.db.String)
 
 class CourseInstructor(app.db.Model):
     id = app.db.Column(app.db.Integer, primary_key=True)
@@ -50,4 +51,7 @@ class User(app.db.Model):
 class UserCourse(app.db.Model):
     id = app.db.Column(app.db.Integer, primary_key=True)
     user_id = app.db.Column(app.db.Integer, ForeignKey('user.id'))
-    course_id = app.db.Column(app.db.Integer, ForeignKey('courses.crn'))
+    grade = app.db.Column(app.db.String)
+    course_id = app.db.Column(app.db.Integer, ForeignKey('courses.crn'), nullable=True)
+    subject_code = app.db.Column(app.db.String)
+    course_number = app.db.Column(app.db.String)

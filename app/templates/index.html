@@ -10,10 +10,11 @@
     </div>
     <div class=" grid grid-cols-5 gap-4 justify-center max-w-[90vw]">
         <div class="side-panel p-4 bg-gray-200 shadow-lg mr-4 col-span-1 row-span-1 shrink">
-            <h2 class="text-lg font-semibold my-2">Select Columns</h2>
-            <div class="my-2">
-                <button id="toggleColumnPanelBtn" onclick="togglePanel()"
-                    class="text-xs bg-white px-3 py-2">Show/Hide</button>
+            <div>
+                <span class="text-lg font-semibold my-2">Select Columns</span>
+                <span id="toggleColumnPanelBtn" onclick="togglePanel()" class="text-lg">
+                    <span class="material-symbols-outlined" style="vertical-align: middle;">expand_more</span>
+                </span>
             </div>
             <div id="Panel" class="space-y-2  overflow-y-scroll">
                 <label class="flex items-center space-x-2">
@@ -65,7 +66,7 @@
                     <span>Credits</span>
                 </label>
                 <label class="flex items-center space-x-2">
-                    <input type="checkbox" class="column-toggle" data-column="12">
+                    <input type="checkbox" class="column-toggle" data-column="12" checked>
                     <span>Prerequisites</span>
                 </label>
                 <label class="flex items-center space-x-2">
@@ -80,6 +81,10 @@
                     <input type="checkbox" class="column-toggle" data-column="15">
                     <span>Day</span>
                 </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" class="column-toggle" data-column="16">
+                    <span>Quarter</span>
+                </label>
 
             </div>
 
@@ -92,26 +97,22 @@
                 <thead>
                     <tr class="bg-[#0D2C54] text-white text-xs">
                         <th class="px-6 py-3 tracking-wider">Subject Code</th>
-                        <th class="px-6 py-3 tracking-wider">Course Number
-                        </th>
-                        <th class="px-6 py-3  tracking-wider ">CRN</th>
+                        <th class="px-6 py-3 tracking-wider">Course Number</th>
+                        <th class="px-6 py-3 tracking-wider">CRN</th>
                         <th class="px-6 py-3 tracking-wider">Course Title</th>
                         <th class="px-6 py-3 tracking-wider">Instructor</th>
                         <th class="px-6 py-3 tracking-wider">Rating</th>
-                        <th class="px-6 py-3 tracking-wider">Instruction Type
-                        </th>
-                        <th class="px-6 py-3 tracking-wider">Instruction
-                            Method</th>
+                        <th class="px-6 py-3 tracking-wider">Instruction Type</th>
+                        <th class="px-6 py-3 tracking-wider">Instruction Method</th>
                         <th class="px-6 py-3 tracking-wider">Section</th>
-                        <th class="px-6 py-3 tracking-wider ">Enroll</th>
-                        <th class="px-6 py-3 tracking-wider ">Max Enroll</th>
+                        <th class="px-6 py-3 tracking-wider">Enroll</th>
+                        <th class="px-6 py-3 tracking-wider">Max Enroll</th>
                         <th class="px-6 py-3 tracking-wider">Credits</th>
-                        <th class="px-6 py-3 tracking-wider">Prerequisites
-                        </th>
-                        <th class="px-6 py-3 tracking-wider ">Start Time</th>
-                        <th class="px-6 py-3 tracking-wider ">End Time</th>
-                        <th class="px-6 py-3 tracking-wider ">Day</th>
-
+                        <th class="px-6 py-3 tracking-wider">Prerequisites</th>
+                        <th class="px-6 py-3 tracking-wider">Start Time</th>
+                        <th class="px-6 py-3 tracking-wider">End Time</th>
+                        <th class="px-6 py-3 tracking-wider">Day</th>
+                        <th class="px-6 py-3 tracking-wider">Quarter</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -132,6 +133,7 @@
                         <th>Start Time</th>
                         <th>End Time</th>
                         <th>Day</th>
+                        <th>Quarter</th>
                     </tr>
                 </tfoot>
                 <tbody class="odd:bg-white">
@@ -149,157 +151,273 @@
                         <td class="px-6 py-4 ">{{ course.enroll }}</td>
                         <td class="px-6 py-4 ">{{ course.max_enroll }}</td>
                         <td class="px-6 py-4 ">{{ course.credits }}</td>
-                        <td class="px-6 py-4 ">{{ course.prereqs }}</td>
+                        <td class="px-6 py-4 ">
+                            {% if course.prereqs != "" %}
+                            <span class="material-symbols-outlined view-prereqs" id="view-prereqs-{{course.crn}}"
+                                data="{{course.crn}}">visibility</span>
+                            <span id="prereq-data" style="display: none;">{{ course.prereqs }}</span>
+                            {% else %}
+                            None
+                            {% endif %}
+                        </td>
                         <td class="px-6 py-4 ">{{ course.start_time }}</td>
                         <td class="px-6 py-4 ">{{ course.end_time }}</td>
                         <td class="px-6 py-4 ">{{ course.days }}</td>
+                        <td class="px-6 py-4 ">{{ course.quarter }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
 
-
         <div class="col-span-1">
             <div class="side-panel p-4 border border-2 bg-white shadow-xl mr-4 col-span-1 row-span-1">
-                <h2 class="text-lg font-semibold my-2">Filter Time</h2>
-                <div id="TimePanel">
-                    <div class="my-2">
-                        <label for="startTime">Start Time:</label>
-                        <input type="time" id="startTime" name="startTime">
-                    </div>
-                    <div class="my-2">
-                        <label for="endTime">End Time:</label>
-                        <input type="time" id="endTime" name="endTime">
-                    </div>
-                    <div class="my-2">
-                        <button id="applyTimeFilterBtn" onclick="applyTimeFilter()"
-                            class="text-xs bg-gray-200 px-3 py-2">Apply</button>
-                    </div>
+
+                <div id="TimePanel" class="flex flex-col">
+                    <h2 class="text-lg font-semibold my-2">Filter Time</h2>
+                    <p>Start Time :</p>
+                    <input type="text" id="startTime" name="startTime">
+                    <p>End Time :</p>
+                    <input type="text" id="endTime" name="endTime">
+                    <button onclick="filterByTime()">Apply</button>
                 </div>
-                <div class="my-2">
-                    <button id="toggleColumnPanelBtn" onclick="toggleTimePanel()" class="text-xs">Show/Hide</button>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!-- Background -->
+        <div id="modal-bg" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" style="display:none;">
+        </div>
+
+        <div id="modal-wrapper" class="fixed inset-0 z-10 w-screen overflow-y-auto" style="display:none;">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <!-- Modal -->
+                <div id="modal"
+                    class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                    <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                                <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Title</h3>
+                                <button type="button" onclick="closeModal()"
+                                    class="absolute top-0 right-0 p-2 text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500 focus:bg-gray-100"
+                                    aria-label="Close">
+                                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24"
+                                        aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
+                                </button>
+                                <!-- content -->
+                                <div class="mt-2" id="modal-content">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<style>
-    td,
-    th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-        word-wrap: break-word;
-    }
 
-    table {
-        width: 100%;
-        table-layout: fixed;
-        /* Fixed table layout */
-    }
+    <style>
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            word-wrap: break-word;
+        }
 
-    tfoot {
-        display: table-header-group;
-    }
+        table {
+            width: 100%;
+            table-layout: fixed;
+            /* Fixed table layout */
+        }
 
-    tfoot tr th input {
-        width: 90%;
-    }
+        tfoot {
+            display: table-header-group;
+        }
 
-    #dt-search-0 {
-        background-color: white;
-    }
+        tfoot tr th input {
+            width: 98%;
+            margin-left: 1%;
+        }
 
-    #dt-length-0 {
-        background-color: white;
-    }
+        #dt-search-0 {
+            background-color: white;
+        }
 
-    input {
-        border-width: 1px;
-        border-color: black;
-        background: url("https://icon-library.com/images/svg-search-icon/svg-search-icon-15.jpg") no-repeat left;
-        background-size: 20px;
-        font-weight: 100;
-    }
+        #dt-length-0 {
+            background-color: white;
+        }
 
-    input:focus {
-        background: none;
-        background-color: white;
-    }
-</style>
+        input {
+            border-width: 1px;
+            border-color: #aaa;
+            border-radius: 3px;
+            background: url("https://icon-library.com/images/svg-search-icon/svg-search-icon-15.jpg") no-repeat left;
+            background-size: 20px;
+            font-weight: 100;
+        }
+
+        input:focus {
+            background: none;
+            background-color: white;
+        }
+
+        input[type="time"] {
+            background: none;
+        }
+
+        #toggleColumnPanelBtn {
+            cursor: pointer;
+        }
+
+        .dt-search label {
+            display: none;
+        }
+
+        .dt-search input {
+            width: 50%;
+        }
+
+        .view-prereqs {
+            cursor: pointer;
+        }
+    </style>
 
 
-<script>
-    $(document).ready(function () {
-        var table = $('#myTable').DataTable({
-            columnDefs: [{ searchable: false, targets: [2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] }],
-            initComplete: function () {
-                this.api()
-                    .columns()
-                    .every(function () {
-                        let column = this;
-                        let title = column.footer().textContent;
 
-                        // Create input element
-                        let input = document.createElement('input');
-                        column.footer().replaceChildren(input);
+    {% endblock %}
 
-                        // Event listener for user input
-                        input.addEventListener('keyup', () => {
-                            if (column.search() !== this.value) {
-                                column.search(input.value).draw();
-                            }
-                        });
-                    });
-            }
-        });
+    {% block js %}
 
-        $('.column-toggle').each(function () {
-            var column = table.column($(this).attr('data-column'));
-            column.visible($(this).is(':checked'));
-        });
+    <script>
+        function closeModal() {
+            const modal = document.getElementById('modal')
+            const wrap = document.getElementById('modal-wrapper')
+            const bg = document.getElementById('modal-bg')
+            var content = document.getElementById('modal-content');
 
-        $('.column-toggle').on('change', function () {
-            var column = table.column($(this).attr('data-column'));
-            column.visible($(this).is(':checked'));
-        });
-    });
-    function togglePanel() {
-        const columnPanel = document.getElementById('Panel');
-        columnPanel.classList.toggle('hidden');
-    }
-    function toggleTimePanel() {
-        const columnPanel = document.getElementById('TimePanel');
-        columnPanel.classList.toggle('hidden');
-    }
-    function toggleCoursePanel() {
-        const columnPanel = document.getElementById('CoursePanel');
-        columnPanel.classList.toggle('hidden');
-    }
-    function applyTimeFilter() {
-        var startTime = document.getElementById('startTime').value;
-        var endTime = document.getElementById('endTime').value;
+            modal.classList.remove('opacity-100')
+            modal.classList.add('opacity-0')
+            wrap.classList.remove('opacity-100')
+            wrap.classList.add('opacity-0')
+            bg.classList.remove('opacity-100')
+            bg.classList.add('opacity-0')
+            content.innerHTML = '';
+            setTimeout(() => {
+                modal.style.display = 'none',
+                    wrap.style.display = 'none',
+                    bg.style.display = 'none'
+            }, 100)
+        }
 
-        // For demonstration, let's assume your table has rows with start time in the first column and end time in the second column
-        $('#myTable tbody tr').each(function () {
-            var rowStartTime = $(this).find('td:eq(13)').text(); // Assuming start time is in the 14th column (index 13)
-            var rowEndTime = $(this).find('td:eq(14)').text(); // Assuming end time is in the 15th column (index 14)
+        function openModal() {
+            const modal = document.getElementById('modal')
+            const wrap = document.getElementById('modal-wrapper')
+            const bg = document.getElementById('modal-bg')
 
-            if (isTimeInRange(rowStartTime, rowEndTime, startTime, endTime)) {
-                $(this).show();
+            modal.style.display = 'block'
+            wrap.style.display = 'block'
+            bg.style.display = 'block'
+            setTimeout(() => {
+                modal.classList.remove('opacity-0')
+                modal.classList.add('opacity-100')
+                wrap.classList.remove('opacity-0')
+                wrap.classList.add('opacity-100')
+                bg.classList.remove('opacity-0')
+                bg.classList.add('opacity-100')
+            }, 100)
+        }
+
+        function toggleModal() {
+            const modal = document.getElementById('modal')
+            if (modal.style.display === 'block') {
+                closeModal()
             } else {
-                $(this).hide();
+                openModal()
             }
+        }
+
+        $(document).ready(function () {
+            var table = $('#myTable').DataTable({
+                // Only some columns should be searchable from the main search bar
+                columnDefs: [{ searchable: false, targets: [2, 5, 8, 9, 10, 11, 12, 15] }],
+                // Add search bars for each column
+                initComplete: function () {
+                    this.api()
+                        .columns()
+                        .every(function () {
+                            let column = this;
+                            let title = column.footer().textContent;
+
+                            // Create input element
+                            let input = document.createElement('input');
+                            column.footer().replaceChildren(input);
+
+                            // Event listener for user input
+                            input.addEventListener('keyup', () => {
+                                if (column.search() !== this.value) {
+                                    column.search(input.value).draw();
+                                }
+                            });
+                        });
+                }
+            });
+
+            $('.column-toggle').each(function () {
+                var column = table.column($(this).attr('data-column'));
+                column.visible($(this).is(':checked'));
+            });
+
+            $('.column-toggle').on('change', function () {
+                var column = table.column($(this).attr('data-column'));
+                column.visible($(this).is(':checked'));
+            });
+
+            // If the user clicks outside the modal, close it
+            $('#modal-wrapper').on('click', function () {
+                console.log('click bg');
+                closeModal();
+            });
+            $('#modal').on('click', function (e) {
+                e.stopPropagation();
+            });
+
+
+            $('.view-prereqs').on('click', function () {
+                var crn = $(this).attr('data');
+                var prereqs = $(this).parent().find('#prereq-data').text();
+                var modal = document.getElementById('modal');
+                var content = document.getElementById('modal-content');
+                var subject_code = $(this).parent().parent().find('td:eq(0)').text();
+                var course_number = $(this).parent().parent().find('td:eq(1)').text();
+
+                /* fill in modal content */
+                content.appendChild(document.createTextNode("crn:" + crn));
+                content.appendChild(document.createElement('br'));
+                content.appendChild(document.createTextNode("subject code:" + subject_code));
+                content.appendChild(document.createElement('br'));
+                content.appendChild(document.createTextNode("course number:" + course_number));
+                content.appendChild(document.createElement('br'));
+                content.appendChild(document.createTextNode("prereqs:" + prereqs));
+
+                openModal();
+            });
         });
-    }
+        function togglePanel() {
+            const columnPanel = document.getElementById('Panel');
+            columnPanel.classList.toggle('hidden');
+        }
+        function toggleTimePanel() {
+            const columnPanel = document.getElementById('TimePanel');
+            columnPanel.classList.toggle('hidden');
+        }
 
-    function isTimeInRange(rowStartTime, rowEndTime, startTime, endTime) {
-        // Implement logic to check if row's time falls within the specified range
-        // Adjust this function based on your time format and comparison logic
-        return rowStartTime >= startTime && rowEndTime <= endTime;
-    }
-</script>
+    </script>
 
 
-{% endblock %}
+    {% endblock %}
