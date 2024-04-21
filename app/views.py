@@ -45,7 +45,7 @@ def electives_ajax():
 
 @app.route("/prerequisites")
 def prerequisites():
-    return render_template('prerequisites.html')
+    return render_template('tree.html')
 
 @app.route("/setup")
 def setup():
@@ -145,7 +145,7 @@ def logout():
 
 @app.route('/data')
 def data():
-    with open('data/dump_data.json', 'r', encoding='utf-8') as f:
+    with open('data/data.json', 'r', encoding='utf-8') as f:
         _data = f.read()
     return _data
 
@@ -181,3 +181,17 @@ def tree():
     # course = request.args.get('course')
     course_tree = get_course_tree()
     return render_template('tree.html', course_tree=course_tree, seed_course="CS-370")
+  
+# Helper functions
+def save_user_course(course_string, user):
+    vals = course_string.strip().split(' ')
+    print(vals)
+    if len(vals) < 3:
+        return None
+    subject_code, course_number, grade = vals[0], vals[1], vals[2]
+    subject_code = subject_code.upper()
+    course = db.session.query(Courses).filter_by(subject_code=subject_code, course_number=course_number).first()
+    crn = course.crn if course else None
+
+    user_course = UserCourse(user_id=user.id, course_id=crn, subject_code=subject_code, course_number=course_number, grade=grade)
+    db.session.add(user_course)
