@@ -38,7 +38,7 @@ def electives_ajax():
     print("Electives - Sending query to AI: ", query)
     response = ai_electives(query)
     print("Electives - AI response: ", response)
-    return jsonify({'response': response})qq
+    return jsonify({'response': response})
 
 @app.route("/prerequisites")
 def prerequisites():
