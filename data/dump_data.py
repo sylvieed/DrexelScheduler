@@ -5,4 +5,5 @@ if __name__ == '__main__':
     print("Adding fall data")
     database.add_data("fall.json", "fall")
     print("Adding spring data")
-    database.add_data("spring.json", "spring")
+    database.add_data("summer.json", "summer")
+    print("completed adding data")
