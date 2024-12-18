@@ -53,7 +53,6 @@
 
 {% block content %}
 
-
 <div id="tree_display"></div>
 
 <script>
@@ -129,7 +128,7 @@
             // Enter any new nodes at the parent's previous position
             const nodeEnter = node.enter().append("node")
                 .attr("node_id", d => d.id)
-                // [TODO]: I hardcored the width and height of the node here
+                // TODO: I hardcored the width and height of the node here
                 .attr("style", d => `
         transform: translate(${source.x0 - delta_x}px, ${source.y0 - delta_y}px);
         opacity: 0;

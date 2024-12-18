@@ -1,4 +1,4 @@
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from operator import itemgetter
 from langchain_community.utilities import SQLDatabase
 from langchain.chains import create_sql_query_chain
@@ -18,7 +18,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_core.example_selectors import SemanticSimilarityExampleSelector
 from langchain_openai import OpenAIEmbeddings
 
-load_dotenv()
+# load_dotenv()
 
 db = SQLDatabase.from_uri("sqlite:///mydatabase.sqlite")
 llm = ChatOpenAI(model="gpt-3.5-turbo-1106", temperature=0)
