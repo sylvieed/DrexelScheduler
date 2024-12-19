@@ -4,7 +4,7 @@ from flask import (
 from flask_sqlalchemy import SQLAlchemy
 import json
 import re
-from app.models.Courses import Courses
+from app.models.courses import Courses
 
 bp = Blueprint('course', __name__, url_prefix='/course')
 

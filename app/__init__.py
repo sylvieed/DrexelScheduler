@@ -48,14 +48,14 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 # Set up the login manager from flask_login
-# from .models import User
-# login_manager = LoginManager()
-# login_manager.init_app(app)
-# @login_manager.user_loader
-# def load_user(user_id):
-#     return User.query.get(int(user_id))
+from app.models.user import User
+login_manager = LoginManager()
+login_manager.init_app(app)
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 # Set up the password hashing using flask_bcrypt
-# bcrypt = Bcrypt(app)
-#
-# from app import views
+bcrypt = Bcrypt(app)
+
+from app import views

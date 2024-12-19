@@ -1,7 +1,7 @@
 from flask import redirect, render_template, request, url_for, flash, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from . import app
-from .models import User, Courses, UserCourse
+from .models import user, courses, user_course
 from app import bcrypt, db
 # from ai.schedule_assistant import ai_response
 # from ai.mapping_user_electives import ai_electives
