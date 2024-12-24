@@ -1,5 +1,5 @@
 from app import db
-from app.models.course_instructor import CourseInstructor
+from app.models import course_instructor
 from app.models.instructors import Instructors
 
 class Courses(db.Model):
