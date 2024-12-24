@@ -1,0 +1,452 @@
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<style>
+    text {
+        font-size: 12px;
+    }
+
+    #tree {
+        height: 1000px;
+        overflow: hidden;
+        {#border: 1px solid red;#}
+        user-select: none;
+        position: relative;
+    }
+
+    #link-layer, #operation-layer, #course-card-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    #link-layer, #operation-layer {
+        width: 100%;
+        height: 100%;
+        stroke: #7582ff;
+        fill: transparent;
+    }
+
+    .link-highlight {
+        stroke: aquamarine;
+    }
+
+    .link-ghost {
+        opacity: 0.25;
+    }
+
+    .operation rect {
+        stroke-dasharray: 4;
+    }
+
+    .course {
+        width: 100px;
+        animation: fadein 1s;
+        transition: color 0.2s ease-in-out;
+    }
+
+    @keyframes fadein {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+</style>
+
+<div id="tree" class="w-full">
+    <svg id="link-layer"></svg>
+    <svg id="operation-layer"></svg>
+    <div id="course-card-layer"></div>
+</div>
+
+<script>
+    const seed_course = {
+        course_number: '{{ course.course_number }}',
+        subject_code: '{{ course.subject_code }}',
+        course_name: get_course_name(this.course_number, this.subject_code)
+    };
+    const prereq_data_url = '{{
+            url_for(
+                'api.get_course_tree_api',
+                subject_code = course.subject_code,
+                course_number = course.course_number
+            )
+        }}';
+
+    $.ajax({url: prereq_data_url, success: function(data) {
+            draw_tree(data);
+        }});
+
+    function move(e) {
+        d3.select(e.target)
+          .select('.course')
+            .style('transform', `translate(${e.offsetX}px, ${e.offsetY}px)`);
+    }
+
+    /*
+    $('#tree').on('mousedown', function d(e) {
+        $(this).on('mousemove', move);
+    });
+
+    $('#tree').on('mouseup', function d(e) {
+        $(this).off('mousemove', move);
+    });
+    */
+
+    function get_course_name(subject_code, course_number) {
+        return `${subject_code}-${course_number}`;
+    }
+
+    function get_prereq_courses(prereq_tree, courses = []) {
+        if (prereq_tree.type === undefined) {
+            return [];
+        }
+
+        if (prereq_tree.type === 'COURSE') {
+            courses.push({
+                'course_number': prereq_tree.course_number,
+                'min_grade': prereq_tree.min_grade,
+                'subject_code': prereq_tree.subject_code
+            });
+        }
+
+        else if (prereq_tree.type === 'OPERATOR') {
+            courses.join(
+                get_prereq_courses(prereq_tree.left, courses),
+                get_prereq_courses(prereq_tree.right, courses)
+            );
+        }
+
+        return courses;
+    }
+
+    function get_prereq_hierarchy(prereq_trees, course, hierarchy = {}) {
+        hierarchy.subject_code = course.subject_code ? course.subject_code : null;
+        hierarchy.course_number = course.course_number ? course.course_number : null;
+        hierarchy.min_grade = course.min_grade ? course.min_grade : null;
+        hierarchy.children = [];
+
+        course_name = get_course_name(course.subject_code, course.course_number);
+        prereq_tree = prereq_trees[course_name];
+        prereqs = []
+        if (prereq_tree) {
+            prereqs = get_prereq_courses(prereq_tree);
+        }
+
+        prereqs.forEach(prereq => {
+            prereq_course_name = get_course_name(prereq.subject_code, prereq.course_number);
+            hierarchy.children.push(get_prereq_hierarchy(prereq_trees, prereq));
+        });
+
+        return hierarchy;
+    }
+
+    function get_op_hierarchy(prereq_tree, course_id_map, hierarchy = {}) {
+        hierarchy.children = []
+
+        if (prereq_tree === null) {
+            return hierarchy;
+        }
+
+        hierarchy.type = prereq_tree.type;
+
+        if (prereq_tree.type === 'COURSE') {
+            // Get the course node ID from the course ID mapping so that
+            // the operators know which nodes to operate on (i.e. which
+            // course nodes to draw a box around)
+            // # TODO: Maybe look into refactoring this kind of lookup
+            // so that you can just map to the course using information from
+            // the ast such as the course CRN)
+            course_name = get_course_name(prereq_tree.subject_code, prereq_tree.course_number);
+            hierarchy.id = course_id_map[course_name];
+        }
+
+        if (prereq_tree.type === 'OPERATOR') {
+            hierarchy.op = prereq_tree.op.type;
+
+            let left = prereq_tree.left;
+            let right = prereq_tree.right;
+
+            /*
+            if (left.type === 'COURSE') {
+                let course_name = get_course_name(left.subject_code, left.course_number);
+                let course_id = course_id_map[course_name];
+                hierarchy.left_bound = course_id;
+            }
+
+            if (right.type === 'COURSE') {
+                let course_name = get_course_name(right.subject_code, right.course_number);
+                let course_id = course_id_map[course_name];
+                hierarchy.right_bound = course_id;
+            }
+            */
+
+            hierarchy.children.push(get_op_hierarchy(prereq_tree.left, course_id_map));
+            hierarchy.children.push(get_op_hierarchy(prereq_tree.right, course_id_map));
+        }
+
+        return hierarchy;
+    }
+
+    function get_op_hierarchy_map(root, prereq_trees) {
+        hierarchy_dict = {};
+
+        root.each(function(d) {
+            if (!('children' in d)) {
+                return;
+            }
+
+            let course_name = get_course_name(d.data.subject_code, d.data.course_number);
+
+            if (course_name in hierarchy_dict) {
+                return;
+            }
+
+            let course_id_map = {};
+
+            d.children.forEach(child => {
+                let child_course_name = get_course_name(child.data.subject_code, child.data.course_number);
+                course_id_map[child_course_name] = child.id;
+            });
+
+            let hierarchy = get_op_hierarchy(prereq_trees[course_name], course_id_map);
+            hierarchy_dict[course_name] = d3.hierarchy(hierarchy);
+        });
+
+        return hierarchy_dict;
+    }
+
+    function draw_tree(data) {
+        console.log(data)
+        let courses_taken = ['STAT-201', 'MATH-101'];
+
+        function course_card_template(course_name) {
+            return `
+            <div class="card border">
+                <div class="card-body">
+                    <h2 class="card-title">${course_name}</h2>
+                </div>
+            </div>
+            `;
+        }
+
+        // Takes the seed course data along with the prereq courses as an array (children)
+        // and creates a hierarchy object that can be manipulated by other functions
+        // in order to create various diagrams. This is done through d3 adding variables
+        // and doing calculations through the various functions.
+        let hierarchy = get_prereq_hierarchy(data.prereq_trees, seed_course);
+        let root = d3.hierarchy(hierarchy);
+
+        let width = $('#tree').width();
+        let center_width = width / 2;
+
+        let node_width = 100
+        let node_height = 100
+
+        let node_element_width = 100
+        let node_element_height = 20
+
+        // Creates a tree function with the specified root object and params.
+        // If you log the 'tree' variable, you will see it is a literal function.
+        let tree = d3.tree().size([width, width]).nodeSize([node_width, node_height]);
+        tree(root);
+
+        // Gives each datum an id equal to the index of the datum in the tree
+        root.each((d, i) => d.id = i);
+        console.log('root:', root);
+
+        link = d3.linkVertical()
+            .source(d => [d.source.x + center_width, d.source.y + node_element_height])
+            .target(d => [d.target.x + center_width, d.target.y]);
+
+        link_select =
+            d3.select('#link-layer')
+              .selectAll('.link')
+              .data(root.links())
+              .enter()
+                .append('g')
+                  .classed('link', true)
+
+        link_select
+          .append('path')
+            .classed('link-path', true)
+            .attr('d', link); // Same as (d) => link(d)
+
+        link_select
+          .append('text')
+            .classed('link-text', true)
+            .attr('x', function(d) {
+                x_delta = d.target.x - d.source.x;
+
+                return x_delta / 2 + d.source.x + center_width;
+            })
+            .attr('y', function(d) {
+                y_delta = d.target.y - d.source.y;
+
+                return y_delta / 2 + d.source.y;
+            })
+            .text(d => d.target.data.min_grade);
+
+        // Generates the nodes
+        d3.select('#course-card-layer')
+          .selectAll('.course')
+            .data(root)
+            .enter()
+              .append('button')
+              .classed('course badge badge-lg absolute transition hover:badge-accent', true)
+              .classed('badge-primary', (d) => courses_taken.indexOf(get_course_name(d.data.subject_code, d.data.course_number)) < 0)
+              .classed('badge-secondary', (d) => courses_taken.indexOf(get_course_name(d.data.subject_code, d.data.course_number)) >= 0)
+              .attr('id', d => `${d.data.subject_code}-${d.data.course_number}`)
+            // TODO: Make it so that the node width is taken into consideration when placing
+              .attr('style', d => `transform: translate(${d.x + center_width - node_element_width/2}px, ${d.y}px);`)
+              .html(d => `${d.data.subject_code}-${d.data.course_number}`)
+              .on('click', function(e, d) {
+                  window.location.href = `/course/${d.data.subject_code}-${d.data.course_number}`;
+              })
+              .on('mouseover', function(e, d) {
+                  ancestors = d.ancestors();
+                  ancestor_ids = ancestors.map(anc => anc.id);
+
+                  function link_ancestor(link_d) {
+                      return ancestor_ids.indexOf(link_d.source.id) >= 0 && ancestor_ids.indexOf(link_d.target.id) >= 0;
+                  }
+
+                  link_select
+                    .filter(link_ancestor)
+                      .classed('link-highlight', true);
+
+                  link_select
+                      .filter((link_d) => !link_ancestor(link_d))
+                          .classed('link-ghost', true);
+
+                  d3.select('#course-card-layer')
+                      .selectAll('.course')
+                          .data(root)
+                          .filter(d => ancestor_ids.indexOf(d.id) >= 0)
+                              .classed('badge-accent', true);
+
+                  d3.select('#course-card-layer')
+                      .selectAll('.course')
+                          .data(root)
+                          .filter(d => ancestor_ids.indexOf(d.id) < 0)
+                              .classed('badge-ghost', true);
+              })
+              .on('mouseout', function(e, d) {
+                  ancestor_ids = d.ancestors().map(anc => anc.id);
+
+                  function link_ancestor(link_d) {
+                      return ancestor_ids.indexOf(link_d.source.id) >= 0 && ancestor_ids.indexOf(link_d.target.id) >= 0;
+                  }
+
+                  link_select
+                      .filter(link_ancestor)
+                          .classed('link-highlight', false);
+
+                  link_select
+                      .filter((link_d) => !link_ancestor(link_d))
+                          .classed('link-ghost', false);
+
+
+                  d3.select('#course-card-layer')
+                      .selectAll('.course')
+                          .data(root)
+                          .filter(d => ancestor_ids.indexOf(d.id) >= 0)
+                              .classed('badge-accent', false);
+
+                  d3.select('#course-card-layer')
+                      .selectAll('.course')
+                          .data(root)
+                          .filter(d => ancestor_ids.indexOf(d.id) < 0)
+                              .classed('badge-ghost', false);
+              });
+
+        {#root.each(d => console.log(d.data.subject_code, d.data.course_number, d.data.min_grade, d.data.children.length));#}
+        let operator_hierarchy_dict = get_op_hierarchy_map(root, data.prereq_trees);
+
+        // Each node with children (prereqs) should have a g element with
+        // a bounding box of the first child and the last child
+        root.each(function(course_node) {
+            if (!('children' in course_node)) {
+                return;
+            }
+
+            let g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            g.setAttributeNS(null, 'class', 'operations-container');
+
+            $('#operation-layer').append(g);
+
+            /*
+            let first_prereq = course_node.children[0];
+            let last_prereq = course_node.children[course_node.children.length - 1];
+
+            let x1 = first_prereq.x + center_width - node_element_width/2;
+            let x2 = last_prereq.x - first_prereq.x + node_element_width;
+            let y1 = first_prereq.y;
+            let y2 = last_prereq.y - first_prereq.y + node_element_height;
+
+            let test_box = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
+            test_box.setAttributeNS(null, 'x', x1);
+            test_box.setAttributeNS(null, 'y', y1);
+            test_box.setAttributeNS(null, 'width', x2);
+            test_box.setAttributeNS(null, 'height', y2);
+            g.appendChild(test_box);
+
+            */
+
+            let course_name = get_course_name(course_node.data.subject_code, course_node.data.course_number);
+            let op_hierarchy = operator_hierarchy_dict[course_name];
+
+            function get_left_most_x(op_node) {
+                let leaves = op_node.leaves();
+                let left_most = leaves[0];
+
+                let left_most_course_id = left_most.data.id;
+                let left_most_course_node = root.find(node => node.id === left_most_course_id);
+                let x = left_most_course_node.x + center_width - node_element_width/2;
+
+                return x;
+            }
+
+            function get_width(op_node) {
+                let left_x = get_left_most_x(op_node);
+
+                let leaves = op_node.leaves();
+                let num_leaves = leaves.length;
+                let right_most = leaves[num_leaves - 1];
+
+                let right_most_course_id = right_most.data.id;
+                let right_most_course_node = root.find(node => node.id === right_most_course_id);
+                let right_x = right_most_course_node.x + center_width + node_element_width/2;
+                let width = right_x - left_x;
+
+                return width;
+            }
+
+            let leaf_y = course_node.y + node_height;
+            let margin = 10;
+            let rect_radius = 5;
+
+            let operation_selection = d3.select(g)
+                .selectAll('.operation')
+                    .data(op_hierarchy)
+                    .enter()
+                        .filter(d => d.data.type === 'OPERATOR')
+                            .append('g')
+                            .classed('operation', true)
+
+            // TODO: Make the .attr calls a callable method useing .call() instead
+            // to reduce redundancy.
+            operation_selection
+                .append('rect')
+                    .attr('x', get_left_most_x)
+                    .attr('y', (d) => leaf_y - d.height * margin)
+                    .attr('width', get_width)
+                    .attr('height', (d) => node_element_height + d.height * 2 * margin)
+                    .attr('rx', rect_radius);
+
+            operation_selection
+                .append('text')
+                    .text((d) => d.data.op)
+                    .attr('x', (d) => get_left_most_x(d) + get_width(d) / 2)
+                    .attr('y', (d) => leaf_y - d.height * margin);
+        });
+    }
+</script>

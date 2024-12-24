@@ -1,0 +1,121 @@
+<html>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<style>
+    #tree {
+        width: 500px;
+        height: 500px;
+        border: 1px solid red;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+    }
+
+    course {
+        padding: 10px;
+        background-color: lime;
+        color: #7582ff;
+        border-radius: 5px;
+        position: absolute;
+    }
+</style>
+
+<body onclick="assign()">
+<div id="tree"></div>
+</body>
+
+<script>
+    let data = [
+        {name: 'a', value: 0},
+        {name: 'b', value: 1},
+        {name: 'c', value: 2},
+    ]
+
+    function assign() {
+        console.log("assign");
+
+        d3.selectAll('div')
+            .data(data, function(d) { return d ? d.name : this.id; })
+            .text(d => d.value);
+
+        data = [
+            {name: 'a', value: 4},
+            {name: 'b', value: 3},
+            {name: 'c', value: 2},
+        ]
+    }
+
+</script>
+
+<script>
+    const seed_course = {
+        course_number: '{{ seed_course.course_number }}',
+        subject_code: '{{ seed_course.subject_code }}',
+        course_name: '{{ seed_course.subject_code }}-{{ seed_course.course_number }}'
+    };
+    const prereq_data_url = '{{
+            url_for('api.get_course_tree_api',
+            subject_code = seed_course.subject_code,
+            course_number = seed_course.course_number)
+        }}';
+
+    $.ajax({url: prereq_data_url, success: function(data) {
+            console.log(data)
+            draw_tree(data)
+        }});
+
+    function get_prereq_courses(prereq_tree, courses = []) {
+        if (prereq_tree['type'] === undefined) {
+            return [];
+        }
+
+        if (prereq_tree['type'] === 'COURSE') {
+            courses.push({
+                'course_number': prereq_tree['course_number'],
+                'min_grade': prereq_tree['min_grade'],
+                'subject_code': prereq_tree['subject_code']
+            });
+        }
+
+        else if (prereq_tree['type'] === 'OPERATOR') {
+            courses.join(
+                get_prereq_courses(prereq_tree['left'], courses),
+                get_prereq_courses(prereq_tree['right'], courses)
+            );
+        }
+
+        return courses;
+    }
+
+    function draw_tree(data) {
+        // Get all the prereq courses for the seed course in an array
+        children = get_prereq_courses(data['prereq_trees'][seed_course['course_name']]);
+
+        // Takes the seed course data along with the prereq courses as an array (children)
+        // and creates a hierarchy object that can be manipulated by other functions
+        // in order to create various diagrams. This is done through d3 adding variables
+        // and doing calculations through the various functions.
+        let root = d3.hierarchy({
+            'course_number': seed_course['course_number'],
+            'subject_code': seed_course['subject_code'],
+            children
+        });
+
+        // Creates a tree function with the specified root object and params.
+        // If you log the 'tree' variable, you will see it is a literal function.
+        let tree = d3.tree().nodeSize([100, 100]);
+        tree(root);
+
+        d3.select('#tree')
+            .selectAll('course')
+            .data(root)
+            .enter()
+            .append('course')
+            .attr('id', d => `${d.data.subject_code}-${d.data.course_number}`)
+            .attr('style', d => `transform: translate(${d.x}px, ${d.y}px);`)
+            .text(d => `${d.data.subject_code}-${d.data.course_number}`);
+    }
+</script>
+</html>

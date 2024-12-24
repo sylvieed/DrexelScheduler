@@ -14,19 +14,6 @@
 
 {% block content %}
 
-    <div class="flex justify-center items-center">
-        <article class="max-w-screen-lg">
-            <div class="flex w-full flex-col border-opacity-50">
-                <div class="flex w-full justify-center items-center">
-                    <h1 class="text-4xl text-center m-4">{{ course.course_title }}</h1>
-                    <span class="badge badge-lg badge-primary badge-outline origin-center m-1">{{ course.subject_code }}-{{ course.course_number }}</span>
-                    <span class="badge badge-lg badge-outline origin-center m-1">{{ course.credits }} Credits</span>
-                </div>
-                <div class="divider"></div>
-{#                <footer class="text-center text-gray-500 text-sm">{{ course.credits }} Credits</footer>#}
-                <p>{{ course.description }}</p>
-            </div>
-        </article>
-    </div>
+{% include "course_partial.html" %}
 
 {% endblock %}

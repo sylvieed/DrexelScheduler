@@ -37,7 +37,8 @@ def create_app(test_config=None):
 
     # Register blueprints
     from . import course
-    app.register_blueprint(course.bp)
+    app.register_blueprint(course.view_bp)
+    app.register_blueprint(course.api_bp)
 
     return app
 
