@@ -75,13 +75,13 @@
             draw_tree(data);
         }});
 
+    /*
     function move(e) {
         d3.select(e.target)
           .select('.course')
             .style('transform', `translate(${e.offsetX}px, ${e.offsetY}px)`);
     }
 
-    /*
     $('#tree').on('mousedown', function d(e) {
         $(this).on('mousemove', move);
     });
@@ -161,24 +161,6 @@
 
         if (prereq_tree.type === 'OPERATOR') {
             hierarchy.op = prereq_tree.op.type;
-
-            let left = prereq_tree.left;
-            let right = prereq_tree.right;
-
-            /*
-            if (left.type === 'COURSE') {
-                let course_name = get_course_name(left.subject_code, left.course_number);
-                let course_id = course_id_map[course_name];
-                hierarchy.left_bound = course_id;
-            }
-
-            if (right.type === 'COURSE') {
-                let course_name = get_course_name(right.subject_code, right.course_number);
-                let course_id = course_id_map[course_name];
-                hierarchy.right_bound = course_id;
-            }
-            */
-
             hierarchy.children.push(get_op_hierarchy(prereq_tree.left, course_id_map));
             hierarchy.children.push(get_op_hierarchy(prereq_tree.right, course_id_map));
         }
