@@ -2,47 +2,86 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 <style>
-    text {
-        font-size: 12px;
-    }
-
     #tree {
-        height: 1000px;
+        --size: 25px;
+        --color: oklch(var(--p) / 0.1);
+        --fade-width: 25px;
+        padding: var(--fade-width);
+        background-image: repeating-linear-gradient(
+                var(--color) 1px,
+                1px,
+                transparent calc(var(--size) - 1px),
+                calc(var(--size) - 1px),
+                var(--color) var(--size)
+        ), repeating-linear-gradient(
+                90deg,
+                var(--color) 1px,
+                1px,
+                transparent calc(var(--size) - 1px),
+                calc(var(--size) - 1px),
+                var(--color) var(--size)
+        );
+        mask-image:
+            linear-gradient(0deg, transparent, var(--fade-width), white, calc(100% - var(--fade-width)), transparent),
+            linear-gradient(90deg, transparent, var(--fade-width), white, calc(100% - var(--fade-width)), transparent);
+        mask-mode: alpha;
+        mask-composite: intersect;
         overflow: hidden;
-        {#border: 1px solid red;#}
         user-select: none;
         position: relative;
     }
 
-    #link-layer, #operation-layer, #course-card-layer {
-        position: absolute;
-        top: 0;
-        left: 0;
+    #tree text {
+        font-size: 12px;
     }
 
-    #link-layer, #operation-layer {
-        width: 100%;
-        height: 100%;
-        stroke: #7582ff;
-        fill: transparent;
-    }
-
-    .link-highlight {
-        stroke: aquamarine;
-    }
-
-    .link-ghost {
-        opacity: 0.25;
-    }
-
-    .operation rect {
-        stroke-dasharray: 4;
+    .course-layer, .link-layer, .operation-layer {
+        overflow: visible;
+        transform-origin: top left;
     }
 
     .course {
         width: 100px;
+        height: 20px;
         animation: fadein 1s;
         transition: color 0.2s ease-in-out;
+    }
+
+    .course-highlight {
+        top: -5px;
+        box-shadow: 0 4px 20px 0px black;
+        /* */
+    }
+
+    .course-ghosted {
+        opacity: 0.25;
+    }
+
+    .link {
+        fill: none;
+        stroke: oklch(var(--p));
+        transition: 0.25s;
+    }
+
+    .link-highlight {
+        stroke: oklch(var(--a));
+    }
+
+    .link-selected {
+        stroke: oklch(var(--s));
+    }
+
+    .link-ghosted {
+        opacity: 0.25;
+    }
+
+    .operation-container {
+        fill: none;
+        stroke: oklch(var(--p));
+    }
+
+    .operation rect {
+        stroke-dasharray: 4;
     }
 
     @keyframes fadein {
@@ -51,11 +90,7 @@
     }
 </style>
 
-<div id="tree" class="w-full">
-    <svg id="link-layer"></svg>
-    <svg id="operation-layer"></svg>
-    <div id="course-card-layer"></div>
-</div>
+<div id="tree" class="w-full h-[500px]"></div>
 
 <script>
     const seed_course = {
@@ -72,7 +107,11 @@
         }}';
 
     $.ajax({url: prereq_data_url, success: function(data) {
-            draw_tree(data);
+            {#draw_tree(data);#}
+
+            let course_tree = new CourseTree(seed_course, data.prereq_trees)
+                .setup()
+                .update_tree();
         }});
 
     /*
@@ -91,94 +130,145 @@
     });
     */
 
+    /**
+     * Constructs the course name given a subject code and a course number.
+     * @param {string} subject_code
+     * @param {int} course_number
+     * @returns {string} - <subject_code> "-" <course_number>
+     */
     function get_course_name(subject_code, course_number) {
         return `${subject_code}-${course_number}`;
     }
 
-    function get_prereq_courses(prereq_tree, courses = []) {
-        if (prereq_tree.type === undefined) {
-            return [];
+    /**
+     * Gets all the prereq courses for a given prereq_tree.
+     * @param {object} prereq_tree
+     * @param {array} courses
+     * @returns {array} - Array of prereq courses
+     */
+    function get_prereq_courses(prereq_tree) {
+        function _get_prereq_courses(prereq_tree, courses = []) {
+            if (prereq_tree.type === undefined) {
+                return [];
+            }
+
+            if (prereq_tree.type === 'COURSE') {
+                courses.push({
+                    'course_number': prereq_tree.course_number,
+                    'min_grade': prereq_tree.min_grade,
+                    'subject_code': prereq_tree.subject_code
+                });
+            }
+
+            else if (prereq_tree.type === 'OPERATOR') {
+                courses.join(
+                    _get_prereq_courses(prereq_tree.left, courses),
+                    _get_prereq_courses(prereq_tree.right, courses)
+                );
+            }
+
+            return courses;
         }
 
-        if (prereq_tree.type === 'COURSE') {
-            courses.push({
-                'course_number': prereq_tree.course_number,
-                'min_grade': prereq_tree.min_grade,
-                'subject_code': prereq_tree.subject_code
+        return _get_prereq_courses(prereq_tree);
+    }
+
+    /**
+     * Gets a hierarchy representing a course and every prereq recursively given a course and a mapping of course names
+     * to prereq trees.
+     * @param {map} prereq_trees - A mapping between course names and prereq trees
+     * @param {map} course
+     * @returns {d3.hierarchy}
+     */
+    function get_prereq_hierarchy(prereq_trees, course) {
+        function _get_prereq_hierarchy(prereq_trees, course) {
+            let hierarchy = {
+                subject_code: course.subject_code,
+                course_number: course.course_number,
+                min_grade: course.min_grade,
+                children: []
+            }
+
+            let course_name = get_course_name(course.subject_code, course.course_number);
+            let prereq_tree = prereq_trees[course_name];
+            let prereqs = []
+            if (prereq_tree) {
+                prereqs = get_prereq_courses(prereq_tree);
+            }
+
+            prereqs.forEach(prereq => {
+                let prereq_course_name = get_course_name(prereq.subject_code, prereq.course_number);
+                hierarchy.children.push(_get_prereq_hierarchy(prereq_trees, prereq));
             });
-        }
 
-        else if (prereq_tree.type === 'OPERATOR') {
-            courses.join(
-                get_prereq_courses(prereq_tree.left, courses),
-                get_prereq_courses(prereq_tree.right, courses)
-            );
-        }
-
-        return courses;
-    }
-
-    function get_prereq_hierarchy(prereq_trees, course, hierarchy = {}) {
-        hierarchy.subject_code = course.subject_code ? course.subject_code : null;
-        hierarchy.course_number = course.course_number ? course.course_number : null;
-        hierarchy.min_grade = course.min_grade ? course.min_grade : null;
-        hierarchy.children = [];
-
-        course_name = get_course_name(course.subject_code, course.course_number);
-        prereq_tree = prereq_trees[course_name];
-        prereqs = []
-        if (prereq_tree) {
-            prereqs = get_prereq_courses(prereq_tree);
-        }
-
-        prereqs.forEach(prereq => {
-            prereq_course_name = get_course_name(prereq.subject_code, prereq.course_number);
-            hierarchy.children.push(get_prereq_hierarchy(prereq_trees, prereq));
-        });
-
-        return hierarchy;
-    }
-
-    function get_op_hierarchy(prereq_tree, course_id_map, hierarchy = {}) {
-        hierarchy.children = []
-
-        if (prereq_tree === null) {
             return hierarchy;
         }
 
-        hierarchy.type = prereq_tree.type;
+        let root = d3.hierarchy(_get_prereq_hierarchy(prereq_trees, course));
 
-        if (prereq_tree.type === 'COURSE') {
-            // Get the course node ID from the course ID mapping so that
-            // the operators know which nodes to operate on (i.e. which
-            // course nodes to draw a box around)
-            // # TODO: Maybe look into refactoring this kind of lookup
-            // so that you can just map to the course using information from
-            // the ast such as the course CRN)
-            course_name = get_course_name(prereq_tree.subject_code, prereq_tree.course_number);
-            hierarchy.id = course_id_map[course_name];
-        }
-
-        if (prereq_tree.type === 'OPERATOR') {
-            hierarchy.op = prereq_tree.op.type;
-            hierarchy.children.push(get_op_hierarchy(prereq_tree.left, course_id_map));
-            hierarchy.children.push(get_op_hierarchy(prereq_tree.right, course_id_map));
-        }
-
-        return hierarchy;
+        // Gives each datum an id equal to the index of the datum in the tree
+        root.each((d, i) => d.id = i);
+        return root;
     }
 
-    function get_op_hierarchy_map(root, prereq_trees) {
-        hierarchy_dict = {};
-
-        root.each(function(d) {
-            if (!('children' in d)) {
-                return;
+    /**
+     * Gets a hierarch representing an operator and what that operator operates on as children.
+     * @param {map} prereq_tree
+     * @param {map} course_id_map - A mapping between a course_name and its respective node id
+     * @returns {d3.hierarchy}
+     */
+    function get_op_hierarchy(prereq_tree, course_id_map) {
+        function _get_op_hierarchy(prereq_tree, course_id_map) {
+            let hierarchy = {
+                children: []
             }
 
+            if (prereq_tree === null) {
+                return hierarchy;
+            }
+
+            hierarchy.type = prereq_tree.type;
+
+            if (prereq_tree.type === 'COURSE') {
+                // Get the course node ID from the course ID mapping so that
+                // the operators know which nodes to operate on (i.e. which
+                // course nodes to draw a box around)
+                // # TODO: Maybe look into refactoring this kind of lookup
+                // so that you can just map to the course using information from
+                // the ast such as the course CRN)
+                let course_name = get_course_name(prereq_tree.subject_code, prereq_tree.course_number);
+                hierarchy.id = course_id_map[course_name];
+            }
+
+            if (prereq_tree.type === 'OPERATOR') {
+                hierarchy.op = prereq_tree.op.type;
+                hierarchy.children.push(_get_op_hierarchy(prereq_tree.left, course_id_map));
+                hierarchy.children.push(_get_op_hierarchy(prereq_tree.right, course_id_map));
+            }
+
+            return hierarchy;
+        }
+
+        return d3.hierarchy(_get_op_hierarchy(prereq_tree, course_id_map));
+    }
+
+    /**
+     * Gets a mapping between course names and their respective operator hierarchies.
+     * @param {d3.hierarchy} root
+     * @param {map} prereq_trees
+     * @returns {map} - A mapping between course names and their operator hierarchies
+     */
+    function get_op_hierarchy_map(root, prereq_trees) {
+        let hierarchy_dict = {};
+
+        root.each(function(d) {
             let course_name = get_course_name(d.data.subject_code, d.data.course_number);
 
             if (course_name in hierarchy_dict) {
+                return;
+            }
+
+            if (!('children' in d)) {
                 return;
             }
 
@@ -189,246 +279,457 @@
                 course_id_map[child_course_name] = child.id;
             });
 
-            let hierarchy = get_op_hierarchy(prereq_trees[course_name], course_id_map);
-            hierarchy_dict[course_name] = d3.hierarchy(hierarchy);
+            hierarchy_dict[course_name] = get_op_hierarchy(prereq_trees[course_name], course_id_map);
         });
 
         return hierarchy_dict;
     }
 
-    function draw_tree(data) {
-        console.log(data)
-        let courses_taken = ['STAT-201', 'MATH-101'];
+    function get_ancestor_hierarchy(course_node) {
+        let ancestors = course_node.ancestors();
+        let stratify = d3.stratify()
+            .id((d) => d.id)
+            .parentId((d) => d.parent ? d.parent.id : null);
+        return stratify(ancestors);
+    }
 
-        function course_card_template(course_name) {
-            return `
-            <div class="card border">
-                <div class="card-body">
-                    <h2 class="card-title">${course_name}</h2>
-                </div>
-            </div>
-            `;
+    class Course {
+
+    }
+
+    class Operator {
+
+    }
+
+    class Camera {
+        constructor(x = 0, y = 0, zoom = 1) {
+            this.x = x;
+            this.y = y;
+            this.zoom = zoom;
+            this.zoom_factor = 1.1;
+            this.zoom_limits = {
+                min: 0.1,
+                max: 5
+            };
         }
 
-        // Takes the seed course data along with the prereq courses as an array (children)
-        // and creates a hierarchy object that can be manipulated by other functions
-        // in order to create various diagrams. This is done through d3 adding variables
-        // and doing calculations through the various functions.
-        let hierarchy = get_prereq_hierarchy(data.prereq_trees, seed_course);
-        let root = d3.hierarchy(hierarchy);
+        move_to(x, y) {
+            this.x = x;
+            this.y = y;
+        }
 
-        let width = $('#tree').width();
-        let center_width = width / 2;
+        move_by(x, y, factor_zoom = false) {
+            let zoom = factor_zoom ? this.zoom : 1;
+            this.x += x / zoom;
+            this.y += y / zoom;
+        }
 
-        let node_width = 100
-        let node_height = 100
+        // TODO: Zoom doesn't work well with large trees (EX: MATH-401)
+        set_zoom(zoom_factor, x = 0, y = 0) {
+            let new_x = x * zoom_factor;
+            let offset_x = new_x - x * this.zoom;
+            let new_y = y * zoom_factor;
+            let offset_y = new_y - y * this.zoom;
 
-        let node_element_width = 100
-        let node_element_height = 20
+            this.move_by(-offset_x, -offset_y, false);
 
-        // Creates a tree function with the specified root object and params.
-        // If you log the 'tree' variable, you will see it is a literal function.
-        let tree = d3.tree().size([width, width]).nodeSize([node_width, node_height]);
-        tree(root);
+            this.zoom = zoom_factor;
+        }
 
-        // Gives each datum an id equal to the index of the datum in the tree
-        root.each((d, i) => d.id = i);
-        console.log('root:', root);
-
-        link = d3.linkVertical()
-            .source(d => [d.source.x + center_width, d.source.y + node_element_height])
-            .target(d => [d.target.x + center_width, d.target.y]);
-
-        link_select =
-            d3.select('#link-layer')
-              .selectAll('.link')
-              .data(root.links())
-              .enter()
-                .append('g')
-                  .classed('link', true)
-
-        link_select
-          .append('path')
-            .classed('link-path', true)
-            .attr('d', link); // Same as (d) => link(d)
-
-        link_select
-          .append('text')
-            .classed('link-text', true)
-            .attr('x', function(d) {
-                x_delta = d.target.x - d.source.x;
-
-                return x_delta / 2 + d.source.x + center_width;
-            })
-            .attr('y', function(d) {
-                y_delta = d.target.y - d.source.y;
-
-                return y_delta / 2 + d.source.y;
-            })
-            .text(d => d.target.data.min_grade);
-
-        // Generates the nodes
-        d3.select('#course-card-layer')
-          .selectAll('.course')
-            .data(root)
-            .enter()
-              .append('button')
-              .classed('course badge badge-lg absolute transition hover:badge-accent', true)
-              .classed('badge-primary', (d) => courses_taken.indexOf(get_course_name(d.data.subject_code, d.data.course_number)) < 0)
-              .classed('badge-secondary', (d) => courses_taken.indexOf(get_course_name(d.data.subject_code, d.data.course_number)) >= 0)
-              .attr('id', d => `${d.data.subject_code}-${d.data.course_number}`)
-            // TODO: Make it so that the node width is taken into consideration when placing
-              .attr('style', d => `transform: translate(${d.x + center_width - node_element_width/2}px, ${d.y}px);`)
-              .html(d => `${d.data.subject_code}-${d.data.course_number}`)
-              .on('click', function(e, d) {
-                  window.location.href = `/course/${d.data.subject_code}-${d.data.course_number}`;
-              })
-              .on('mouseover', function(e, d) {
-                  ancestors = d.ancestors();
-                  ancestor_ids = ancestors.map(anc => anc.id);
-
-                  function link_ancestor(link_d) {
-                      return ancestor_ids.indexOf(link_d.source.id) >= 0 && ancestor_ids.indexOf(link_d.target.id) >= 0;
-                  }
-
-                  link_select
-                    .filter(link_ancestor)
-                      .classed('link-highlight', true);
-
-                  link_select
-                      .filter((link_d) => !link_ancestor(link_d))
-                          .classed('link-ghost', true);
-
-                  d3.select('#course-card-layer')
-                      .selectAll('.course')
-                          .data(root)
-                          .filter(d => ancestor_ids.indexOf(d.id) >= 0)
-                              .classed('badge-accent', true);
-
-                  d3.select('#course-card-layer')
-                      .selectAll('.course')
-                          .data(root)
-                          .filter(d => ancestor_ids.indexOf(d.id) < 0)
-                              .classed('badge-ghost', true);
-              })
-              .on('mouseout', function(e, d) {
-                  ancestor_ids = d.ancestors().map(anc => anc.id);
-
-                  function link_ancestor(link_d) {
-                      return ancestor_ids.indexOf(link_d.source.id) >= 0 && ancestor_ids.indexOf(link_d.target.id) >= 0;
-                  }
-
-                  link_select
-                      .filter(link_ancestor)
-                          .classed('link-highlight', false);
-
-                  link_select
-                      .filter((link_d) => !link_ancestor(link_d))
-                          .classed('link-ghost', false);
-
-
-                  d3.select('#course-card-layer')
-                      .selectAll('.course')
-                          .data(root)
-                          .filter(d => ancestor_ids.indexOf(d.id) >= 0)
-                              .classed('badge-accent', false);
-
-                  d3.select('#course-card-layer')
-                      .selectAll('.course')
-                          .data(root)
-                          .filter(d => ancestor_ids.indexOf(d.id) < 0)
-                              .classed('badge-ghost', false);
-              });
-
-        {#root.each(d => console.log(d.data.subject_code, d.data.course_number, d.data.min_grade, d.data.children.length));#}
-        let operator_hierarchy_dict = get_op_hierarchy_map(root, data.prereq_trees);
-
-        // Each node with children (prereqs) should have a g element with
-        // a bounding box of the first child and the last child
-        root.each(function(course_node) {
-            if (!('children' in course_node)) {
-                return;
+        zoom_in(x = 0, y = 0) {
+            let new_zoom = this.zoom * this.zoom_factor;
+            if (new_zoom > this.zoom_limits.max) {
+                new_zoom = this.zoom_limits.max;
             }
 
-            let g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            g.setAttributeNS(null, 'class', 'operations-container');
+            this.set_zoom(new_zoom, x, y);
 
-            $('#operation-layer').append(g);
+            return new_zoom;
+        }
 
-            /*
-            let first_prereq = course_node.children[0];
-            let last_prereq = course_node.children[course_node.children.length - 1];
+        zoom_out(x = 0, y = 0) {
+            let new_zoom = this.zoom / this.zoom_factor;
+            if (new_zoom < this.zoom_limits.min) {
+                new_zoom = this.zoom_limits.min;
+            }
 
-            let x1 = first_prereq.x + center_width - node_element_width/2;
-            let x2 = last_prereq.x - first_prereq.x + node_element_width;
-            let y1 = first_prereq.y;
-            let y2 = last_prereq.y - first_prereq.y + node_element_height;
+            this.set_zoom(new_zoom, x, y);
 
-            let test_box = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
-            test_box.setAttributeNS(null, 'x', x1);
-            test_box.setAttributeNS(null, 'y', y1);
-            test_box.setAttributeNS(null, 'width', x2);
-            test_box.setAttributeNS(null, 'height', y2);
-            g.appendChild(test_box);
+            return new_zoom;
+        }
+    }
 
-            */
+    class CourseTree {
+        constructor(seed_course, prereq_trees) {
+            this.seed_course = seed_course;
+            this.prereq_trees = prereq_trees;
 
-            let course_name = get_course_name(course_node.data.subject_code, course_node.data.course_number);
-            let op_hierarchy = operator_hierarchy_dict[course_name];
+            // By default, the parent element will be an element with id 'tree'
+            this.set_parent_element($('#tree'));
 
-            function get_left_most_x(op_node) {
+            // By default, the course element generator will be a function that
+            // takes a course node and returns a course element
+            this.set_course_element_generator((course) => `
+                <a class="badge badge-primary badge-lg absolute transition w-full" href="/course/${course.subject_code}-${course.course_number}">${get_course_name(course.subject_code, course.course_number)}</a>
+            `);
+
+            this.set_course_default_callbacks({
+                set: function(course, i, nodes) {
+                    d3.select(this).select('.badge').classed('badge-primary', true);
+                },
+                unset: function(course, i, nodes) {
+                    d3.select(this).select('.badge').classed('badge-primary', false);
+                }
+            });
+            this.set_course_highlight_callbacks({
+                set: function(course, i, nodes) {
+                    d3.select(this).select('.badge').classed('badge-accent course-highlight', true);
+                },
+                unset: function(course, i, nodes) {
+                    d3.select(this).select('.badge').classed('badge-accent course-highlight', false);
+                }
+            });
+            this.set_course_ghosted_callbacks({
+                set: function (course, i, nodes) {
+                    d3.select(this).select('.badge').classed('badge-ghost course-ghosted', true);
+                },
+                unset: function (course, i, nodes) {
+                    d3.select(this).select('.badge').classed('badge-ghost course-ghosted', false);
+                }
+            })
+
+            this.set_link_highlight_callbacks({
+                set: function(link, i, nodes) {
+                    d3.select(this).classed('link-highlight', true);
+                },
+                unset: function(link, i, nodes) {
+                    d3.select(this).classed('link-highlight', false);
+                }
+            });
+            this.set_link_ghosted_callbacks({
+                set: function (link, i, nodes) {
+                    d3.select(this).classed('link-ghosted', true);
+                },
+                unset: function (link, i, nodes) {
+                    d3.select(this).classed('link-ghosted', false);
+                }
+            });
+
+            // By default, the node size will be 100x100 meaning that around each node
+            // there will be a margin of 100px on each side (so the node will have 200x200px of space)
+            this.set_node_size(100, 200);
+            this.camera = new Camera();
+
+            this.set_link_path_generator((link) => d3.linkVertical()
+                    .source(d => [d.source.x + this.get_center_x(), d.source.y + $(this.get_course_element(d.source)).height()])
+                    .target(d => [d.target.x + this.get_center_x(), d.target.y])(link));
+        }
+
+        set_parent_element(parent_element) {
+            this.parent_element = parent_element;
+            this.parent_width = () => $(parent_element).width();
+            this.parent_center_x = () => this.parent_width / 2;
+            this.parent_height = () => $(parent_element).height();
+            this.parent_center_y = () => this.parent_height / 2;
+
+            return this;
+        }
+
+        set_course_element_generator(course_element_generator) {
+            this.course_element_generator = course_element_generator;
+
+            return this;
+        }
+
+        set_node_size(node_width, node_height) {
+            this.node_width = node_width;
+            this.node_height = node_height;
+
+            return this;
+        }
+
+        set_link_path_generator(link_path_generator) {
+            this.link_path_generator = link_path_generator;
+
+            return this;
+        }
+
+        // Course state callbacks
+        set_course_default_callbacks(callbacks) {
+            this.course_default_callbacks = callbacks;
+        }
+
+        set_course_highlight_callbacks(callbacks) {
+            this.course_highlight_callbacks = callbacks;
+        }
+
+        set_course_ghosted_callbacks(callbacks) {
+            this.course_ghosted_callbacks = callbacks;
+        }
+
+        // Link state callbacks
+        set_link_default_callbacks(callbacks) {
+            this.link_default_callbacks = callbacks;
+        }
+
+        set_link_highlight_callbacks(callbacks) {
+            this.link_highlight_callbacks = callbacks;
+        }
+
+        set_link_ghosted_callbacks(callbacks) {
+            this.link_ghosted_callbacks = callbacks;
+        }
+
+        // Operator state callbacks
+        set_operator_highlight_callbacks(callbacks) {
+            this.operator_highlight_callbacks = callbacks;
+        }
+
+        setup_parent_element() {
+            let style = `width: ${this.parent_width()}px; height: ${this.parent_height()}px; position: absolute;`;
+
+            this.link_layer_element = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            this.link_layer_element.setAttributeNS(null, 'class', 'link-layer');
+            this.link_layer_element.setAttributeNS(null, 'style', style);
+            this.parent_element.append(this.link_layer_element);
+
+            this.operation_layer_element = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            this.operation_layer_element.setAttributeNS(null, 'class', 'operation-layer');
+            this.operation_layer_element.setAttributeNS(null, 'style', style);
+            this.parent_element.append(this.operation_layer_element);
+
+            this.course_layer_element = document.createElement('div');
+            this.course_layer_element.setAttribute('class', 'course-layer');
+            this.course_layer_element.setAttribute('style', style);
+            this.parent_element.append(this.course_layer_element);
+
+            let apply_camera_changes = () => {
+                d3.select(this.course_layer_element)
+                    .style('transform', `translate(${this.camera.x}px, ${this.camera.y}px) scale(${this.camera.zoom})`);
+
+                d3.select(this.link_layer_element)
+                    .style('transform', `translate(${this.camera.x}px, ${this.camera.y}px) scale(${this.camera.zoom})`);
+
+                d3.select(this.operation_layer_element)
+                    .style('transform', `translate(${this.camera.x}px, ${this.camera.y}px) scale(${this.camera.zoom})`);
+            }
+
+            // TODO: There is a bug where if you drag the course node <a> element, it will default to draggin a link
+            // which causes the movement to break in a weird way.
+
+            $(this.parent_element).on('mousedown', (e) => {
+                let parent_element_rect = e.currentTarget.getBoundingClientRect();
+                let start_x = e.clientX - parent_element_rect.left;
+                let start_y = e.clientY - parent_element_rect.top;
+                $(this.parent_element).on('mousemove', (move_e) => {
+                    // This is repeated here again in case the parent element moves due to something
+                    parent_element_rect = move_e.currentTarget.getBoundingClientRect();
+                    let finish_x = move_e.clientX - parent_element_rect.left;
+                    let finish_y = move_e.clientY - parent_element_rect.top;
+                    let delta_x = finish_x - start_x;
+                    let delta_y = finish_y - start_y;
+
+                    this.camera.move_by(delta_x, delta_y, false);
+
+                    apply_camera_changes();
+
+                    start_x = finish_x;
+                    start_y = finish_y;
+                });
+            });
+
+            $(document).on('mouseup', (e) => {
+                $(this.parent_element).off('mousemove');
+            })
+
+            $(this.parent_element).on('wheel', (e) => {
+                e.preventDefault();
+                let delta = e.originalEvent.deltaY;
+                let parent_element_rect = e.currentTarget.getBoundingClientRect();
+                let x = e.clientX - parent_element_rect.left;
+                let y = e.clientY - parent_element_rect.top;
+
+                let new_zoom = delta > 0 ? this.camera.zoom_out(x, y) : this.camera.zoom_in(x, y);
+
+                apply_camera_changes();
+            });
+
+            return this;
+        }
+
+        get_center_x() {
+            return $(this.parent_element).width() / 2;
+        }
+
+        get_course_element(course) {
+            return d3.select(this.course_layer_element)
+                .selectAll('.course')
+                .data(this.prereq_root)
+                .filter(d => d.id === course.id)
+                .nodes()[0];
+        }
+
+        setup() {
+            this.setup_parent_element();
+
+            this.prereq_root = get_prereq_hierarchy(this.prereq_trees, this.seed_course);
+            d3.tree().nodeSize([this.node_width, this.node_height])(this.prereq_root);
+
+            this.operator_hierarchy_map = get_op_hierarchy_map(this.prereq_root, this.prereq_trees);
+
+            return this;
+        }
+
+        update_course_nodes() {
+            let course_selection = d3.select(this.course_layer_element)
+                .selectAll('.course')
+                .data(this.prereq_root)
+                .join('div')
+                .attr('class', 'course')
+                .style('transform', (d,i,nodes) => `translate(${d.x + this.get_center_x() - $(nodes[i]).width() / 2}px, ${d.y}px)`)
+                .style('position', 'absolute')
+                .html((d) => this.course_element_generator(d.data))
+                .on('mouseover', (e, d) => {
+                    let ancestor_root = get_ancestor_hierarchy(d);
+                    let ancestor_links = ancestor_root.links();
+
+                    let ancestor_selection = d3.select(this.course_layer_element)
+                        .selectAll('.course')
+                        .data(ancestor_root, (d) => d.id)
+                        .each(this.course_highlight_callbacks.set)
+                        .exit()
+                        .each(this.course_ghosted_callbacks.set)
+
+                    let link_selection = d3.select(this.link_layer_element)
+                        .selectAll('.link')
+                        .data(ancestor_links, (d) => d.target.id)
+                        .each(this.link_highlight_callbacks.set)
+                        .exit()
+                        .each(this.link_ghosted_callbacks.set)
+                })
+                .on('mouseout', (e, d) => {
+                    let ancestor_root = get_ancestor_hierarchy(d);
+                    let ancestor_links = ancestor_root.links();
+
+                    let ancestor_selection = d3.select(this.course_layer_element)
+                        .selectAll('.course')
+                        .data(ancestor_root, (d) => d.id)
+                        .each(this.course_highlight_callbacks.unset)
+                        .exit()
+                        .each(this.course_ghosted_callbacks.unset)
+
+                    let link_selection = d3.select(this.link_layer_element)
+                        .selectAll('.link')
+                        .data(ancestor_links, (d) => d.target.id)
+                        .each(this.link_highlight_callbacks.unset)
+                        .exit()
+                        .each(this.link_ghosted_callbacks.unset)
+                });
+
+            return this;
+        }
+
+        update_links() {
+            let link_selection = d3.select(this.link_layer_element)
+                .selectAll('.link')
+                .data(this.prereq_root.links())
+                .join(enter => {
+                    let g = enter.append('g')
+                        .attr('class', 'link');
+
+                    // TODO: IDK if these should be added here cause any class properties get overriden by these
+                        {#.style('fill', 'none')#}
+                        {#.style('stroke', 'white');#}
+
+                    g.append('path')
+                        .attr('class', 'link-path')
+                        .attr('d', (d) => this.link_path_generator(d));
+
+                    g.append('text')
+                        .attr('class', 'link-text')
+                        .attr('x', (d) => {
+                            let x_delta = d.target.x - d.source.x;
+                            return x_delta / 2 + d.source.x + this.get_center_x();
+                        })
+                        .attr('y', (d) => {
+                            let y_delta = d.target.y - d.source.y;
+                            return y_delta / 2 + d.source.y;
+                        })
+                        .text((d) => d.target.data.min_grade);
+                });
+
+            return this;
+        }
+
+        update_operators() {
+            let parents = []
+            this.prereq_root.each(function(d) {if (d.children) parents.push(d)});
+
+            let operation_container_selection = d3.select(this.operation_layer_element)
+                .selectAll('.operation-container')
+                .data(parents)
+                .join('g')
+                .attr('class', 'operation-container');
+
+            let margin_x = 0;
+            let margin_y = 10;
+            let rect_radius = 5;
+
+            let get_pos = (op_node) => {
                 let leaves = op_node.leaves();
                 let left_most = leaves[0];
-
-                let left_most_course_id = left_most.data.id;
-                let left_most_course_node = root.find(node => node.id === left_most_course_id);
-                let x = left_most_course_node.x + center_width - node_element_width/2;
-
-                return x;
-            }
-
-            function get_width(op_node) {
-                let left_x = get_left_most_x(op_node);
-
+                let course_element = this.get_course_element(left_most.data);
+                return $(course_element).position();
+            };
+            let get_dimensions = (op_node) => {
+                let left_most_pos = get_pos(op_node);
                 let leaves = op_node.leaves();
                 let num_leaves = leaves.length;
                 let right_most = leaves[num_leaves - 1];
+                let course_element = this.get_course_element(right_most.data);
+                return {
+                    width: $(course_element).position().left + $(course_element).width() - left_most_pos.left,
+                    height: $(course_element).position().top + $(course_element).height() - left_most_pos.top,
+                };
+            };
 
-                let right_most_course_id = right_most.data.id;
-                let right_most_course_node = root.find(node => node.id === right_most_course_id);
-                let right_x = right_most_course_node.x + center_width + node_element_width/2;
-                let width = right_x - left_x;
-
-                return width;
-            }
-
-            let leaf_y = course_node.y + node_height;
-            let margin = 10;
-            let rect_radius = 5;
-
-            let operation_selection = d3.select(g)
+            operation_container_selection
                 .selectAll('.operation')
-                    .data(op_hierarchy)
-                    .enter()
-                        .filter(d => d.data.type === 'OPERATOR')
+                .data((group_d) => this.operator_hierarchy_map[get_course_name(group_d.data.subject_code, group_d.data.course_number)])
+                .join(
+                    enter => {
+                        let g_selection = enter
+                            .filter(d => d.data.type === 'OPERATOR')
                             .append('g')
-                            .classed('operation', true)
+                            .attr('class', 'operation');
 
-            // TODO: Make the .attr calls a callable method useing .call() instead
-            // to reduce redundancy.
-            operation_selection
-                .append('rect')
-                    .attr('x', get_left_most_x)
-                    .attr('y', (d) => leaf_y - d.height * margin)
-                    .attr('width', get_width)
-                    .attr('height', (d) => node_element_height + d.height * 2 * margin)
-                    .attr('rx', rect_radius);
+                        g_selection
+                            .append('rect')
+                            .attr('x', (d) => get_pos(d).left - d.height * margin_x)
+                            .attr('y', (d) => get_pos(d).top - d.height * margin_y)
+                            .attr('width', (d) => get_dimensions(d).width + d.height * 2 * margin_x)
+                            .attr('height', (d) => get_dimensions(d).height + d.height * 2 * margin_y)
+                            .attr('rx', rect_radius);
 
-            operation_selection
-                .append('text')
-                    .text((d) => d.data.op)
-                    .attr('x', (d) => get_left_most_x(d) + get_width(d) / 2)
-                    .attr('y', (d) => leaf_y - d.height * margin);
-        });
+                        g_selection
+                            .append('text')
+                            .attr('x', (d) => get_pos(d).left + get_dimensions(d).width / 2)
+                            .attr('y', (d) => get_pos(d).top - d.height * margin_y)
+                            .text((d) => d.data.op);
+
+                        return g_selection;
+                    }
+                );
+
+            return this;
+        }
+
+        update_tree() {
+            this.update_course_nodes()
+            this.update_links();
+            this.update_operators();
+
+            return this;
+        }
     }
 </script>

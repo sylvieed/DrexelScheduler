@@ -625,13 +625,14 @@ html {
 }
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
   --in: 72.06% 0.191 231.6;
   --su: 64.8% 0.150 160;
   --wa: 84.71% 0.199 83.87;
   --er: 71.76% 0.221 22.18;
-  --pc: 89.824% 0.06192 275.75;
-  --ac: 15.352% 0.0368 183.61;
+  --pc: 85.8969% 0.016251 256.358729;
+  --sc: 19.3597% 0.042201 109.769232;
+  --ac: 17.1247% 0.009788 219.654287;
   --inc: 0% 0 0;
   --suc: 0% 0 0;
   --wac: 0% 0 0;
@@ -645,16 +646,15 @@ html {
   --border-btn: 1px;
   --tab-border: 1px;
   --tab-radius: 0.5rem;
-  --p: 49.12% 0.3096 275.75;
-  --s: 69.71% 0.329 342.55;
-  --sc: 98.71% 0.0106 342.55;
-  --a: 76.76% 0.184 183.61;
-  --n: 32.1785% 0.02476 255.701624;
-  --nc: 89.4994% 0.011585 252.096176;
-  --b1: 100% 0 0;
-  --b2: 96.1151% 0 0;
-  --b3: 92.4169% 0.00108 197.137559;
-  --bc: 27.8078% 0.029596 256.847952;
+  --p: 29.4844% 0.081257 256.358729;
+  --s: 96.7983% 0.211006 109.769232;
+  --a: 85.6233% 0.04894 219.654287;
+  --n: 31.3815% 0.021108 254.139175;
+  --nc: 74.6477% 0.0216 264.435964;
+  --b1: 25.3267% 0.015896 252.417568;
+  --b2: 23.2607% 0.013807 253.100675;
+  --b3: 21.1484% 0.01165 254.087939;
+  --bc: 74.6477% 0.0216 264.435964;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -690,6 +690,72 @@ html {
     --b3: 21.1484% 0.01165 254.087939;
     --bc: 74.6477% 0.0216 264.435964;
   }
+}
+
+[data-theme=dark_drexel] {
+  color-scheme: dark;
+  --in: 72.06% 0.191 231.6;
+  --su: 64.8% 0.150 160;
+  --wa: 84.71% 0.199 83.87;
+  --er: 71.76% 0.221 22.18;
+  --pc: 85.8969% 0.016251 256.358729;
+  --sc: 19.3597% 0.042201 109.769232;
+  --ac: 17.1247% 0.009788 219.654287;
+  --inc: 0% 0 0;
+  --suc: 0% 0 0;
+  --wac: 0% 0 0;
+  --erc: 0% 0 0;
+  --rounded-box: 1rem;
+  --rounded-btn: 0.5rem;
+  --rounded-badge: 1.9rem;
+  --animation-btn: 0.25s;
+  --animation-input: .2s;
+  --btn-focus-scale: 0.95;
+  --border-btn: 1px;
+  --tab-border: 1px;
+  --tab-radius: 0.5rem;
+  --p: 29.4844% 0.081257 256.358729;
+  --s: 96.7983% 0.211006 109.769232;
+  --a: 85.6233% 0.04894 219.654287;
+  --n: 31.3815% 0.021108 254.139175;
+  --nc: 74.6477% 0.0216 264.435964;
+  --b1: 25.3267% 0.015896 252.417568;
+  --b2: 23.2607% 0.013807 253.100675;
+  --b3: 21.1484% 0.01165 254.087939;
+  --bc: 74.6477% 0.0216 264.435964;
+}
+
+[data-theme=light_drexel] {
+  color-scheme: light;
+  --in: 72.06% 0.191 231.6;
+  --su: 64.8% 0.150 160;
+  --wa: 84.71% 0.199 83.87;
+  --er: 71.76% 0.221 22.18;
+  --pc: 85.8969% 0.016251 256.358729;
+  --ac: 17.1247% 0.009788 219.654287;
+  --inc: 0% 0 0;
+  --suc: 0% 0 0;
+  --wac: 0% 0 0;
+  --erc: 0% 0 0;
+  --rounded-box: 1rem;
+  --rounded-btn: 0.5rem;
+  --rounded-badge: 1.9rem;
+  --animation-btn: 0.25s;
+  --animation-input: .2s;
+  --btn-focus-scale: 0.95;
+  --border-btn: 1px;
+  --tab-border: 1px;
+  --tab-radius: 0.5rem;
+  --p: 29.4844% 0.081257 256.358729;
+  --s: 96.7983% 0.211006 109.769232;
+  --sc: 98.71% 0.0106 342.55;
+  --a: 85.6233% 0.04894 219.654287;
+  --n: 32.1785% 0.02476 255.701624;
+  --nc: 89.4994% 0.011585 252.096176;
+  --b1: 100% 0 0;
+  --b2: 96.1151% 0 0;
+  --b3: 92.4169% 0.00108 197.137559;
+  --bc: 27.8078% 0.029596 256.847952;
 }
 
 [data-theme=light] {
@@ -811,69 +877,6 @@ html {
     --tw-bg-opacity: 1;
     background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity)));
   }
-}
-
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  border-radius: var(--rounded-box, 1rem);
-}
-
-.card:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-}
-
-.card-body {
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  padding: var(--padding-card, 2rem);
-  gap: 0.5rem;
-}
-
-.card-body :where(p) {
-  flex-grow: 1;
-}
-
-.card figure {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card.image-full {
-  display: grid;
-}
-
-.card.image-full:before {
-  position: relative;
-  content: "";
-  z-index: 10;
-  border-radius: var(--rounded-box, 1rem);
-  --tw-bg-opacity: 1;
-  background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity)));
-  opacity: 0.75;
-}
-
-.card.image-full:before,
-    .card.image-full > * {
-  grid-column-start: 1;
-  grid-row-start: 1;
-}
-
-.card.image-full > figure img {
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.card.image-full > .card-body {
-  position: relative;
-  z-index: 20;
-  --tw-text-opacity: 1;
-  color: var(--fallback-nc,oklch(var(--nc)/var(--tw-text-opacity)));
 }
 
 .checkbox {
@@ -1320,15 +1323,6 @@ html {
   color: var(--fallback-pc,oklch(var(--pc)/var(--tw-text-opacity)));
 }
 
-.badge-secondary {
-  --tw-border-opacity: 1;
-  border-color: var(--fallback-s,oklch(var(--s)/var(--tw-border-opacity)));
-  --tw-bg-opacity: 1;
-  background-color: var(--fallback-s,oklch(var(--s)/var(--tw-bg-opacity)));
-  --tw-text-opacity: 1;
-  color: var(--fallback-sc,oklch(var(--sc)/var(--tw-text-opacity)));
-}
-
 .badge-accent {
   --tw-border-opacity: 1;
   border-color: var(--fallback-a,oklch(var(--a)/var(--tw-border-opacity)));
@@ -1411,53 +1405,6 @@ html {
   100% {
     transform: scale(1);
   }
-}
-
-.card :where(figure:first-child) {
-  overflow: hidden;
-  border-start-start-radius: inherit;
-  border-start-end-radius: inherit;
-  border-end-start-radius: unset;
-  border-end-end-radius: unset;
-}
-
-.card :where(figure:last-child) {
-  overflow: hidden;
-  border-start-start-radius: unset;
-  border-start-end-radius: unset;
-  border-end-start-radius: inherit;
-  border-end-end-radius: inherit;
-}
-
-.card:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
-}
-
-.card.bordered {
-  border-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-border-opacity)));
-}
-
-.card.compact .card-body {
-  padding: 1rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-.card-title {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  font-weight: 600;
-}
-
-.card.image-full :where(figure) {
-  overflow: hidden;
-  border-radius: inherit;
 }
 
 .checkbox:focus {
@@ -1692,6 +1639,42 @@ html {
 .menu :where(li > .menu-dropdown-toggle.menu-dropdown-show):after {
   transform: rotate(225deg);
   margin-top: 0;
+}
+
+.mockup-phone .camera {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  background: #000;
+  height: 25px;
+  width: 150px;
+  margin: 0 auto;
+  border-bottom-left-radius: 17px;
+  border-bottom-right-radius: 17px;
+  z-index: 11;
+}
+
+.mockup-phone .camera:before {
+  content: "";
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  width: 50px;
+  height: 4px;
+  border-radius: 5px;
+  background-color: #0c0b0e;
+  transform: translate(-50%, -50%);
+}
+
+.mockup-phone .camera:after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 70%;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  background-color: #0f0b25;
 }
 
 .mockup-phone .display {
@@ -2041,26 +2024,6 @@ html {
   border-start-end-radius: inherit;
 }
 
-.card-compact .card-body {
-  padding: 1rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-.card-compact .card-title {
-  margin-bottom: 0.25rem;
-}
-
-.card-normal .card-body {
-  padding: var(--padding-card, 2rem);
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
-.card-normal .card-title {
-  margin-bottom: 0.75rem;
-}
-
 .join.join-vertical > :where(*:not(:first-child)) {
   margin-left: 0px;
   margin-right: 0px;
@@ -2253,6 +2216,14 @@ html {
 
 .h-8 {
   height: 2rem;
+}
+
+.h-\[500px\] {
+  height: 500px;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .min-h-full {
@@ -2702,20 +2673,6 @@ html {
   color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
   outline: 2px solid transparent;
   outline-offset: 2px;
-}
-
-.hover\:badge-accent:hover {
-  --tw-border-opacity: 1;
-  border-color: var(--fallback-a,oklch(var(--a)/var(--tw-border-opacity)));
-  --tw-bg-opacity: 1;
-  background-color: var(--fallback-a,oklch(var(--a)/var(--tw-bg-opacity)));
-  --tw-text-opacity: 1;
-  color: var(--fallback-ac,oklch(var(--ac)/var(--tw-text-opacity)));
-}
-
-.hover\:badge-accent:hover.badge-outline {
-  --tw-text-opacity: 1;
-  color: var(--fallback-a,oklch(var(--a)/var(--tw-text-opacity)));
 }
 
 .odd\:bg-white:nth-child(odd) {
