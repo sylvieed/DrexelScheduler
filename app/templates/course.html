@@ -7,6 +7,16 @@
         #content {
             padding: 50px;
         }
+
+        /* Define a transition duration during page visits */
+        html.is-changing .transition-fade {
+            transition: opacity 0.25s;
+            opacity: 1;
+        }
+        /* Define the styles for the unloaded pages */
+        html.is-animating .transition-fade {
+            opacity: 0;
+        }
     </style>
 
 {% endblock %}
@@ -14,6 +24,16 @@
 
 {% block content %}
 
-{% include "course_partial.html" %}
+    <main id="swup" class="transition-fade">
+        {% include "course_partial.html" %}
+    </main>
+
+    <script>
+    const swup = new Swup();
+
+    swup.hooks.on('page:view', () => {
+        init();
+    });
+    </script>
 
 {% endblock %}

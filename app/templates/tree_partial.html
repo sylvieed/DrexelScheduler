@@ -43,8 +43,10 @@
     .course {
         width: 100px;
         height: 20px;
-        animation: fadein 1s;
         transition: color 0.2s ease-in-out;
+
+        /* For the animation */
+        opacity: 0;
     }
 
     .course-highlight {
@@ -85,14 +87,22 @@
     }
 
     @keyframes fadein {
-        from { opacity: 0; }
-        to   { opacity: 1; }
+        from {
+            top: -10px;
+        }
+        to {
+            top: 0;
+            opacity: 1;
+        }
     }
 </style>
 
-<div id="tree" class="w-full h-[500px]"></div>
+<div id="tree" class="w-full h-[700px]"></div>
 
 <script>
+    const prereq_data_base_url = '/api/get_course_tree/';
+
+    /*
     const seed_course = {
         course_number: '{{ course.course_number }}',
         subject_code: '{{ course.subject_code }}',
@@ -105,14 +115,27 @@
                 course_number = course.course_number
             )
         }}';
+    */
 
-    $.ajax({url: prereq_data_url, success: function(data) {
-            {#draw_tree(data);#}
+    $(document).ready(init);
+
+    function init() {
+        let url_parts = window.location.href.split('/');
+        let course_name = url_parts[url_parts.length - 1];
+
+        $.ajax({url: `${prereq_data_base_url}${course_name}`, success: function(data) {
+            let seed_course = {
+                course_number: data.course_number,
+                subject_code: data.subject_code,
+                course_name: get_course_name(data.subject_code, data.course_number)
+            };
 
             let course_tree = new CourseTree(seed_course, data.prereq_trees)
                 .setup()
                 .update_tree();
         }});
+    }
+
 
     /*
     function move(e) {
@@ -588,6 +611,7 @@
                 .attr('class', 'course')
                 .style('transform', (d,i,nodes) => `translate(${d.x + this.get_center_x() - $(nodes[i]).width() / 2}px, ${d.y}px)`)
                 .style('position', 'absolute')
+                .style('animation', (d,i,nodes) => `fadein 1s ${i * (1 / nodes.length)}s forwards`)
                 .html((d) => this.course_element_generator(d.data))
                 .on('mouseover', (e, d) => {
                     let ancestor_root = get_ancestor_hierarchy(d);

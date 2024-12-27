@@ -2218,8 +2218,8 @@ html {
   height: 2rem;
 }
 
-.h-\[500px\] {
-  height: 500px;
+.h-\[700px\] {
+  height: 700px;
 }
 
 .h-full {
@@ -2232,6 +2232,10 @@ html {
 
 .w-48 {
   width: 12rem;
+}
+
+.w-5\/12 {
+  width: 41.666667%;
 }
 
 .w-6 {
@@ -2260,10 +2264,6 @@ html {
 
 .max-w-\[90vw\] {
   max-width: 90vw;
-}
-
-.max-w-screen-lg {
-  max-width: 1024px;
 }
 
 .flex-1 {
@@ -2306,8 +2306,16 @@ html {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
+.flex-row {
+  flex-direction: row;
+}
+
 .flex-col {
   flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .items-start {
@@ -2388,10 +2396,6 @@ html {
 
 .border-2 {
   border-width: 2px;
-}
-
-.border-opacity-50 {
-  --tw-border-opacity: 0.5;
 }
 
 .bg-\[\#0D2C54\] {
