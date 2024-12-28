@@ -8,6 +8,8 @@ OR = 'OR'
 MIN_GRADE = 'MIN_GRADE'
 LPAREN = 'LPAREN'
 RPAREN = 'RPAREN'
+LBRACKET = 'LBRACKET'
+RBRACKET = 'RBRACKET'
 EOF = 'EOF'
 
 class Token(object):
@@ -61,6 +63,10 @@ class Scanner(object):
             self.advance(15)
             return Token(MIN_GRADE, 'Minimum Grade')
 
+        if check_keyword('Min Grade: '):
+            self.advance(11)
+            return Token(MIN_GRADE, 'Min Grade')
+
     def value(self) -> Token:
         value = ''
         while self.curr_char is not None and (self.curr_char.isalnum() or self.curr_char == '-'):
@@ -82,6 +88,14 @@ class Scanner(object):
             if self.curr_char == ')':
                 self.advance()
                 return Token(RPAREN, ')')
+
+            if self.curr_char == '[':
+                self.advance()
+                return Token(LBRACKET, '[')
+
+            if self.curr_char == ']':
+                self.advance()
+                return Token(RBRACKET, ']')
 
             if token := self.keyword():
                 return token
@@ -124,6 +138,22 @@ class Parse(object):
         else:
             self.error()
 
+    def min_grade(self):
+        min_grade_token = None
+        if self.curr_token.type == MIN_GRADE:
+            self.consume(MIN_GRADE)
+            min_grade_token = self.curr_token
+            self.consume(VALUE)
+        elif self.curr_token.type == LBRACKET:
+            self.consume(LBRACKET)
+            self.consume(MIN_GRADE)
+            min_grade_token = self.curr_token
+            self.consume(VALUE)
+            self.consume(RBRACKET)
+
+        return min_grade_token
+
+
     def factor(self):
         """
         Rules:
@@ -138,9 +168,7 @@ class Parse(object):
             self.consume(VALUE)
             course_number_token = self.curr_token
             self.consume(VALUE)
-            self.consume(MIN_GRADE)
-            min_grade_token = self.curr_token
-            self.consume(VALUE)
+            min_grade_token = self.min_grade()
             return Course(token, course_number_token, min_grade_token)
 
         self.consume(LPAREN)
