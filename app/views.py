@@ -2,6 +2,7 @@ from flask import redirect, render_template, request, url_for, flash, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from . import app
 from app.models.user import User
+from app.models.classes import Classes
 from app.models.courses import Courses
 from app.models.user_course import UserCourse
 from app import bcrypt, db
@@ -13,7 +14,7 @@ import re
 
 @app.route("/")
 def home():
-    courses = db.session.query(Courses).all()
+    courses = db.session.query(Classes).all()
     courseSubjectCodes = []
     for course in courses:
         if course.subject_code not in courseSubjectCodes:
@@ -85,7 +86,7 @@ def profile():
     print(course_ids)
     courses = []
     for c in course_ids:
-        course = db.session.query(Courses).filter_by(crn=c.course_id).first()
+        course = db.session.query(Classes).filter_by(crn=c.course_id).first()
         courses.append(course)
     
     print(courses)
@@ -152,7 +153,7 @@ def save_user_course(course_string, user):
         return None
     subject_code, course_number, grade = vals[0], vals[1], vals[2]
     subject_code = subject_code.upper()
-    course = db.session.query(Courses).filter_by(subject_code=subject_code, course_number=course_number).first()
+    course = db.session.query(Classes).filter_by(subject_code=subject_code, course_number=course_number).first()
     crn = course.crn if course else None
 
     user_course = UserCourse(user_id=user.id, course_id=crn, subject_code=subject_code, course_number=course_number, grade=grade)

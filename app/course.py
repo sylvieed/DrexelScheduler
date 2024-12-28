@@ -6,7 +6,7 @@ import json
 import re
 from app.models.courses import Courses
 from app.prereq_ast_generator import (
-    get_prereq_ast, get_all_courses, get_all_courses_w_ast, Course
+    get_prereq_ast, get_all_courses, get_all_courses_w_ast
 )
 
 view_bp = Blueprint('course', __name__, url_prefix='/course')
@@ -16,7 +16,7 @@ def get_course(subject_code: str, course_number: int) -> Courses:
     db: SQLAlchemy = current_app.extensions['sqlalchemy']
 
     course = (db.session.query(Courses)
-        .filter(Courses.subject_code == subject_code.upper())) \
+              .filter(Courses.subject_code == subject_code.upper())) \
         .filter(Courses.course_number == course_number) \
         .first()
 

@@ -12,8 +12,8 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',  # 'qefjioamczuiavdbegui'
-        DATABASE=os.path.join(app.instance_path, 'db.sqlite'),
-        SQLALCHEMY_DATABASE_URI='sqlite:///db.sqlite'
+        DATABASE=os.path.join(app.instance_path, 'courses.sqlite'),
+        SQLALCHEMY_DATABASE_URI='sqlite:///courses.sqlite'
     )
 
     # This will create the database file using SQLAlchemy
